@@ -14,8 +14,11 @@ public class gametest {
     private AnimationTimer animationTimer;
     private long lastTimeTriggered;
     public Rectangle poprio;
-    public double y = 260;
+    private double y = 260;
     private double x = 30;
+    private double vx = 0;
+    private double vy = 0;
+    private double ay = 1;
 
     public void createGame(Group gameDisplay) {
         Rectangle background = new Rectangle(0, 0, 800, 600);
@@ -29,9 +32,13 @@ public class gametest {
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                y-=vy;
+                poprio.setY(y);
                 if (y < 260) {
-                    y++;
-                    poprio.setY(y);
+                    vy-=ay;
+                }
+                if (y == 260){
+                    vy=0;
                 }
             }
 
@@ -52,8 +59,8 @@ public class gametest {
                     poprio.setX(x);
                 }
                 case W -> {
-                    y -= 200;
-                    poprio.setY(y);
+                    if (y == 260)
+                        vy = 20;
                 }
                 case S -> {
                     y += 10;
