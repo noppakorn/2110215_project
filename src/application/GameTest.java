@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 
-public class gametest {
+public class GameTest {
     private AnimationTimer animationTimer;
     private long lastTimeTriggered;
     public Rectangle poprio;
