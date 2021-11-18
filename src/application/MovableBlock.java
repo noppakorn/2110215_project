@@ -1,2 +1,11 @@
-package application;public class MovableBlock {
+package application;
+
+import block.Block;
+import entity.base.Movable;
+
+public class MovableBlock extends Block implements Movable {
+    @Override
+    public boolean move() {
+        return false;
+    }
 }
