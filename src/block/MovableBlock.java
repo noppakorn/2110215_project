@@ -1,4 +1,4 @@
-package application;
+package block;
 
 import block.Block;
 import entity.base.Movable;
