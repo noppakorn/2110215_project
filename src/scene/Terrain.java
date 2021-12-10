@@ -1,3 +1,6 @@
+/*
+Represents the terrain of each scene in the level
+ */
 package scene;
 
 

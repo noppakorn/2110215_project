@@ -7,6 +7,19 @@ public abstract class Entity extends ImageView {
     protected String name;
     protected int health;
 
+    public Entity() {
+        this("Anonymous");
+    }
+    public Entity(String name) {
+        this(name, 100);
+    }
+
+    public Entity(String name, int health) {
+        super();
+        this.name = name;
+        this.health = 100;
+    }
+
     @Override
     public String toString() {
         return "Name: " + name;

@@ -1,0 +1,83 @@
+@startuml
+class block.Block {
++ <<Create>> Block(BlockType)
++ <<Create>> Block()
+}
+abstract class entity.base.Entity {
+# String name
+# int health
++ String toString()
++ String getName()
++ void setName(String)
++ int getHealth()
++ void setHealth(int)
+}
+interface entity.base.Attackable {
+~ boolean attack(Entity)
+}
+class scene.Menu {
+~ Text title
+~ Label label
++ boolean gameStart
++ <<Create>> Menu()
++ void initializeStartText()
+}
+class entity.derived.BoosterBlock {
++ boolean move(int,int)
+}
+class application.Main {
++ void start(Stage)
++ {static} void main(String[])
+}
+class application.GameController {
+- AnimationTimer animationTimer
+- long lastTimeTriggered
++ Rectangle poprio
+- double y
+- double x
+- double vx
+- double vy
+- double ay
+- EventHandler<KeyEvent> movement
++ void createGame(Group)
+}
+class entity.derived.Coin {
++ void collect()
+}
+class entity.derived.Player {
+- AnimationTimer animationTimer
+- long lastTimeTriggered
+- double y
+- double x
+- double vx
+- double vy
+- double ay
+- EventHandler<KeyEvent> movement
++ <<Create>> Player()
++ <<Create>> Player(String)
++ void initializeMovement()
+}
+interface entity.base.Movable {
+~ boolean move(int,int)
+}
+interface entity.base.Collectable {
+~ void collect()
+}
+class scene.Terrain {
++ <<Create>> Terrain()
++ void readTerrain()
++ void initializeTerrain()
+}
+
+
+javafx.scene.layout.Pane <|-- block.Block
+javafx.scene.image.ImageView <|-- entity.base.Entity
+javafx.scene.layout.VBox <|-- scene.Menu
+entity.base.Movable <|.. entity.derived.BoosterBlock
+entity.base.Entity <|-- entity.derived.BoosterBlock
+javafx.application.Application <|-- application.Main
+entity.base.Collectable <|.. entity.derived.Coin
+entity.base.Entity <|-- entity.derived.Coin
+entity.base.Entity <|-- entity.derived.Player
+javafx.scene.layout.GridPane <|-- scene.Terrain
+@enduml
