@@ -24,30 +24,61 @@ public class GameController {
      */
     private Timer timeElapsed;
     private boolean isGameEnd;
+    /**
+     * The Terrain count.
+     */
+    protected int terrainCount;
 
+    /**
+     * Instantiates a new Game controller.
+     */
     public GameController() {
         player = new Player();
         this.points = 0;
         this.isGameEnd = false;
+        this.terrainCount = 0;
         startTimer();
     }
 
+    /**
+     * Gets player.
+     *
+     * @return the player
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * Sets player.
+     *
+     * @param player the player
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
 
+    /**
+     * Gets points.
+     *
+     * @return the points
+     */
     public int getPoints() {
         return points;
     }
 
+    /**
+     * Sets points.
+     *
+     * @param points the points
+     */
     public void setPoints(int points) {
         this.points = points;
     }
 
+    /**
+     * Start timer.
+     */
     public void startTimer() {
         timeElapsed = new Timer();
         new Thread(() -> {
@@ -61,10 +92,21 @@ public class GameController {
         });
     }
 
+    /**
+     * Is game end boolean.
+     *
+     * @return the boolean
+     */
     public boolean isGameEnd() {
         return isGameEnd;
     }
 
+
+    /**
+     * Sets game end.
+     *
+     * @param gameEnd the game end
+     */
     public void setGameEnd(boolean gameEnd) {
         isGameEnd = gameEnd;
     }

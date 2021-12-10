@@ -16,13 +16,24 @@ public class Terrain extends GridPane {
     /**
      * Instantiates a new Terrain.
      */
-    public Terrain() {
+    private int terrainID;
+    /**
+     * ID for identifying terrain set by GameController
+     */
+
+    /**
+     * Instantiates a new Terrain.
+     *
+     * @param terrainID the terrain id
+     */
+    public Terrain(int terrainID) {
         super();
         this.setMinHeight(600);
         this.setMaxHeight(600);
         this.setMinWidth(800);
         this.setMaxWidth(800);
         initializeTerrain();
+        this.terrainID = terrainID;
     }
 
     /**
@@ -30,6 +41,16 @@ public class Terrain extends GridPane {
      */
     public void readTerrain() {
     }
+
+    /**
+     * Gets terrain id.
+     *
+     * @return the terrain id
+     */
+    public int getTerrainID() {
+        return terrainID;
+    }
+
 
     /**
      * Initialize terrain.

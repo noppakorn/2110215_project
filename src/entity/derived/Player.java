@@ -62,7 +62,7 @@ public class Player extends Entity {
                 }
                 case RIGHT -> {
                     if (posX < borderX) {
-                        posX += 5;
+                        posX += 30;
                         this.setX(posX);
                     } else {
                         goNextScene = true;
@@ -102,6 +102,10 @@ public class Player extends Entity {
         };
         animationTimer.start();
     }
+
+    /**
+     * Return to begin.
+     */
     public void returnToBegin() {
         this.posY = 260;
         this.posX = 20;
@@ -136,26 +140,56 @@ public class Player extends Entity {
         return borderY;
     }
 
+    /**
+     * Gets pos y.
+     *
+     * @return the pos y
+     */
     public double getPosY() {
         return posY;
     }
 
+    /**
+     * Sets pos y.
+     *
+     * @param posY the pos y
+     */
     public void setPosY(double posY) {
         this.posY = posY;
     }
 
+    /**
+     * Gets pos x.
+     *
+     * @return the pos x
+     */
     public double getPosX() {
         return posX;
     }
 
+    /**
+     * Sets pos x.
+     *
+     * @param posX the pos x
+     */
     public void setPosX(double posX) {
         this.posX = posX;
     }
 
+    /**
+     * Is go next scene boolean.
+     *
+     * @return the boolean
+     */
     public boolean isGoNextScene() {
         return goNextScene;
     }
 
+    /**
+     * Sets go next scene.
+     *
+     * @param goNextScene the go next scene
+     */
     public void setGoNextScene(boolean goNextScene) {
         this.goNextScene = goNextScene;
     }

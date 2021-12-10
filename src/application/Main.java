@@ -5,9 +5,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import scene.Menu;
 import scene.Terrain;
@@ -19,9 +16,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        /*
-        Start method for the program
-         */
 //        String bgMusicPath = ClassLoader.getSystemResource("mario.mp3").toString();
 //        Media media = new Media(bgMusicPath);
 //        MediaPlayer player = new MediaPlayer(media);
@@ -44,10 +38,9 @@ public class Main extends Application {
                 }
                 System.out.println("Waiting for key press");
             }
-            Terrain terrain = new Terrain();
             Group mainScene = new Group();
             Player p = new Player();
-            mainScene.getChildren().addAll(terrain, p);
+            p.setGoNextScene(true);
             Platform.runLater(() -> {
                 scene.setRoot(mainScene);
             });
@@ -58,17 +51,13 @@ public class Main extends Application {
                     e.printStackTrace();
                 }
                 if (p.isGoNextScene()) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            mainScene.getChildren().remove(terrain);
-                        }
-                    }) ;
-                    terrain = new Terrain();
-                    terrain.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-                    p.returnToBegin();
                     p.setGoNextScene(false);
-                    mainScene.getChildren().add(terrain);
+                    Terrain tmpTerrain = new Terrain(controller.terrainCount++);
+                    Platform.runLater(() -> {
+                        mainScene.getChildren().clear();
+                        p.returnToBegin();
+                        mainScene.getChildren().addAll(tmpTerrain, p);
+                    });
                 }
             }
         }).start();
