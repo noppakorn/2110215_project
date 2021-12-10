@@ -21,7 +21,7 @@ public class Main extends Application {
 //        player.play();
 
         Menu menu = new Menu();
-        Scene scene = new Scene(menu, 800, 600, Color.LIGHTSKYBLUE);
+        Scene scene = new Scene(menu, 800, 600);
         stage.setScene(scene);
         stage.setTitle("Poprio");
         stage.setResizable(false);

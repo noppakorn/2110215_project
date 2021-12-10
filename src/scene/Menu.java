@@ -20,7 +20,7 @@ public class Menu extends VBox {
     public Menu() {
         super();
         this.setAlignment(Pos.CENTER);
-        this.setBackground(new Background(new BackgroundFill(Color.LIGHTSKYBLUE, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Color.LIGHTCYAN, null, null)));
         title = new Text("Poprio");
         title.setStyle("-fx-font-weight: bold");
         title.setFont(new Font("Arial", 72));

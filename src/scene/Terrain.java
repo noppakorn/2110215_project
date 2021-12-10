@@ -2,8 +2,11 @@ package scene;
 
 
 import block.Block;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 public class Terrain extends GridPane {
     public Terrain() {
@@ -17,6 +20,7 @@ public class Terrain extends GridPane {
     public void readTerrain() {
     }
     public void initializeTerrain() {
+        this.setBackground(new Background(new BackgroundFill(Color.LIGHTSKYBLUE, null, null)));
         for (int i = 0; i < 12; ++i) {
             for (int j = 0; j < 16; ++j) {
                 Pane tmpPane = new Pane();
