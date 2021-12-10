@@ -1,0 +1,26 @@
+name: deploy-javadoc
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  gen-and-deploy-javadoc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Repo
+        uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          java-version: 17
+          java-package: jdk+fx
+      - name: Generate Javadoc
+        run: |
+          mkdir javadoc
+          cd javadoc
+          javadoc src/**/**.java
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.7
+        with:
+          branch: gh-pages
+          folder: javadoc
