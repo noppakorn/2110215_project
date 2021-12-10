@@ -1,6 +1,5 @@
 package application;
 
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -10,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 
-public class GameTest {
+public class GameController {
     private AnimationTimer animationTimer;
     private long lastTimeTriggered;
     public Rectangle poprio;
