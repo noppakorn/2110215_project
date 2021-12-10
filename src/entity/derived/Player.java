@@ -47,9 +47,7 @@ public class Player extends Entity {
     }
 
     /**
-     * Initialize player name, player stats , position and movement characteristics
-     *
-     * @param name : Name of the player
+     * Initialize movement.
      */
     public void initializeMovement() {
         this.setOnKeyPressed(keyEvent -> {
