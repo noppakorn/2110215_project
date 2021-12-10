@@ -6,6 +6,9 @@ class block.Block {
 abstract class entity.base.Entity {
 # String name
 # int health
++ <<Create>> Entity()
++ <<Create>> Entity(String)
++ <<Create>> Entity(String,int)
 + String toString()
 + String getName()
 + void setName(String)
@@ -23,6 +26,7 @@ class scene.Menu {
 + void initializeStartText()
 }
 class entity.derived.BoosterBlock {
++ <<Create>> BoosterBlock()
 + boolean move(int,int)
 }
 class application.Main {
@@ -30,32 +34,49 @@ class application.Main {
 + {static} void main(String[])
 }
 class application.GameController {
-- AnimationTimer animationTimer
-- long lastTimeTriggered
-+ Rectangle poprio
-- double y
-- double x
-- double vx
-- double vy
-- double ay
-- EventHandler<KeyEvent> movement
-+ void createGame(Group)
+- Player player
+- int points
+- Timer timeElapsed
+- boolean isGameEnd
+# int terrainCount
++ <<Create>> GameController()
++ Player getPlayer()
++ void setPlayer(Player)
++ int getPoints()
++ void setPoints(int)
++ void startTimer()
++ boolean isGameEnd()
++ void setGameEnd(boolean)
++ void genLevel(Group)
 }
 class entity.derived.Coin {
 + void collect()
 }
 class entity.derived.Player {
 - AnimationTimer animationTimer
-- long lastTimeTriggered
-- double y
-- double x
+- double posY
+- double posX
 - double vx
 - double vy
 - double ay
-- EventHandler<KeyEvent> movement
+- double borderX
+- double borderY
+- boolean goNextScene
 + <<Create>> Player()
 + <<Create>> Player(String)
 + void initializeMovement()
++ void setAnimationTimer()
++ void returnToBegin()
++ double getBorderX()
++ void setBorderX(double)
++ double getBorderY()
++ double getPosY()
++ void setPosY(double)
++ double getPosX()
++ void setPosX(double)
++ boolean isGoNextScene()
++ void setGoNextScene(boolean)
++ void setBorderY(double)
 }
 interface entity.base.Movable {
 ~ boolean move(int,int)
@@ -64,8 +85,10 @@ interface entity.base.Collectable {
 ~ void collect()
 }
 class scene.Terrain {
-+ <<Create>> Terrain()
+- int terrainID
++ <<Create>> Terrain(int)
 + void readTerrain()
++ int getTerrainID()
 + void initializeTerrain()
 }
 

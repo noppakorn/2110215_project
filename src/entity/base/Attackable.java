@@ -1,11 +1,11 @@
 package entity.base;
 
 /**
- * The interface Attackable.
+ * The interface Attackable. Class which implements this method can attack other entities.
  */
 public interface Attackable {
     /**
-     * Attack boolean.
+     * Attack another entity.
      *
      * @param e the e
      * @return the boolean

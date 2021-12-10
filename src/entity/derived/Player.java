@@ -1,5 +1,6 @@
 package entity.derived;
 
+import entity.base.Attackable;
 import entity.base.Entity;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
@@ -7,7 +8,7 @@ import javafx.scene.image.Image;
 /**
  * The type Player. This type represents the main player of the game;
  */
-public class Player extends Entity {
+public class Player extends Entity implements Attackable {
     private AnimationTimer animationTimer;
     private double posY;
     private double posX;
@@ -201,5 +202,10 @@ public class Player extends Entity {
      */
     public void setBorderY(double borderY) {
         this.borderY = borderY;
+    }
+
+    @Override
+    public boolean attack(Entity e) {
+        return false;
     }
 }
