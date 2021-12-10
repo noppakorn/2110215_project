@@ -12,11 +12,26 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
+/**
+ * The type Menu.
+ */
 public class Menu extends VBox {
+    /**
+     * The Title.
+     */
     Text title;
+    /**
+     * The Label.
+     */
     Label label;
+    /**
+     * The Game start.
+     */
     public boolean gameStart;
 
+    /**
+     * Instantiates a new Menu.
+     */
     public Menu() {
         super();
         this.setAlignment(Pos.CENTER);
@@ -32,6 +47,9 @@ public class Menu extends VBox {
         this.getChildren().addAll(title, label);
     }
 
+    /**
+     * Initialize start text.
+     */
     public void initializeStartText() {
         label = new Label("Click anywhere to start game.");
         label.setFont(new Font("Arial", 20));

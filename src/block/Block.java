@@ -5,7 +5,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 
+/**
+ * The type Block.
+ */
 public class Block extends Pane {
+    /**
+     * Instantiates a new Block.
+     *
+     * @param blockType the block type
+     */
     public Block(BlockType blockType) {
         this.setPrefHeight(50);
         this.setPrefWidth(50);
@@ -24,6 +32,9 @@ public class Block extends Pane {
         this.getChildren().add(imageView);
     }
 
+    /**
+     * Instantiates a new Block.
+     */
     public Block() {
         this(BlockType.GRASS);
     }

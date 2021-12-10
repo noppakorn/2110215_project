@@ -3,7 +3,13 @@ package entity.derived;
 import entity.base.Entity;
 import entity.base.Movable;
 
+/**
+ * The type Booster block.
+ */
 public class BoosterBlock extends Entity implements Movable {
+    /**
+     * Instantiates a new Booster block.
+     */
     public BoosterBlock() {
 
     }
