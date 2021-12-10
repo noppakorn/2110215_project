@@ -9,13 +9,14 @@ import javafx.scene.image.Image;
  */
 public class Player extends Entity {
     private AnimationTimer animationTimer;
-    private double y;
-    private double x;
+    private double posY;
+    private double posX;
     private double vx;
     private double vy;
     private double ay;
     private double borderX;
     private double borderY;
+    private boolean goNextScene;
 
     /**
      * Instantiates a new Player.
@@ -31,13 +32,16 @@ public class Player extends Entity {
      */
     public Player(String name) {
         super(name);
-        this.y = 50;
-        this.x = 20;
+        this.posY = 260;
+        this.posX = 20;
         this.vx = 0;
         this.vy = 0;
         this.ay = 1;
-        this.setX(x);
-        this.setY(y);
+        setBorderX(700);
+        setBorderY(500);
+        this.setX(posX);
+        this.setY(posY);
+        this.goNextScene = false;
         String imagePath = ClassLoader.getSystemResource("marioRight0Lvl0.png").toString();
         this.setImage(new Image(imagePath));
         this.setFocusTraversable(true);
@@ -53,20 +57,25 @@ public class Player extends Entity {
         this.setOnKeyPressed(keyEvent -> {
             switch (keyEvent.getCode()) {
                 case LEFT -> {
-                    x = Math.max(0, x - 5);
-                    this.setX(x);
+                    posX = Math.max(0, posX - 5);
+                    this.setX(posX);
                 }
                 case RIGHT -> {
-                    x = Math.min(500, x + 5);
-                    this.setX(x);
+                    if (posX < borderX) {
+                        posX += 5;
+                        this.setX(posX);
+                    } else {
+                        goNextScene = true;
+                        System.out.println(goNextScene);
+                    }
                 }
                 case UP -> {
-                    if (y == 260)
+                    if (posY == 260)
                         vy = 20;
                 }
                 case DOWN -> {
-                    y += 10;
-                    this.setY(y);
+                    posY += 10;
+                    this.setY(posY);
                 }
                 default -> System.out.println(keyEvent.getCode());
             }
@@ -80,18 +89,24 @@ public class Player extends Entity {
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                y -= vy;
-                Player.super.setY(y);
-                if (y < 260) {
+                posY -= vy;
+                Player.super.setY(posY);
+                if (posY < 260) {
                     vy -= ay;
                 }
-                if (y == 260) {
+                if (posY == 260) {
                     vy = 0;
                 }
             }
 
         };
         animationTimer.start();
+    }
+    public void returnToBegin() {
+        this.posY = 260;
+        this.posX = 20;
+        this.setY(posY);
+        this.setX(posX);
     }
 
     /**
@@ -119,6 +134,30 @@ public class Player extends Entity {
      */
     public double getBorderY() {
         return borderY;
+    }
+
+    public double getPosY() {
+        return posY;
+    }
+
+    public void setPosY(double posY) {
+        this.posY = posY;
+    }
+
+    public double getPosX() {
+        return posX;
+    }
+
+    public void setPosX(double posX) {
+        this.posX = posX;
+    }
+
+    public boolean isGoNextScene() {
+        return goNextScene;
+    }
+
+    public void setGoNextScene(boolean goNextScene) {
+        this.goNextScene = goNextScene;
     }
 
     /**

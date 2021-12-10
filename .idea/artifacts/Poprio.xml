@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Poprio">
+    <output-path>$PROJECT_DIR$</output-path>
+    <root id="archive" name="Poprio.jar">
+      <element id="module-output" name="2110215_project" />
+      <element id="library" level="project" name="javafx-swt" />
+      <element id="dir-copy" path="$PROJECT_DIR$/res" />
+    </root>
+  </artifact>
+</component>
