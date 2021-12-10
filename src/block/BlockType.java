@@ -1,2 +1,6 @@
-package block;public enum BlockType {
+package block;
+
+public enum BlockType {
+    GRASS,
+    DIRT,
 }
