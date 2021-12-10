@@ -14,11 +14,11 @@ jobs:
         with:
           java-version: 17
           java-package: jdk+fx
+      - name: Create javadoc folder
+        run: mkdir javadoc
       - name: Generate Javadoc
-        run: |
-          mkdir javadoc
-          cd javadoc
-          javadoc src/**/**.java
+        working-directory: javadoc
+        run: javadoc ../src/**/**.java
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
