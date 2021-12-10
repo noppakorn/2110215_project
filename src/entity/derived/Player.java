@@ -4,6 +4,9 @@ import entity.base.Entity;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 
+/**
+ * The type Player. This type represents the main player of the game;
+ */
 public class Player extends Entity {
     private AnimationTimer animationTimer;
     private double y;
@@ -14,14 +17,19 @@ public class Player extends Entity {
     private double borderX;
     private double borderY;
 
+    /**
+     * Instantiates a new Player.
+     */
     public Player() {
         this("Poprio");
     }
 
+    /**
+     * Instantiates a new Player.
+     *
+     * @param name the name
+     */
     public Player(String name) {
-        /* Initialize player name, player stats , position and movement characteristics
-        @param name: Name of the player
-         */
         super(name);
         this.y = 50;
         this.x = 20;
@@ -38,9 +46,12 @@ public class Player extends Entity {
         System.out.println("Player Initialized");
     }
 
+    /**
+     * Initialize player name, player stats , position and movement characteristics
+     *
+     * @param name : Name of the player
+     */
     public void initializeMovement() {
-        /* Set keyboard event handler for the player
-         */
         this.setOnKeyPressed(keyEvent -> {
             switch (keyEvent.getCode()) {
                 case LEFT -> {
@@ -64,9 +75,10 @@ public class Player extends Entity {
         });
     }
 
+    /**
+     * Set keyboard event handler for the player
+     */
     public void setAnimationTimer() {
-        /* Set animation timer for the player movement
-         */
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -84,18 +96,38 @@ public class Player extends Entity {
         animationTimer.start();
     }
 
+    /**
+     * Set animation timer for the player movement
+     *
+     * @return the border x
+     */
     public double getBorderX() {
         return borderX;
     }
 
+    /**
+     * Sets border x.
+     *
+     * @param borderX the border x
+     */
     public void setBorderX(double borderX) {
         this.borderX = borderX;
     }
 
+    /**
+     * Gets border y.
+     *
+     * @return the border y
+     */
     public double getBorderY() {
         return borderY;
     }
 
+    /**
+     * Sets border y.
+     *
+     * @param borderY the border y
+     */
     public void setBorderY(double borderY) {
         this.borderY = borderY;
     }

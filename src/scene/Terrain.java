@@ -1,6 +1,3 @@
-/*
-Represents the terrain of each scene in the level
- */
 package scene;
 
 
@@ -11,7 +8,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+/**
+ * The type Terrain.
+ * Represents the terrain of each scene in the level
+ */
 public class Terrain extends GridPane {
+    /**
+     * Instantiates a new Terrain.
+     */
     public Terrain() {
         super();
         this.setMinHeight(600);
@@ -20,8 +24,16 @@ public class Terrain extends GridPane {
         this.setMaxWidth(800);
         initializeTerrain();
     }
+
+    /**
+     * Read terrain.
+     */
     public void readTerrain() {
     }
+
+    /**
+     * Initialize terrain.
+     */
     public void initializeTerrain() {
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTSKYBLUE, null, null)));
         for (int i = 0; i < 12; ++i) {
