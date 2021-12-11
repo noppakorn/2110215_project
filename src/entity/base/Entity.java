@@ -95,4 +95,14 @@ public abstract class Entity extends ImageView {
         this.setImage(new Image(ClassLoader.getSystemResource(resourcePath).toString()));
     }
 
+    /**
+     * Move object using absolute position on screen with bound checking that position will not exceed bounds.
+     *
+     * @param x the x coordinate
+     * @param y the y coordinate
+     */
+    public void moveToPos(double x, double y) {
+        this.setX(x);
+        this.setY(y);
+    }
 }

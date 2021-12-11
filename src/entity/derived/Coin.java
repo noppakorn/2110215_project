@@ -9,6 +9,7 @@ import entity.base.Entity;
  */
 public class Coin extends Entity implements Collectable {
     private int point;
+    private boolean despawn;
 
     /**
      * Instantiates a new Coin.
@@ -25,19 +26,12 @@ public class Coin extends Entity implements Collectable {
     public Coin(int value) {
         super("Coin");
         this.point = value;
+        initializeTexture("coin.png");
     }
 
     @Override
     public void collect() {
         GameController.increasePoint(point);
-
+        despawn = true;
     }
-
-    /**
-     * Despawn.
-     */
-    public void despawn() {
-
-    }
-
 }

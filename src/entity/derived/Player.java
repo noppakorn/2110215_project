@@ -12,6 +12,7 @@ public class Player extends Entity implements Attackable {
     //    private double vx;
     private double vy;
     private double ay;
+    private double sceneUpperBoundX;
     private double upperBoundX;
     private double upperBoundY;
     private double lowerBoundX;
@@ -33,6 +34,7 @@ public class Player extends Entity implements Attackable {
         initializeTexture("marioRight0Lvl0.png");
         this.setFocusTraversable(true);
 
+        this.sceneUpperBoundX = 700;
         this.upperBoundX = 700;
         this.lowerBoundX = 20;
         this.upperBoundY = 420;
@@ -56,9 +58,7 @@ public class Player extends Entity implements Attackable {
                     move(-5, 0);
                 }
                 case RIGHT -> {
-                    if (!move(30, 0)) {
-                        goNextScene = true;
-                    }
+                    move(30, 0);
                 }
                 case UP -> {
                     if (this.getY() >= upperBoundY)
@@ -96,32 +96,18 @@ public class Player extends Entity implements Attackable {
         this.setY(upperBoundY);
     }
 
-
-    /**
-     * Move object using relative position.
-     *
-     * @param dx the value to add or remove to x.
-     * @param dy the value to add or remove to y.
-     * @return the result of the move operation
-     */
-    public boolean move(double dx, double dy) {
-        return moveToPos(this.getX() + dx, this.getY() + dy);
+    public void move(double dx, double dy) {
+        moveToPos(this.getX() + dx, this.getY() + dy);
     }
 
-    /**
-     * Move object using absolute position on screen with bound checking that position will not exceed bounds.
-     *
-     * @param x the x coordinate
-     * @param y the y coordinate
-     * @return the result of the move operation
-     */
-    public boolean moveToPos(double x, double y) {
+    @Override
+    public void moveToPos(double x, double y) {
         if (x >= lowerBoundX && x <= upperBoundX && y <= upperBoundY) {
             this.setX(x);
             this.setY(y);
-            return true;
+        } else if (x >= sceneUpperBoundX) {
+            this.setGoNextScene(true);
         }
-        return false;
     }
 
     @Override
@@ -147,4 +133,75 @@ public class Player extends Entity implements Attackable {
         this.goNextScene = goNextScene;
     }
 
+    /**
+     * Gets scene upper bound x.
+     *
+     * @return the scene upper bound x
+     */
+    public double getSceneUpperBoundX() {
+        return sceneUpperBoundX;
+    }
+
+    /**
+     * Sets scene upper bound x.
+     *
+     * @param sceneUpperBoundX the scene upper bound x
+     */
+    public void setSceneUpperBoundX(double sceneUpperBoundX) {
+        this.sceneUpperBoundX = sceneUpperBoundX;
+    }
+
+    /**
+     * Gets upper bound x.
+     *
+     * @return the upper bound x
+     */
+    public double getUpperBoundX() {
+        return upperBoundX;
+    }
+
+    /**
+     * Sets upper bound x.
+     *
+     * @param upperBoundX the upper bound x
+     */
+    public void setUpperBoundX(double upperBoundX) {
+        this.upperBoundX = upperBoundX;
+    }
+
+    /**
+     * Gets upper bound y.
+     *
+     * @return the upper bound y
+     */
+    public double getUpperBoundY() {
+        return upperBoundY;
+    }
+
+    /**
+     * Sets upper bound y.
+     *
+     * @param upperBoundY the upper bound y
+     */
+    public void setUpperBoundY(double upperBoundY) {
+        this.upperBoundY = upperBoundY;
+    }
+
+    /**
+     * Gets lower bound x.
+     *
+     * @return the lower bound x
+     */
+    public double getLowerBoundX() {
+        return lowerBoundX;
+    }
+
+    /**
+     * Sets lower bound x.
+     *
+     * @param lowerBoundX the lower bound x
+     */
+    public void setLowerBoundX(double lowerBoundX) {
+        this.lowerBoundX = lowerBoundX;
+    }
 }
