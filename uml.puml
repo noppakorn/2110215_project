@@ -14,6 +14,7 @@ abstract class entity.base.Entity {
 + void setName(String)
 + int getHealth()
 + void setHealth(int)
++ void initializeTexture(String)
 }
 interface entity.base.Attackable {
 ~ boolean attack(Entity)
@@ -27,59 +28,53 @@ class scene.Menu {
 }
 class entity.derived.BoosterBlock {
 + <<Create>> BoosterBlock()
-+ boolean move(int,int)
 }
 class application.Main {
 + void start(Stage)
 + {static} void main(String[])
 }
 class application.GameController {
-- Player player
-- int points
-- Timer timeElapsed
-- boolean isGameEnd
-# int terrainCount
-+ <<Create>> GameController()
-+ Player getPlayer()
-+ void setPlayer(Player)
-+ int getPoints()
-+ void setPoints(int)
-+ void startTimer()
-+ boolean isGameEnd()
-+ void setGameEnd(boolean)
-+ void genLevel(Group)
++ {static} boolean debugEnabled
+- {static} int points
+# {static} int terrainCount
+- {static} Timer timeElapsed
+- {static} boolean isGameEnd
++ {static} int getPoints()
++ {static} void increasePoint(int)
++ {static} void startTimer()
++ {static} boolean isGameEnd()
++ {static} void setGameEnd()
 }
 class entity.derived.Coin {
+- int point
++ <<Create>> Coin()
++ <<Create>> Coin(int)
 + void collect()
++ void despawn()
+}
+class entity.derived.Enemy {
++ <<Create>> Enemy(String)
++ boolean attack(Entity)
 }
 class entity.derived.Player {
-- AnimationTimer animationTimer
-- double posY
-- double posX
-- double vx
+- boolean goNextScene
 - double vy
 - double ay
-- double borderX
-- double borderY
-- boolean goNextScene
+- double upperBoundX
+- double upperBoundY
+- double lowerBoundX
 + <<Create>> Player()
 + <<Create>> Player(String)
 + void initializeMovement()
-+ void setAnimationTimer()
 + void returnToBegin()
-+ double getBorderX()
-+ void setBorderX(double)
-+ double getBorderY()
-+ double getPosY()
-+ void setPosY(double)
-+ double getPosX()
-+ void setPosX(double)
++ boolean move(double,double)
++ boolean moveToPos(double,double)
++ boolean attack(Entity)
 + boolean isGoNextScene()
 + void setGoNextScene(boolean)
-+ void setBorderY(double)
 }
-interface entity.base.Movable {
-~ boolean move(int,int)
+class entity.derived.Booster {
++ void collect()
 }
 interface entity.base.Collectable {
 ~ void collect()
@@ -96,11 +91,15 @@ class scene.Terrain {
 javafx.scene.layout.Pane <|-- block.Block
 javafx.scene.image.ImageView <|-- entity.base.Entity
 javafx.scene.layout.VBox <|-- scene.Menu
-entity.base.Movable <|.. entity.derived.BoosterBlock
 entity.base.Entity <|-- entity.derived.BoosterBlock
 javafx.application.Application <|-- application.Main
 entity.base.Collectable <|.. entity.derived.Coin
 entity.base.Entity <|-- entity.derived.Coin
+entity.base.Attackable <|.. entity.derived.Enemy
+entity.base.Entity <|-- entity.derived.Enemy
+entity.base.Attackable <|.. entity.derived.Player
 entity.base.Entity <|-- entity.derived.Player
+entity.base.Collectable <|.. entity.derived.Booster
+entity.base.Entity <|-- entity.derived.Booster
 javafx.scene.layout.GridPane <|-- scene.Terrain
 @enduml

@@ -8,78 +8,51 @@ import java.util.TimerTask;
 
 
 /**
- * The type Game controller.
+ * Class that hold all the data related to the state of the game.
  */
 public class GameController {
     /**
-     * The Player.
+     * Set game to debug mode
      */
-    private Player player;
+    public static final boolean debugEnabled = true;
     /**
      * Accumulated points for player
      */
-    private int points;
+    private static int points = 0;
+    /**
+     * The Terrain count for identifying the number of terrain generated.
+     */
+    protected static int terrainCount = 0;
+
     /**
      * Time Elapsed in seconds for the current level
      */
-    private Timer timeElapsed;
-    private boolean isGameEnd;
-    /**
-     * The Terrain count.
-     */
-    protected int terrainCount;
+    private static Timer timeElapsed;
+    private static boolean isGameEnd = false;
 
-    /**
-     * Instantiates a new Game controller.
-     */
-    public GameController() {
-        player = new Player();
-        this.points = 0;
-        this.isGameEnd = false;
-        this.terrainCount = 0;
-        startTimer();
-    }
-
-    /**
-     * Gets player.
-     *
-     * @return the player
-     */
-    public Player getPlayer() {
-        return player;
-    }
-
-    /**
-     * Sets player.
-     *
-     * @param player the player
-     */
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
 
     /**
      * Gets points.
      *
      * @return the points
      */
-    public int getPoints() {
+    public static int getPoints() {
         return points;
     }
 
     /**
-     * Sets points.
+     * Increase point.
      *
-     * @param points the points
+     * @param dPoint the d point
      */
-    public void setPoints(int points) {
-        this.points = points;
+    public static void increasePoint(int dPoint) {
+        points += dPoint;
     }
 
     /**
-     * Start timer.
+     * Start the game timer.
      */
-    public void startTimer() {
+    public static void startTimer() {
         timeElapsed = new Timer();
         new Thread(() -> {
             timeElapsed.schedule(new TimerTask() {
@@ -93,30 +66,20 @@ public class GameController {
     }
 
     /**
-     * Is game end boolean.
+     * The state of the game.
      *
-     * @return the boolean
+     * @return the boolean that represents the state of the game.
      */
-    public boolean isGameEnd() {
+    public static boolean isGameEnd() {
         return isGameEnd;
     }
 
 
     /**
-     * Sets game end.
-     *
-     * @param gameEnd the game end
+     * Set game state to end.
      */
-    public void setGameEnd(boolean gameEnd) {
-        isGameEnd = gameEnd;
+    public static void setGameEnd() {
+        isGameEnd = true;
     }
 
-    /**
-     * Create game.
-     *
-     * @param gameDisplay the game display
-     */
-    public void genLevel(Group gameDisplay) {
-        gameDisplay.getChildren().addAll(player);
-    }
 }

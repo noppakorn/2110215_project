@@ -5,10 +5,10 @@ package entity.base;
  */
 public interface Attackable {
     /**
-     * Attack another entity.
+     * Do attack action to another entity.
      *
-     * @param e the e
-     * @return the boolean
+     * @param e the entity to be attacked.
+     * @return the result of the attack.
      */
     boolean attack(Entity e);
 }

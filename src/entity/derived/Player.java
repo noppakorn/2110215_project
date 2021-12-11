@@ -3,24 +3,21 @@ package entity.derived;
 import entity.base.Attackable;
 import entity.base.Entity;
 import javafx.animation.AnimationTimer;
-import javafx.scene.image.Image;
 
 /**
  * The type Player. This type represents the main player of the game;
  */
 public class Player extends Entity implements Attackable {
-    private AnimationTimer animationTimer;
-    private double posY;
-    private double posX;
-    private double vx;
+    private boolean goNextScene;
+    //    private double vx;
     private double vy;
     private double ay;
-    private double borderX;
-    private double borderY;
-    private boolean goNextScene;
+    private double upperBoundX;
+    private double upperBoundY;
+    private double lowerBoundX;
 
     /**
-     * Instantiates a new Player.
+     * Instantiates a new Player with a default name Poprio.
      */
     public Player() {
         this("Poprio");
@@ -33,69 +30,55 @@ public class Player extends Entity implements Attackable {
      */
     public Player(String name) {
         super(name);
-        this.posY = 260;
-        this.posX = 20;
-        this.vx = 0;
+        initializeTexture("marioRight0Lvl0.png");
+        this.setFocusTraversable(true);
+
+        this.upperBoundX = 700;
+        this.lowerBoundX = 20;
+        this.upperBoundY = 420;
         this.vy = 0;
         this.ay = 1;
-        setBorderX(700);
-        setBorderY(500);
-        this.setX(posX);
-        this.setY(posY);
+        this.returnToBegin();
         this.goNextScene = false;
-        String imagePath = ClassLoader.getSystemResource("marioRight0Lvl0.png").toString();
-        this.setImage(new Image(imagePath));
-        this.setFocusTraversable(true);
+
         initializeMovement();
-        setAnimationTimer();
-        System.out.println("Player Initialized");
+
+        System.out.println("Player: " + this + " initialized");
     }
 
     /**
-     * Initialize movement.
+     * Initialize movement event handler and gravity for player.
      */
     public void initializeMovement() {
         this.setOnKeyPressed(keyEvent -> {
             switch (keyEvent.getCode()) {
                 case LEFT -> {
-                    posX = Math.max(0, posX - 5);
-                    this.setX(posX);
+                    move(-5, 0);
                 }
                 case RIGHT -> {
-                    if (posX < borderX) {
-                        posX += 30;
-                        this.setX(posX);
-                    } else {
+                    if (!move(30, 0)) {
                         goNextScene = true;
-                        System.out.println(goNextScene);
                     }
                 }
                 case UP -> {
-                    if (posY == 260)
+                    if (this.getY() >= upperBoundY)
                         vy = 20;
                 }
                 case DOWN -> {
-                    posY += 10;
-                    this.setY(posY);
+                    if (this.getY() + 10 <= upperBoundY) {
+                        move(0, 10);
+                    }
                 }
-                default -> System.out.println(keyEvent.getCode());
             }
         });
-    }
-
-    /**
-     * Set keyboard event handler for the player
-     */
-    public void setAnimationTimer() {
-        animationTimer = new AnimationTimer() {
+        AnimationTimer animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                posY -= vy;
-                Player.super.setY(posY);
-                if (posY < 260) {
+                move(0, -vy);
+                if (Player.super.getY() < upperBoundY) {
                     vy -= ay;
                 }
-                if (posY == 260) {
+                if (Player.super.getY() > upperBoundY) {
                     vy = 0;
                 }
             }
@@ -104,81 +87,50 @@ public class Player extends Entity implements Attackable {
         animationTimer.start();
     }
 
+
     /**
-     * Return to begin.
+     * Move player to the beginning of the scene.
      */
     public void returnToBegin() {
-        this.posY = 260;
-        this.posX = 20;
-        this.setY(posY);
-        this.setX(posX);
+        this.setX(lowerBoundX);
+        this.setY(upperBoundY);
     }
 
+
     /**
-     * Set animation timer for the player movement
+     * Move object using relative position.
      *
-     * @return the border x
+     * @param dx the value to add or remove to x.
+     * @param dy the value to add or remove to y.
+     * @return the result of the move operation
      */
-    public double getBorderX() {
-        return borderX;
+    public boolean move(double dx, double dy) {
+        return moveToPos(this.getX() + dx, this.getY() + dy);
     }
 
     /**
-     * Sets border x.
+     * Move object using absolute position on screen with bound checking that position will not exceed bounds.
      *
-     * @param borderX the border x
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @return the result of the move operation
      */
-    public void setBorderX(double borderX) {
-        this.borderX = borderX;
+    public boolean moveToPos(double x, double y) {
+        if (x >= lowerBoundX && x <= upperBoundX && y <= upperBoundY) {
+            this.setX(x);
+            this.setY(y);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean attack(Entity e) {
+        return false;
     }
 
     /**
-     * Gets border y.
-     *
-     * @return the border y
-     */
-    public double getBorderY() {
-        return borderY;
-    }
-
-    /**
-     * Gets pos y.
-     *
-     * @return the pos y
-     */
-    public double getPosY() {
-        return posY;
-    }
-
-    /**
-     * Sets pos y.
-     *
-     * @param posY the pos y
-     */
-    public void setPosY(double posY) {
-        this.posY = posY;
-    }
-
-    /**
-     * Gets pos x.
-     *
-     * @return the pos x
-     */
-    public double getPosX() {
-        return posX;
-    }
-
-    /**
-     * Sets pos x.
-     *
-     * @param posX the pos x
-     */
-    public void setPosX(double posX) {
-        this.posX = posX;
-    }
-
-    /**
-     * Is go next scene boolean.
+     * State of the object if the object should go to the next scene
      *
      * @return the boolean
      */
@@ -187,25 +139,12 @@ public class Player extends Entity implements Attackable {
     }
 
     /**
-     * Sets go next scene.
+     * Sets state of the object to go to next scene.
      *
-     * @param goNextScene the go next scene
+     * @param goNextScene the state of the object to go to next scene
      */
     public void setGoNextScene(boolean goNextScene) {
         this.goNextScene = goNextScene;
     }
 
-    /**
-     * Sets border y.
-     *
-     * @param borderY the border y
-     */
-    public void setBorderY(double borderY) {
-        this.borderY = borderY;
-    }
-
-    @Override
-    public boolean attack(Entity e) {
-        return false;
-    }
 }

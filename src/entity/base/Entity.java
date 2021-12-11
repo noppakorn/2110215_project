@@ -1,6 +1,7 @@
 package entity.base;
 
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -84,4 +85,14 @@ public abstract class Entity extends ImageView {
     public void setHealth(int health) {
         this.health = Math.max(0, health);
     }
+
+    /**
+     * Initialize texture.
+     *
+     * @param resourcePath the resource path
+     */
+    public void initializeTexture(String resourcePath)  {
+        this.setImage(new Image(ClassLoader.getSystemResource(resourcePath).toString()));
+    }
+
 }
