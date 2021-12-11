@@ -1,4 +1,5 @@
 application
 entity.base
 entity.derived
+initializer
 scene
