@@ -122,6 +122,7 @@ public class Player extends Entity implements Attackable {
     public boolean attack(Entity e) {
         return false;
     }
+
     public String toString() {
         return "Player: " + name + " at (" + this.getX() + "," + this.getY() + ")";
     }

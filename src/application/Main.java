@@ -20,6 +20,15 @@ import java.util.List;
  */
 public class Main extends Application {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         if (!GameController.debugEnabled) {
@@ -51,11 +60,13 @@ public class Main extends Application {
                     System.out.println("Waiting for key press");
                 }
             }
+            GameController.startTimer();
+            GameController.pointUpdater();
             Group mainScene = new Group();
             Terrain terrain = new Terrain();
             Player player = new Player();
             TerrainGenerator terrainGenerator = new TerrainGenerator(7689746521534L);
-            mainScene.getChildren().add(terrain);
+            mainScene.getChildren().addAll(terrain, GameController.getTimerText(), GameController.getPointText());
             mainScene.getChildren().addAll(terrainGenerator.getEntities());
             mainScene.getChildren().add(player);
             Platform.runLater(() -> {
@@ -81,22 +92,14 @@ public class Main extends Application {
                         terrainGenerator.genTerrain();
                         player.returnToBegin();
 
-                        mainScene.getChildren().add(terrain);
+                        mainScene.getChildren().addAll(terrain, GameController.getTimerText(), GameController.getPointText());
                         mainScene.getChildren().addAll(terrainGenerator.getEntities());
                         mainScene.getChildren().add(player);
                     });
                 }
             }
         }).start();
-    }
 
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
     }
 }

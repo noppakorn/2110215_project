@@ -4,19 +4,15 @@ import entity.base.Attackable;
 import entity.base.Collectable;
 import entity.base.Despawnable;
 import entity.base.Entity;
-import entity.derived.BoosterBlock;
-import entity.derived.Coin;
-import entity.derived.Enemy;
 import entity.derived.Player;
 import initializer.TextureLoader;
-import javafx.scene.Group;
-import scene.Terrain;
+import javafx.application.Platform;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import scene.TerrainGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 /**
@@ -28,20 +24,22 @@ public class GameController {
      */
     public static final boolean debugEnabled = true;
     /**
-     * Accumulated points for player
-     */
-    private static int points = 0;
-    /**
      * The Terrain count for identifying the number of terrain generated.
      */
     protected static int terrainCount = 0;
-
+    /**
+     * Accumulated points for player
+     */
+    private static int point = 0;
+    private static int money = 0;
     /**
      * Time Elapsed in seconds for the current level
      */
-    private static Timer timeElapsed;
+    private static int timeElapsed = 0;
     private static boolean isGameEnd = false;
     private static TextureLoader textureLoader = new TextureLoader();
+    private static Text timerText;
+    private static Text pointText;
 
 
     /**
@@ -49,8 +47,8 @@ public class GameController {
      *
      * @return the points
      */
-    public static int getPoints() {
-        return points;
+    public static int getPoint() {
+        return point;
     }
 
     /**
@@ -59,45 +57,62 @@ public class GameController {
      * @param dPoint the d point
      */
     public static void increasePoint(int dPoint) {
-        points += dPoint;
+        point += dPoint;
+    }
+
+    /**
+     * Gets timer text.
+     *
+     * @return the timer text
+     */
+    public static Text getTimerText() {
+        return timerText;
     }
 
     /**
      * Start the game timer.
      */
     public static void startTimer() {
-        timeElapsed = new Timer();
+        timerText = new Text();
+        timerText.setX(400);
+        timerText.setY(20);
+        timerText.setTextAlignment(TextAlignment.CENTER);
         new Thread(() -> {
-            timeElapsed.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    System.out.println("hello");
-                    System.out.println(timeElapsed);
+            while (true) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            }, 1000);
-        });
+                Platform.runLater(() -> {
+                    timerText.setText("Time: " + ++timeElapsed);
+                });
+            }
+        }).start();
     }
 
     /**
-     * The state of the game.
-     *
-     * @return the boolean that represents the state of the game.
+     * Point updater.
      */
-    public static boolean isGameEnd() {
-        return isGameEnd;
+    public static void pointUpdater() {
+        pointText = new Text();
+        pointText.setX(500);
+        pointText.setY(20);
+        pointText.setTextAlignment(TextAlignment.CENTER);
+        new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Platform.runLater(() -> {
+                    pointText.setText("Points: " + point);
+                });
+            }
+        }).start();
     }
 
-
-    /**
-     * Set game state to end.
-     */
-    public static void setGameEnd() {
-        isGameEnd = true;
-    }
-
-    public static TextureLoader getTextureLoader() {
-        return textureLoader;
-    }
 
     /**
      * Check for collision between player and objects and do action
@@ -134,4 +149,38 @@ public class GameController {
         return toBeRemoved;
     }
 
+    /**
+     * Gets point text.
+     *
+     * @return the point text
+     */
+    public static Text getPointText() {
+        return pointText;
+    }
+
+    /**
+     * The state of the game.
+     *
+     * @return the boolean that represents the state of the game.
+     */
+    public static boolean isGameEnd() {
+        return isGameEnd;
+    }
+
+
+    /**
+     * Set game state to end.
+     */
+    public static void setGameEnd() {
+        isGameEnd = true;
+    }
+
+    /**
+     * Gets texture loader.
+     *
+     * @return the texture loader
+     */
+    public static TextureLoader getTextureLoader() {
+        return textureLoader;
+    }
 }

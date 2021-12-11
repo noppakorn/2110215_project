@@ -17,6 +17,10 @@ import javafx.util.Duration;
  */
 public class Menu extends VBox {
     /**
+     * The Game start.
+     */
+    public boolean gameStart;
+    /**
      * The Title.
      */
     Text title;
@@ -24,10 +28,6 @@ public class Menu extends VBox {
      * The Label.
      */
     Label label;
-    /**
-     * The Game start.
-     */
-    public boolean gameStart;
 
     /**
      * Instantiates a new Menu.

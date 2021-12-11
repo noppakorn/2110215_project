@@ -40,13 +40,14 @@ public class TerrainGenerator {
      */
     public void genTerrain() {
         entities.clear();
-        genCoins(randInt(1,6));
-        genEnemy(randInt(1,6));
+        genCoins(randInt(1, 6));
+        genEnemy(randInt(1, 6));
         genBoosterBlocks(randInt(1, 3));
     }
 
     /**
      * Generate a positive interger between [min, max) using terrainRandom
+     *
      * @param min the minimum value to be generated
      * @param max the maximum value to be generated + 1
      * @return A random integer
