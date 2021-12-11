@@ -104,11 +104,12 @@ public class GameController {
         List<Entity> toBeRemoved = new ArrayList<>();
 
         for (Entity entity : terrainGenerator.getEntities()) {
-            if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getY() && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY()) {
-                System.out.println("Collision occured with " + entity);
+            if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
+                    && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() <= entity.getY() + entity.getFitHeight()) {
+                System.out.println(player + " collision occurred with " + entity);
                 if (entity instanceof Collectable) {
                     System.out.println(entity + " Collected");
-                    ((Collectable)entity).collect();
+                    ((Collectable) entity).collect();
                 } else if (entity instanceof Attackable) {
                     System.out.println(entity + " Attacked");
                 }
@@ -117,7 +118,7 @@ public class GameController {
 
         terrainGenerator.getEntities().removeIf(entity -> {
             if (entity instanceof Despawnable) {
-                if (((Despawnable)entity).isDespawn()) {
+                if (((Despawnable) entity).isDespawn()) {
                     toBeRemoved.add(entity);
                     return true;
                 }

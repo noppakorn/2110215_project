@@ -77,8 +77,10 @@ public class Main extends Application {
                     player.setGoNextScene(false);
                     Platform.runLater(() -> {
                         mainScene.getChildren().clear();
+
                         terrainGenerator.genTerrain();
                         player.returnToBegin();
+
                         mainScene.getChildren().add(terrain);
                         mainScene.getChildren().addAll(terrainGenerator.getEntities());
                         mainScene.getChildren().add(player);

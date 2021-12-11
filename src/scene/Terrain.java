@@ -15,7 +15,6 @@ public class Terrain extends GridPane {
 
     /**
      * Instantiates a new Terrain.
-     *
      */
     public Terrain() {
         super();
@@ -25,7 +24,6 @@ public class Terrain extends GridPane {
         this.setMaxWidth(800);
         initializeTerrain();
     }
-
 
 
     /**
@@ -50,6 +48,11 @@ public class Terrain extends GridPane {
     }
 
 
+    /**
+     * Gen empty pane pane.
+     *
+     * @return the pane
+     */
     public Pane genEmptyPane() {
         Pane tmpPane = new Pane();
         tmpPane.setMaxHeight(50);

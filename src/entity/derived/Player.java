@@ -98,6 +98,12 @@ public class Player extends Entity implements Attackable {
         this.setY(upperBoundY);
     }
 
+    /**
+     * Move.
+     *
+     * @param dx the dx
+     * @param dy the dy
+     */
     public void move(double dx, double dy) {
         moveToPos(this.getX() + dx, this.getY() + dy);
     }
@@ -115,6 +121,9 @@ public class Player extends Entity implements Attackable {
     @Override
     public boolean attack(Entity e) {
         return false;
+    }
+    public String toString() {
+        return "Player: " + name + " at (" + this.getX() + "," + this.getY() + ")";
     }
 
     /**

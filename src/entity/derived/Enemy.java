@@ -18,6 +18,11 @@ public class Enemy extends Entity implements Attackable, Despawnable {
     private double lowerBoundX;
     private boolean despawn;
 
+    /**
+     * Instantiates a new Enemy.
+     *
+     * @param name the name
+     */
     public Enemy(String name) {
         super(name);
         despawn = false;

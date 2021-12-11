@@ -34,6 +34,8 @@ public class Coin extends Entity implements Collectable, Despawnable {
      * Instantiates a new Coin.
      *
      * @param value the value
+     * @param x     the x
+     * @param y     the y
      */
     public Coin(int value, int x, int y) {
         super("Coin");

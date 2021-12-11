@@ -34,11 +34,15 @@ public class TerrainGenerator {
         entities = new ArrayList<>();
         genTerrain();
     }
+
+    /**
+     * Gen terrain.
+     */
     public void genTerrain() {
         entities.clear();
         genCoins(randInt(1,6));
-//        genEnemy(randInt(1,6));
-//        genBoosterBlocks(randInt(1, 3));
+        genEnemy(randInt(1,6));
+        genBoosterBlocks(randInt(1, 3));
     }
 
     /**
@@ -61,7 +65,7 @@ public class TerrainGenerator {
      */
     public void genCoins(int amount) {
         for (int i = 0; i < amount; ++i) {
-            entities.add(new Coin(randInt(30, 700), randInt(200, 500)));
+            entities.add(new Coin(randInt(30, 700), randInt(200, 300)));
             System.out.println(entities.get(i));
         }
     }
@@ -88,9 +92,21 @@ public class TerrainGenerator {
         }
     }
 
+    /**
+     * Gets entities.
+     *
+     * @return the entities
+     */
     public List<Entity> getEntities() {
         return entities;
     }
+
+    /**
+     * Remove entities boolean.
+     *
+     * @param e the e
+     * @return the boolean
+     */
     public boolean removeEntities(Entity e) {
         return entities.remove(e);
     }
