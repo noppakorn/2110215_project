@@ -1,5 +1,6 @@
 package application;
 
+import entity.base.Entity;
 import entity.derived.Player;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -11,6 +12,8 @@ import javafx.stage.Stage;
 import scene.Menu;
 import scene.Terrain;
 import scene.TerrainGenerator;
+
+import java.util.List;
 
 /**
  * The type Main.
@@ -50,11 +53,11 @@ public class Main extends Application {
             }
             Group mainScene = new Group();
             Terrain terrain = new Terrain(GameController.terrainCount++);
-            Player p = new Player();
-            TerrainGenerator terrainGenerator = new TerrainGenerator(4534356);
+            Player player = new Player();
+            TerrainGenerator terrainGenerator = new TerrainGenerator(7689746521534L);
             mainScene.getChildren().add(terrain);
-            mainScene.getChildren().addAll(terrainGenerator.getCoins());
-            mainScene.getChildren().add(p);
+            mainScene.getChildren().addAll(terrainGenerator.getEntities());
+            mainScene.getChildren().add(player);
             Platform.runLater(() -> {
                 scene.setRoot(mainScene);
             });
@@ -64,15 +67,21 @@ public class Main extends Application {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if (p.isGoNextScene()) {
-                    p.setGoNextScene(false);
+                List<Entity> toBeRemoved = GameController.checkCollision(player, terrainGenerator);
+                if (toBeRemoved.size() > 0) {
+                    Platform.runLater(() -> {
+                        mainScene.getChildren().removeAll(toBeRemoved);
+                    });
+                }
+                if (player.isGoNextScene()) {
+                    player.setGoNextScene(false);
                     Platform.runLater(() -> {
                         mainScene.getChildren().clear();
                         terrainGenerator.genTerrain();
-                        p.returnToBegin();
+                        player.returnToBegin();
                         mainScene.getChildren().add(terrain);
-                        mainScene.getChildren().addAll(terrainGenerator.getCoins());
-                        mainScene.getChildren().add(p);
+                        mainScene.getChildren().addAll(terrainGenerator.getEntities());
+                        mainScene.getChildren().add(player);
                     });
                 }
             }

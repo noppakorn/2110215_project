@@ -2,12 +2,14 @@ package entity.derived;
 
 import application.GameController;
 import entity.base.Collectable;
+import entity.base.Despawnable;
 import entity.base.Entity;
+
 
 /**
  * The type Coin.
  */
-public class Coin extends Entity implements Collectable {
+public class Coin extends Entity implements Collectable, Despawnable {
     private int point;
     private boolean despawn;
 
@@ -41,12 +43,17 @@ public class Coin extends Entity implements Collectable {
         initializeTexture("coin.png");
         this.setX(x);
         this.setY(y);
+        despawn = false;
     }
 
     @Override
     public void collect() {
         GameController.increasePoint(point);
         despawn = true;
+    }
+
+    public boolean isDespawn() {
+        return despawn;
     }
 
     public String toString() {

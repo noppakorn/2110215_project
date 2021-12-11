@@ -42,6 +42,8 @@ public class Player extends Entity implements Attackable {
         this.ay = 1;
         this.returnToBegin();
         this.goNextScene = false;
+        this.setFitHeight(50);
+        this.setFitWidth(50);
 
         initializeMovement();
 

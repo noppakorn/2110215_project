@@ -1,12 +1,13 @@
 package entity.derived;
 
 import entity.base.Attackable;
+import entity.base.Despawnable;
 import entity.base.Entity;
 
 /**
  * The type Enemy.
  */
-public class Enemy extends Entity implements Attackable {
+public class Enemy extends Entity implements Attackable, Despawnable {
     /**
      * Instantiates a new Enemy.
      *
@@ -15,9 +16,11 @@ public class Enemy extends Entity implements Attackable {
     private double upperBoundX;
     private double upperBoundY;
     private double lowerBoundX;
+    private boolean despawn;
 
     public Enemy(String name) {
         super(name);
+        despawn = false;
     }
 
     @Override
@@ -30,5 +33,10 @@ public class Enemy extends Entity implements Attackable {
     @Override
     public boolean attack(Entity e) {
         return false;
+    }
+
+    @Override
+    public boolean isDespawn() {
+        return despawn;
     }
 }

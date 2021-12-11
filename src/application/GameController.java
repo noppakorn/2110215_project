@@ -1,8 +1,19 @@
 package application;
 
+import entity.base.Attackable;
+import entity.base.Collectable;
+import entity.base.Despawnable;
+import entity.base.Entity;
+import entity.derived.BoosterBlock;
+import entity.derived.Coin;
+import entity.derived.Enemy;
 import entity.derived.Player;
 import javafx.scene.Group;
+import scene.Terrain;
+import scene.TerrainGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -80,6 +91,40 @@ public class GameController {
      */
     public static void setGameEnd() {
         isGameEnd = true;
+    }
+
+    /**
+     * Check for collision between player and objects and do action
+     *
+     * @param player           the player
+     * @param terrainGenerator the terrain generator
+     * @return the List of Entities to be removed from the scene
+     */
+    public static List<Entity> checkCollision(Player player, TerrainGenerator terrainGenerator) {
+        List<Entity> toBeRemoved = new ArrayList<>();
+
+        for (Entity entity : terrainGenerator.getEntities()) {
+            if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getY() && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY()) {
+                System.out.println("Collision occured with " + entity);
+                if (entity instanceof Collectable) {
+                    System.out.println(entity + " Collected");
+                    ((Collectable)entity).collect();
+                } else if (entity instanceof Attackable) {
+                    System.out.println(entity + " Attacked");
+                }
+            }
+        }
+
+        terrainGenerator.getEntities().removeIf(entity -> {
+            if (entity instanceof Despawnable) {
+                if (((Despawnable)entity).isDespawn()) {
+                    toBeRemoved.add(entity);
+                    return true;
+                }
+            }
+            return false;
+        });
+        return toBeRemoved;
     }
 
 }
