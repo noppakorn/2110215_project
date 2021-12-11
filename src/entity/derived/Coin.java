@@ -10,7 +10,7 @@ import entity.base.Entity;
  * The type Coin.
  */
 public class Coin extends Entity implements Collectable, Despawnable {
-    private int point;
+    private int value;
     private boolean despawn;
 
     /**
@@ -39,7 +39,7 @@ public class Coin extends Entity implements Collectable, Despawnable {
      */
     public Coin(int value, int x, int y) {
         super("Coin");
-        this.point = value;
+        this.value = value;
         this.setFitWidth(20);
         this.setFitHeight(20);
         this.setX(x);
@@ -50,7 +50,8 @@ public class Coin extends Entity implements Collectable, Despawnable {
 
     @Override
     public void collect() {
-        GameController.increasePoint(point);
+        GameController.increasePoint(value);
+        GameController.increaseMoney(value);
         despawn = true;
     }
 
@@ -59,6 +60,6 @@ public class Coin extends Entity implements Collectable, Despawnable {
     }
 
     public String toString() {
-        return "Coin valued " + point + " at (" + this.getX() + "," + this.getY() + ")";
+        return "Coin valued " + value + " at (" + this.getX() + "," + this.getY() + ")";
     }
 }

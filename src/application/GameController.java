@@ -7,6 +7,7 @@ import entity.base.Entity;
 import entity.derived.Player;
 import initializer.TextureLoader;
 import javafx.application.Platform;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import scene.TerrainGenerator;
@@ -38,8 +39,7 @@ public class GameController {
     private static int timeElapsed = 0;
     private static boolean isGameEnd = false;
     private static TextureLoader textureLoader = new TextureLoader();
-    private static Text timerText;
-    private static Text pointText;
+    private static ArrayList<Text> statusText = new ArrayList<>();
 
 
     /**
@@ -61,22 +61,32 @@ public class GameController {
     }
 
     /**
-     * Gets timer text.
+     * Gets list of status text.
      *
-     * @return the timer text
+     * @return the status texts
      */
-    public static Text getTimerText() {
-        return timerText;
+    public static ArrayList<Text> getStatusText() {
+        return statusText;
+    }
+
+    public static void startStatusText() {
+        timeUpdater();
+        pointUpdater();
+        moneyUpdater();
     }
 
     /**
      * Start the game timer.
      */
-    public static void startTimer() {
-        timerText = new Text();
-        timerText.setX(400);
-        timerText.setY(20);
+    private static void timeUpdater() {
+        Text timerText = new Text();
+        timerText.setX(200);
+        timerText.setY(30);
         timerText.setTextAlignment(TextAlignment.CENTER);
+        timerText.setFont(new Font("Arial", 30));
+        Platform.runLater(() -> {
+            timerText.setText("Time: " + timeElapsed);
+        });
         new Thread(() -> {
             while (true) {
                 try {
@@ -89,16 +99,18 @@ public class GameController {
                 });
             }
         }).start();
+        statusText.add(timerText);
     }
 
     /**
      * Point updater.
      */
-    public static void pointUpdater() {
-        pointText = new Text();
-        pointText.setX(500);
-        pointText.setY(20);
+    private static void pointUpdater() {
+        Text pointText = new Text();
+        pointText.setX(600);
+        pointText.setY(30);
         pointText.setTextAlignment(TextAlignment.CENTER);
+        pointText.setFont(new Font("Arial", 30));
         new Thread(() -> {
             while (true) {
                 try {
@@ -111,8 +123,32 @@ public class GameController {
                 });
             }
         }).start();
+        statusText.add(pointText);
     }
 
+    /**
+     * Money updater.
+     */
+    private static void moneyUpdater() {
+        Text moneyText = new Text();
+        moneyText.setX(400);
+        moneyText.setY(30);
+        moneyText.setTextAlignment(TextAlignment.CENTER);
+        moneyText.setFont(new Font("Arial", 30));
+        new Thread(() -> {
+            while (true) {
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Platform.runLater(() -> {
+                    moneyText.setText("Money: " + point);
+                });
+            }
+        }).start();
+        statusText.add(moneyText);
+    }
 
     /**
      * Check for collision between player and objects and do action
@@ -149,14 +185,6 @@ public class GameController {
         return toBeRemoved;
     }
 
-    /**
-     * Gets point text.
-     *
-     * @return the point text
-     */
-    public static Text getPointText() {
-        return pointText;
-    }
 
     /**
      * The state of the game.
@@ -182,5 +210,9 @@ public class GameController {
      */
     public static TextureLoader getTextureLoader() {
         return textureLoader;
+    }
+
+    public static void increaseMoney(int dMoney) {
+        money += dMoney;
     }
 }

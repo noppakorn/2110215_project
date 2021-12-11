@@ -60,14 +60,14 @@ public class Main extends Application {
                     System.out.println("Waiting for key press");
                 }
             }
-            GameController.startTimer();
-            GameController.pointUpdater();
+            GameController.startStatusText();
             Group mainScene = new Group();
             Terrain terrain = new Terrain();
             Player player = new Player();
             TerrainGenerator terrainGenerator = new TerrainGenerator(7689746521534L);
-            mainScene.getChildren().addAll(terrain, GameController.getTimerText(), GameController.getPointText());
+            mainScene.getChildren().add(terrain);
             mainScene.getChildren().addAll(terrainGenerator.getEntities());
+            mainScene.getChildren().addAll(GameController.getStatusText());
             mainScene.getChildren().add(player);
             Platform.runLater(() -> {
                 scene.setRoot(mainScene);
@@ -92,8 +92,9 @@ public class Main extends Application {
                         terrainGenerator.genTerrain();
                         player.returnToBegin();
 
-                        mainScene.getChildren().addAll(terrain, GameController.getTimerText(), GameController.getPointText());
+                        mainScene.getChildren().add(terrain);
                         mainScene.getChildren().addAll(terrainGenerator.getEntities());
+                        mainScene.getChildren().addAll(GameController.getStatusText());
                         mainScene.getChildren().add(player);
                     });
                 }
