@@ -33,7 +33,7 @@ public class Block extends Pane {
     }
 
     /**
-     * Instantiates a new Block.
+     * Instantiates a new Block. Defaults to type BlockType.GRASS
      */
     public Block() {
         this(BlockType.GRASS);

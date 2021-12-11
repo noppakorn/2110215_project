@@ -11,13 +11,14 @@ import java.util.Random;
 
 /**
  * The type Terrain generator.
+ * Generate all the entities for the terrain
  */
 public class TerrainGenerator {
     private Random terrainRand;
     private List<Entity> entities;
 
     /**
-     * Instantiates a new Terrain generator.
+     * Instantiates a new Terrain generator with default random seed
      */
     public TerrainGenerator() {
         this(0);
@@ -26,7 +27,7 @@ public class TerrainGenerator {
     /**
      * Instantiates a new Terrain generator.
      *
-     * @param seed the seed
+     * @param seed the seed for the random number generator
      */
     public TerrainGenerator(long seed) {
         terrainRand = new Random();
@@ -36,7 +37,7 @@ public class TerrainGenerator {
     }
 
     /**
-     * Gen terrain.
+     * Generate the entity at random
      */
     public void genTerrain() {
         entities.clear();
@@ -46,7 +47,7 @@ public class TerrainGenerator {
     }
 
     /**
-     * Generate a positive interger between [min, max) using terrainRandom
+     * Generate a positive integer between [min, max) using terrainRandom
      *
      * @param min the minimum value to be generated
      * @param max the maximum value to be generated + 1
@@ -60,9 +61,9 @@ public class TerrainGenerator {
     }
 
     /**
-     * Gen coins.
+     * Generate coin entity.
      *
-     * @param amount the amount
+     * @param amount the amount to be generated
      */
     public void genCoins(int amount) {
         for (int i = 0; i < amount; ++i) {
@@ -72,9 +73,9 @@ public class TerrainGenerator {
     }
 
     /**
-     * Gen enemy.
+     * Generate enemy entity.
      *
-     * @param amount the amount
+     * @param amount the amount to be generated
      */
     public void genEnemy(int amount) {
         for (int i = 0; i < amount; ++i) {
@@ -83,9 +84,9 @@ public class TerrainGenerator {
     }
 
     /**
-     * Gen booster blocks.
+     * Generate BoosterBlock entity.
      *
-     * @param amount the amount
+     * @param amount the amount to be generated
      */
     public void genBoosterBlocks(int amount) {
         for (int i = 0; i < amount; ++i) {
@@ -94,7 +95,7 @@ public class TerrainGenerator {
     }
 
     /**
-     * Gets entities.
+     * Get the entities that have been generated for this scene.
      *
      * @return the entities
      */
@@ -103,10 +104,10 @@ public class TerrainGenerator {
     }
 
     /**
-     * Remove entities boolean.
+     * Remove the entity from the Terrain.
      *
-     * @param e the e
-     * @return the boolean
+     * @param e the entity to be removed
+     * @return the boolean representing the status of the removal
      */
     public boolean removeEntities(Entity e) {
         return entities.remove(e);

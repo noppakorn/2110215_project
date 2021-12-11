@@ -13,15 +13,15 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 /**
- * The type Menu.
+ * Welcome screen for the game
  */
 public class Menu extends VBox {
     /**
-     * The Game start.
+     * Indicate the state of the game
      */
     public boolean gameStart;
     /**
-     * The Title.
+     * The Menu title.
      */
     Text title;
     /**
@@ -48,7 +48,7 @@ public class Menu extends VBox {
     }
 
     /**
-     * Initialize start text.
+     * Initialize all text in the Menu screen.
      */
     public void initializeStartText() {
         label = new Label("Click anywhere to start game.");

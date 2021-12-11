@@ -7,7 +7,7 @@ import java.util.Map;
 
 
 /**
- * The type Texture loader.
+ * Provides Texture loading for the game. This class reduces the need for loading of the same texture multiple time.
  */
 public class TextureLoader {
     private Map<String, Image> images;
@@ -20,18 +20,19 @@ public class TextureLoader {
     }
 
     /**
-     * Gets image.
+     * If the image exists in the HashMap return the Image.
+     * If the image doesn't exist, load the image from disk then put the image in the HashMap.
      *
-     * @param name the name
+     * @param resourceName the name of the resources
      * @return the image
      */
-    public Image getImage(String name) {
-        if (images.containsKey(name)) {
-            return images.get(name);
+    public Image getImage(String resourceName) {
+        if (images.containsKey(resourceName)) {
+            return images.get(resourceName);
         } else {
-            System.out.println(name + ".png");
-            Image image = new Image(ClassLoader.getSystemResource(name + ".png").toString());
-            images.put(name, image);
+            System.out.println(resourceName + ".png");
+            Image image = new Image(ClassLoader.getSystemResource(resourceName + ".png").toString());
+            images.put(resourceName, image);
             return image;
         }
     }

@@ -27,17 +27,15 @@ public class Terrain extends GridPane {
 
 
     /**
-     * Initialize terrain.
+     * Initialize terrain with blocks at the bottom
      */
     public void initializeTerrain() {
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTSKYBLUE, null, null)));
-        // Add empty filler
         for (int i = 0; i < 12; ++i) {
             for (int j = 0; j < 16; ++j) {
                 this.add(genEmptyPane(), i, j);
             }
         }
-        // Add block to game
         for (int i = 9; i < 12; ++i) {
             for (int j = 0; j < 16; ++j) {
                 Block block = new Block();
@@ -49,7 +47,7 @@ public class Terrain extends GridPane {
 
 
     /**
-     * Gen empty pane pane.
+     * Generate an empty pane.
      *
      * @return the pane
      */
