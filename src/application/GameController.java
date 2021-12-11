@@ -8,6 +8,7 @@ import entity.derived.BoosterBlock;
 import entity.derived.Coin;
 import entity.derived.Enemy;
 import entity.derived.Player;
+import initializer.TextureLoader;
 import javafx.scene.Group;
 import scene.Terrain;
 import scene.TerrainGenerator;
@@ -40,6 +41,7 @@ public class GameController {
      */
     private static Timer timeElapsed;
     private static boolean isGameEnd = false;
+    private static TextureLoader textureLoader = new TextureLoader();
 
 
     /**
@@ -91,6 +93,10 @@ public class GameController {
      */
     public static void setGameEnd() {
         isGameEnd = true;
+    }
+
+    public static TextureLoader getTextureLoader() {
+        return textureLoader;
     }
 
     /**

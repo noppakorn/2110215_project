@@ -1,6 +1,8 @@
 package entity.base;
 
 
+import application.GameController;
+import initializer.TextureLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -89,10 +91,10 @@ public abstract class Entity extends ImageView {
     /**
      * Initialize texture.
      *
-     * @param resourcePath the resource path
+     * @param resourceName the resource path
      */
-    public void initializeTexture(String resourcePath)  {
-        this.setImage(new Image(ClassLoader.getSystemResource(resourcePath).toString()));
+    public void initializeTexture(String resourceName)  {
+        this.setImage(GameController.getTextureLoader().getImage(resourceName));
     }
 
     /**

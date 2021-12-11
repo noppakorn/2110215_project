@@ -31,7 +31,7 @@ public class Player extends Entity implements Attackable {
      */
     public Player(String name) {
         super(name);
-        initializeTexture("marioRight0Lvl0.png");
+        initializeTexture("Player");
         this.setFocusTraversable(true);
 
         this.sceneUpperBoundX = 700;
