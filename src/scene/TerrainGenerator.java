@@ -67,7 +67,7 @@ public class TerrainGenerator {
      */
     public void genCoins(int amount) {
         for (int i = 0; i < amount; ++i) {
-            entities.add(new Coin(randInt(30, 700), randInt(200, 300)));
+            entities.add(new Coin(randInt(30, 600), randInt(200, 300)));
             System.out.println(entities.get(i));
         }
     }

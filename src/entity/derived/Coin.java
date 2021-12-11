@@ -42,9 +42,9 @@ public class Coin extends Entity implements Collectable, Despawnable {
         this.point = value;
         this.setFitWidth(20);
         this.setFitHeight(20);
-        initializeTexture("Coin");
         this.setX(x);
         this.setY(y);
+        initializeTexture("Coin");
         despawn = false;
     }
 
