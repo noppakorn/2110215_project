@@ -52,7 +52,7 @@ public class Main extends Application {
                 }
             }
             Group mainScene = new Group();
-            Terrain terrain = new Terrain(GameController.terrainCount++);
+            Terrain terrain = new Terrain();
             Player player = new Player();
             TerrainGenerator terrainGenerator = new TerrainGenerator(7689746521534L);
             mainScene.getChildren().add(terrain);

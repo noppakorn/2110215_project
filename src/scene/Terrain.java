@@ -12,37 +12,20 @@ import javafx.scene.paint.Color;
  * Represents the terrain of each scene in the level
  */
 public class Terrain extends GridPane {
-    /**
-     * Instantiates a new Terrain.
-     */
-    private int terrainID;
-    /**
-     * ID for identifying terrain set by GameController
-     */
 
     /**
      * Instantiates a new Terrain.
      *
-     * @param terrainID the terrain id
      */
-    public Terrain(int terrainID) {
+    public Terrain() {
         super();
         this.setMinHeight(600);
         this.setMaxHeight(600);
         this.setMinWidth(800);
         this.setMaxWidth(800);
         initializeTerrain();
-        this.terrainID = terrainID;
     }
 
-    /**
-     * Gets terrain id.
-     *
-     * @return the terrain id
-     */
-    public int getTerrainID() {
-        return terrainID;
-    }
 
 
     /**

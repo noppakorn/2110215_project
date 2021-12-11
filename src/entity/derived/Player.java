@@ -37,7 +37,7 @@ public class Player extends Entity implements Attackable {
         this.sceneUpperBoundX = 700;
         this.upperBoundX = 700;
         this.lowerBoundX = 20;
-        this.upperBoundY = 420;
+        this.upperBoundY = 400;
         this.vy = 0;
         this.ay = 1;
         this.returnToBegin();
