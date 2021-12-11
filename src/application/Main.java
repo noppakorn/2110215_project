@@ -10,6 +10,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import scene.Menu;
 import scene.Terrain;
+import scene.TerrainGenerator;
 
 /**
  * The type Main.
@@ -48,8 +49,12 @@ public class Main extends Application {
                 }
             }
             Group mainScene = new Group();
+            Terrain terrain = new Terrain(GameController.terrainCount++);
             Player p = new Player();
-            p.setGoNextScene(true);
+            TerrainGenerator terrainGenerator = new TerrainGenerator(4534356);
+            mainScene.getChildren().add(terrain);
+            mainScene.getChildren().addAll(terrainGenerator.getCoins());
+            mainScene.getChildren().add(p);
             Platform.runLater(() -> {
                 scene.setRoot(mainScene);
             });
@@ -61,11 +66,13 @@ public class Main extends Application {
                 }
                 if (p.isGoNextScene()) {
                     p.setGoNextScene(false);
-                    Terrain nextTerrain = new Terrain(GameController.terrainCount++);
                     Platform.runLater(() -> {
                         mainScene.getChildren().clear();
+                        terrainGenerator.genTerrain();
                         p.returnToBegin();
-                        mainScene.getChildren().addAll(nextTerrain, p);
+                        mainScene.getChildren().add(terrain);
+                        mainScene.getChildren().addAll(terrainGenerator.getCoins());
+                        mainScene.getChildren().add(p);
                     });
                 }
             }

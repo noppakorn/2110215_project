@@ -1,4 +1,4 @@
-package block;
+package scene;
 
 /**
  * The enum Block type.

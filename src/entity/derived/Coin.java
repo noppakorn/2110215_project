@@ -15,7 +15,17 @@ public class Coin extends Entity implements Collectable {
      * Instantiates a new Coin.
      */
     public Coin() {
-        this(1);
+        this(1, 0, 0);
+    }
+
+    /**
+     * Instantiates a new Coin.
+     *
+     * @param x the x
+     * @param y the y
+     */
+    public Coin(int x, int y) {
+        this(1, x, y);
     }
 
     /**
@@ -23,15 +33,23 @@ public class Coin extends Entity implements Collectable {
      *
      * @param value the value
      */
-    public Coin(int value) {
+    public Coin(int value, int x, int y) {
         super("Coin");
         this.point = value;
+        this.setFitWidth(20);
+        this.setFitHeight(20);
         initializeTexture("coin.png");
+        this.setX(x);
+        this.setY(y);
     }
 
     @Override
     public void collect() {
         GameController.increasePoint(point);
         despawn = true;
+    }
+
+    public String toString() {
+        return "Coin valued " + point + " at (" + this.getX() + "," + this.getY() + ")";
     }
 }

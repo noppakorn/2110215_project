@@ -1,4 +1,4 @@
-package block;
+package scene;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.image.Image;
