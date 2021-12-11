@@ -5,15 +5,21 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import scene.TerrainGenerator;
 
 /**
  * The type Debug main.
  */
 public class DebugMain extends Application {
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -32,9 +38,5 @@ public class DebugMain extends Application {
         stage.show();
         stage.setTitle("Poprio");
         stage.setResizable(false);
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

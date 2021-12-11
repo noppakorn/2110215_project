@@ -69,6 +69,9 @@ public class GameController {
         return statusText;
     }
 
+    /**
+     * Start status text.
+     */
     public static void startStatusText() {
         timeUpdater();
         pointUpdater();
@@ -212,6 +215,11 @@ public class GameController {
         return textureLoader;
     }
 
+    /**
+     * Increase money.
+     *
+     * @param dMoney the d money
+     */
     public static void increaseMoney(int dMoney) {
         money += dMoney;
     }
