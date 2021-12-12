@@ -62,16 +62,16 @@ public class Main extends Application {
                 }
             }
             GameController.startStatusText();
-            Group mainScene = new Group();
+            Group group = new Group();
             Terrain terrain = new Terrain();
             Player player = new Player();
             TerrainGenerator terrainGenerator = new TerrainGenerator(7689746521534L);
-            mainScene.getChildren().add(terrain);
-            mainScene.getChildren().addAll(terrainGenerator.getEntities());
-            mainScene.getChildren().addAll(GameController.getStatusText());
-            mainScene.getChildren().add(player);
+            group.getChildren().add(terrain);
+            group.getChildren().addAll(terrainGenerator.getEntities());
+            group.getChildren().addAll(GameController.getStatusText());
+            group.getChildren().add(player);
             Platform.runLater(() -> {
-                scene.setRoot(mainScene);
+                scene.setRoot(group);
             });
             while (!GameController.isGameEnd()) {
                 try {
@@ -82,19 +82,19 @@ public class Main extends Application {
                 List<Entity> toBeRemoved = GameController.checkCollision(player, terrainGenerator);
                 if (toBeRemoved.size() > 0) {
                     Platform.runLater(() -> {
-                        mainScene.getChildren().removeAll(toBeRemoved);
+                        group.getChildren().removeAll(toBeRemoved);
                     });
                 }
                 if (player.isGoNextScene()) {
                     player.setGoNextScene(false);
                     Platform.runLater(() -> {
-                        mainScene.getChildren().clear();
+                        group.getChildren().clear();
 
                         terrainGenerator.genTerrain();
-                        mainScene.getChildren().add(terrain);
-                        mainScene.getChildren().addAll(terrainGenerator.getEntities());
-                        mainScene.getChildren().addAll(GameController.getStatusText());
-                        mainScene.getChildren().add(player);
+                        group.getChildren().add(terrain);
+                        group.getChildren().addAll(terrainGenerator.getEntities());
+                        group.getChildren().addAll(GameController.getStatusText());
+                        group.getChildren().add(player);
                     });
                 }
             }

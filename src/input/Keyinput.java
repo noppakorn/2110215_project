@@ -3,7 +3,13 @@ package input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * The type Keyinput.
+ */
 public class Keyinput {
+    /**
+     * The type Key input.
+     */
     public class KeyInput implements KeyListener{
 
         @Override

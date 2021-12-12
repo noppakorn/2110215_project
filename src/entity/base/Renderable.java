@@ -1,5 +1,11 @@
 package entity.base;
 
+/**
+ * The interface Renderable.
+ */
 public interface Renderable {
-    public void update();
+    /**
+     * Update.
+     */
+    void update();
 }

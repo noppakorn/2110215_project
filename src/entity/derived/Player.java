@@ -82,6 +82,7 @@ public class Player extends MoveableEntity implements Attackable, Renderable {
             }
         });
     }
+
     /**
      * Move player to the beginning of the scene.
      */
@@ -89,6 +90,11 @@ public class Player extends MoveableEntity implements Attackable, Renderable {
         this.setX(lowerBoundX);
     }
 
+    /**
+     * Is on the ground boolean.
+     *
+     * @return the boolean
+     */
     public boolean isOnTheGround() {
         return !(y < upperBoundY);
     }

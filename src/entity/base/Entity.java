@@ -5,20 +5,22 @@ import application.GameController;
 import javafx.scene.image.ImageView;
 
 /**
- * The type Entity. A base class for all of the entity in the game.
+ * The type Entity. A base class for all the entity in the game.
  */
 public abstract class Entity extends ImageView {
-    protected double x,y;
+    /**
+     * The X.
+     */
+    protected double x, /**
+     * The Y.
+     */
+    y;
 //    protected boolean destroyed;
 //    protected boolean isImortal;
     /**
      * The Name.
      */
     protected String name;
-    /**
-     * The Health.
-     */
-    protected int health;
 
     /**
      * Instantiates a new Entity.
@@ -33,20 +35,9 @@ public abstract class Entity extends ImageView {
      * @param name the name
      */
     public Entity(String name) {
-        this(name, 100);
+        this.name = name;
     }
 
-    /**
-     * Instantiates a new Entity.
-     *
-     * @param name   the name
-     * @param health the health
-     */
-    public Entity(String name, int health) {
-        super();
-        this.name = name;
-        this.health = 100;
-    }
 
     @Override
     public String toString() {
@@ -62,32 +53,6 @@ public abstract class Entity extends ImageView {
         return name;
     }
 
-    /**
-     * Sets name.
-     *
-     * @param name the name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Gets health.
-     *
-     * @return the health
-     */
-    public int getHealth() {
-        return health;
-    }
-
-    /**
-     * Sets health.
-     *
-     * @param health the health
-     */
-    public void setHealth(int health) {
-        this.health = Math.max(0, health);
-    }
 
     /**
      * Initialize texture.
