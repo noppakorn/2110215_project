@@ -1,9 +1,6 @@
 package controller;
 
-import entity.base.Attackable;
-import entity.base.Collectable;
-import entity.base.Despawnable;
-import entity.base.Entity;
+import entity.base.*;
 import entity.derived.Player;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
@@ -164,7 +161,10 @@ public class GameController {
         List<Entity> toBeRemoved = new ArrayList<>();
 
         for (Entity entity : terrainGenerator.getEntities()) {
-            if (entity instanceof Despawnable) {
+            if (entity instanceof Solid) {
+
+            }
+            else if (entity instanceof Despawnable) {
                 if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
                         && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY() + entity.getFitHeight()) {
                     System.out.println(player + " collision occurred with " + entity);
@@ -175,10 +175,6 @@ public class GameController {
                         System.out.println(player + " attacked by " + entity);
                         ((Attackable) entity).attack(player);
                     }
-                }
-            } else {
-                if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
-                        && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY() + entity.getFitHeight()) {
                 }
             }
         }

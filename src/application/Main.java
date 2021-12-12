@@ -69,9 +69,9 @@ public class Main extends Application {
             Group group = new Group();
             Terrain terrain = new Terrain();
             Player player = new Player();
-            LevelGenerator terrainGenerator = new LevelGenerator(7689746521534L);
+            LevelGenerator levelGenerator = new LevelGenerator(7689746521534L);
             group.getChildren().add(terrain);
-            group.getChildren().addAll(terrainGenerator.getEntities());
+            group.getChildren().addAll(levelGenerator.getEntities());
             group.getChildren().addAll(GameController.getStatusText());
             group.getChildren().add(player);
             Platform.runLater(() -> {
@@ -83,7 +83,7 @@ public class Main extends Application {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                List<Entity> toBeRemoved = GameController.checkCollision(player, terrainGenerator);
+                List<Entity> toBeRemoved = GameController.checkCollision(player, levelGenerator);
                 if (toBeRemoved.size() > 0) {
                     Platform.runLater(() -> {
                         group.getChildren().removeAll(toBeRemoved);
@@ -94,9 +94,9 @@ public class Main extends Application {
                     Platform.runLater(() -> {
                         group.getChildren().clear();
 
-                        terrainGenerator.genTerrain();
+                        levelGenerator.genTerrain();
                         group.getChildren().add(terrain);
-                        group.getChildren().addAll(terrainGenerator.getEntities());
+                        group.getChildren().addAll(levelGenerator.getEntities());
                         group.getChildren().addAll(GameController.getStatusText());
                         group.getChildren().add(player);
                     });

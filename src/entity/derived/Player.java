@@ -170,4 +170,5 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     public boolean isDespawn() {
         return despawn;
     }
+
 }

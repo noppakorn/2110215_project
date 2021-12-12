@@ -44,4 +44,16 @@ public abstract class MoveableEntity extends Entity {
     public MoveableEntity(String name) {
         super(name);
     }
+
+    public void setUpperBoundX(double upperBoundX) {
+        this.upperBoundX = upperBoundX;
+    }
+
+    public void setUpperBoundY(double upperBoundY) {
+        this.upperBoundY = upperBoundY;
+    }
+
+    public void setLowerBoundX(double lowerBoundX) {
+        this.lowerBoundX = lowerBoundX;
+    }
 }
