@@ -2,6 +2,7 @@ package application;
 
 import entity.base.Entity;
 import entity.derived.Player;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -34,8 +35,8 @@ public class Main extends Application {
         if (!GameController.debugEnabled) {
             String bgMusicPath = ClassLoader.getSystemResource("mario.mp3").toString();
             Media media = new Media(bgMusicPath);
-            MediaPlayer player = new MediaPlayer(media);
-            player.play();
+            MediaPlayer music = new MediaPlayer(media);
+            music.play();
         }
 
         Menu menu = new Menu();
@@ -90,8 +91,6 @@ public class Main extends Application {
                         mainScene.getChildren().clear();
 
                         terrainGenerator.genTerrain();
-                        player.returnToBegin();
-
                         mainScene.getChildren().add(terrain);
                         mainScene.getChildren().addAll(terrainGenerator.getEntities());
                         mainScene.getChildren().addAll(GameController.getStatusText());
