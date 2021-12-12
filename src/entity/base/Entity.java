@@ -8,17 +8,17 @@ import javafx.scene.image.ImageView;
  * The type Entity. A base class for all the entity in the game.
  */
 public abstract class Entity extends ImageView {
+
     /**
-     * The X.
+     * The X coordinates.
      */
-    protected double x, /**
-     * The Y.
-     */
-    y;
-//    protected boolean destroyed;
-//    protected boolean isImortal;
+    protected double x;
     /**
-     * The Name.
+     * The Y coordinates.
+     */
+    protected double y;
+    /**
+     * The Name of the entity.
      */
     protected String name;
 

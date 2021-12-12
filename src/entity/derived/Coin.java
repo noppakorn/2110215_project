@@ -10,8 +10,8 @@ import entity.base.Entity;
  * The type Coin.
  */
 public class Coin extends Entity implements Collectable, Despawnable {
-    private int value;
-    private boolean despawn;
+    protected int value;
+    protected boolean despawn;
 
     /**
      * Instantiates a new Coin.

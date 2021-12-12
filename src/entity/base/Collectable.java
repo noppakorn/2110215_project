@@ -1,11 +1,11 @@
 package entity.base;
 
 /**
- * The interface Collectable.
+ * The interface Collectable. Represents the items that can be collected by the player.
  */
 public interface Collectable {
     /**
-     * Collect.
+     * Collect the item.
      */
     void collect();
 }

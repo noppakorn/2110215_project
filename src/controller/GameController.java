@@ -164,15 +164,21 @@ public class GameController {
         List<Entity> toBeRemoved = new ArrayList<>();
 
         for (Entity entity : terrainGenerator.getEntities()) {
-            if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
-                    && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY() + entity.getFitHeight()) {
-                System.out.println(player + " collision occurred with " + entity);
-                if (entity instanceof Collectable) {
-                    System.out.println(entity + " Collected");
-                    ((Collectable) entity).collect();
-                } else if (entity instanceof Attackable) {
-                    System.out.println(player + " attacked by " + entity);
-                    ((Attackable) entity).attack(player);
+            if (entity instanceof Despawnable) {
+                if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
+                        && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY() + entity.getFitHeight()) {
+                    System.out.println(player + " collision occurred with " + entity);
+                    if (entity instanceof Collectable) {
+                        System.out.println(entity + " Collected");
+                        ((Collectable) entity).collect();
+                    } else if (entity instanceof Attackable) {
+                        System.out.println(player + " attacked by " + entity);
+                        ((Attackable) entity).attack(player);
+                    }
+                }
+            } else {
+                if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
+                        && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY() + entity.getFitHeight()) {
                 }
             }
         }
