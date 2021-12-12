@@ -17,7 +17,9 @@ import scene.Terrain;
 import java.util.List;
 
 /**
- * The type Main.
+ *
+ * @author Noppakorn Jiravaranun
+ * @author Nopparuj Poonsubanan
  */
 public class Main extends Application {
 
