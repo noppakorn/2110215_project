@@ -2,5 +2,4 @@ application
 controller
 entity.base
 entity.derived
-input
 scene
