@@ -81,4 +81,10 @@ public abstract class Entity extends ImageView {
         this.setX(x);
         this.setY(y);
     }
+    public int getHeight(){
+        return height;
+    }
+    public int getWidth(){
+        return width;
+    }
 }
