@@ -33,6 +33,7 @@ public class TextureLoader {
         minecraftBlockNameToPos.put("Cobblestone", new Pair<>(0, 1));
         minecraftBlockNameToPos.put("Dirt", new Pair<>(2, 0));
         minecraftBlockNameToPos.put("Grass", new Pair<>(3, 0));
+        minecraftBlockNameToPos.put("Cactus", new Pair<>(4, 6));
     }
 
 
