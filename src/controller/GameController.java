@@ -163,10 +163,6 @@ public class GameController {
         List<Entity> toBeRemoved = new ArrayList<>();
 
         for (Box box: terrainGenerator.getBoxs()){
-            System.out.println("box " + box.getX());
-            System.out.println("box+w " + (box.getX() + box.getWidth()));
-            System.out.println("p " + player.getX());
-            System.out.println("p+w " + (player.getX() + player.getWidth()));
             if (player.getX() + player.getWidth() > box.getX()
                     && player.getX() + player.getWidth() < box.getX() + box.getWidth()
                     && player.getY() - player.getHeight() <= box.getY()){
