@@ -6,8 +6,14 @@ import entity.base.Solid;
 public class CoinBox extends Coin implements Solid {
     private boolean haveOuterShell;
 
-    public CoinBox() {
-        super();
+    public CoinBox(int x, int y) {
+        this(1, x, y);
+    }
+
+    public CoinBox(int value, int x, int y) {
+        super(value, x, y);
+        this.setFitWidth(30);
+        this.setFitHeight(30);
         despawn = false;
         haveOuterShell = true;
         initializeTexture("CoinBox");

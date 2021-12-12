@@ -16,7 +16,7 @@ public class TextureLoader {
     private Map<String, Image> images;
     private Map<String, WritableImage> blockImages;
     private PixelReader blockTextureReader;
-    private Map<String, Pair<Integer, Integer>> blockNameToPos;
+    private Map<String, Pair<Integer, Integer>> minecraftBlockNameToPos;
 
     /**
      * Instantiates a new Texture loader.
@@ -24,12 +24,16 @@ public class TextureLoader {
     public TextureLoader() {
         images = new HashMap<>();
         blockImages = new HashMap<>();
+
         blockTextureReader = new Image(ClassLoader.getSystemResource("MinecraftTexture.png").toString()).getPixelReader();
-        blockNameToPos = new HashMap<>();
-        blockNameToPos.put("Stone", new Pair<>(1, 0));
-        blockNameToPos.put("Cobblestone", new Pair<>(0, 1));
-        blockNameToPos.put("Dirt", new Pair<>(2, 0));
-        blockNameToPos.put("Grass", new Pair<>(3, 0));
+
+        minecraftBlockNameToPos = new HashMap<>();
+
+        minecraftBlockNameToPos.put("Stone", new Pair<>(1, 0));
+        minecraftBlockNameToPos.put("Cobblestone", new Pair<>(0, 1));
+        minecraftBlockNameToPos.put("Dirt", new Pair<>(2, 0));
+        minecraftBlockNameToPos.put("Grass", new Pair<>(3, 0));
+        minecraftBlockNameToPos.put("Cactus", new Pair<>(4, 6));
     }
 
 
@@ -61,7 +65,7 @@ public class TextureLoader {
         if (blockImages.containsKey(blockName)) {
             return blockImages.get(blockName);
         } else {
-            Pair<Integer, Integer> pos = blockNameToPos.get(blockName);
+            Pair<Integer, Integer> pos = minecraftBlockNameToPos.get(blockName);
             WritableImage image = new WritableImage(blockTextureReader, 128 * pos.getKey(), 128 * pos.getValue(), 128, 128);
             blockImages.put(blockName, image);
             return image;
