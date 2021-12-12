@@ -9,9 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import scene.GameOver;
+import scene.LevelGenerator;
 import scene.Menu;
 import scene.Terrain;
-import scene.LevelGenerator;
 
 import java.util.List;
 
@@ -97,6 +98,11 @@ public class Main extends Application {
                     });
                 }
             }
+            // Show game over screen
+            Platform.runLater(() -> {
+                group.getChildren().clear();
+                group.getChildren().add(new GameOver());
+            });
         }).start();
 
 

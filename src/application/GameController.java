@@ -186,6 +186,10 @@ public class GameController {
             }
             return false;
         });
+        if (player.isDespawn()) {
+            toBeRemoved.add(player);
+            setGameEnd();
+        }
         return toBeRemoved;
     }
 
