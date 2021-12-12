@@ -1,105 +1,176 @@
 @startuml
-class block.Block {
-+ <<Create>> Block(BlockType)
-+ <<Create>> Block()
+class scene.LevelGenerator {
+- Random levelRandom
+- List<Entity> entities
++ <<Create>> LevelGenerator()
++ <<Create>> LevelGenerator(long)
++ void genTerrain()
+- int randInt(int,int)
+- void genCoins(int)
+- void genEnemy(int)
++ void genBoosterBlocks(int)
++ List<Entity> getEntities()
++ boolean removeEntities(Entity)
 }
 abstract class entity.base.Entity {
+# double x
 # String name
-# int health
 + <<Create>> Entity()
 + <<Create>> Entity(String)
-+ <<Create>> Entity(String,int)
 + String toString()
 + String getName()
-+ void setName(String)
-+ int getHealth()
-+ void setHealth(int)
 + void initializeTexture(String)
++ void moveToPos(double,double)
 }
 interface entity.base.Attackable {
-~ boolean attack(Entity)
+~ void attack(Entity)
+}
+abstract class entity.base.MoveableEntity {
+# double velocityY
+# double velocityX
+# double sceneUpperBoundX
+# double upperBoundX
+# double upperBoundY
+# double lowerBoundX
++ <<Create>> MoveableEntity()
++ <<Create>> MoveableEntity(String)
+}
+class scene.Block {
++ <<Create>> Block(String)
++ <<Create>> Block()
 }
 class scene.Menu {
++ boolean gameStart
 ~ Text title
 ~ Label label
-+ boolean gameStart
 + <<Create>> Menu()
 + void initializeStartText()
 }
 class entity.derived.BoosterBlock {
 + <<Create>> BoosterBlock()
 }
-class application.Main {
-+ void start(Stage)
-+ {static} void main(String[])
+interface entity.base.Despawnable {
+~ boolean isDespawn()
 }
-class application.GameController {
-+ {static} boolean debugEnabled
-- {static} int points
-# {static} int terrainCount
-- {static} Timer timeElapsed
-- {static} boolean isGameEnd
-+ {static} int getPoints()
-+ {static} void increasePoint(int)
-+ {static} void startTimer()
-+ {static} boolean isGameEnd()
-+ {static} void setGameEnd()
+class application.Main {
++ {static} void main(String[])
++ void start(Stage)
+}
+class scene.GameOver {
+- Text title
++ <<Create>> GameOver()
+}
+interface entity.base.Renderable {
+~ void update()
+}
+class input.Keyinput {
+}
+class input.Keyinput.KeyInput {
++ void keyTyped(KeyEvent)
++ void keyPressed(KeyEvent)
++ void keyReleased(KeyEvent)
 }
 class entity.derived.Coin {
-- int point
+- int value
+- boolean despawn
 + <<Create>> Coin()
-+ <<Create>> Coin(int)
++ <<Create>> Coin(int,int)
++ <<Create>> Coin(int,int,int)
 + void collect()
-+ void despawn()
++ boolean isDespawn()
++ String toString()
 }
 class entity.derived.Enemy {
+- boolean despawn
 + <<Create>> Enemy(String)
-+ boolean attack(Entity)
++ void attack(Entity)
++ boolean isDespawn()
++ void update()
 }
 class entity.derived.Player {
+- boolean despawn
 - boolean goNextScene
-- double vy
-- double ay
-- double upperBoundX
-- double upperBoundY
-- double lowerBoundX
+- double accelationY
 + <<Create>> Player()
 + <<Create>> Player(String)
 + void initializeMovement()
 + void returnToBegin()
-+ boolean move(double,double)
-+ boolean moveToPos(double,double)
-+ boolean attack(Entity)
++ boolean isOnTheGround()
++ void update()
++ String toString()
 + boolean isGoNextScene()
 + void setGoNextScene(boolean)
++ boolean isFalling()
++ void killPlayer()
++ boolean isDespawn()
+}
+class controller.TextureLoader {
+- Map<String,Image> images
+- Map<String,WritableImage> blockImages
+- PixelReader blockTextureReader
+- Map<String,Pair<Integer,Integer>> blockNameToPos
++ <<Create>> TextureLoader()
++ Image getImage(String)
++ WritableImage getBlockImage(String)
 }
 class entity.derived.Booster {
++ <<Create>> Booster(String)
 + void collect()
+}
+class controller.GameController {
++ {static} boolean debugEnabled
+- {static} int point
+- {static} int money
+- {static} int timeElapsed
+- {static} boolean isGameEnd
+- {static} TextureLoader textureLoader
+- {static} ArrayList<Text> statusText
++ {static} int getPoint()
++ {static} void increasePoint(int)
++ {static} ArrayList<Text> getStatusText()
++ {static} void startStatusText()
+- {static} void timeUpdater()
+- {static} void pointUpdater()
+- {static} void moneyUpdater()
++ {static} List<Entity> checkCollision(Player,LevelGenerator)
++ {static} boolean isGameEnd()
++ {static} void setGameEnd()
++ {static} TextureLoader getTextureLoader()
++ {static} void increaseMoney(int)
 }
 interface entity.base.Collectable {
 ~ void collect()
 }
 class scene.Terrain {
-- int terrainID
-+ <<Create>> Terrain(int)
-+ void readTerrain()
-+ int getTerrainID()
-+ void initializeTerrain()
+- Random terrainRandom
+- List<String> backgroundBlockType
++ <<Create>> Terrain()
++ <<Create>> Terrain(long)
++ void initializeTerrain(String)
+- Pane genStoneBackground()
 }
 
 
-javafx.scene.layout.Pane <|-- block.Block
 javafx.scene.image.ImageView <|-- entity.base.Entity
+entity.base.Entity <|-- entity.base.MoveableEntity
+javafx.scene.layout.Pane <|-- scene.Block
 javafx.scene.layout.VBox <|-- scene.Menu
 entity.base.Entity <|-- entity.derived.BoosterBlock
 javafx.application.Application <|-- application.Main
+javafx.scene.layout.VBox <|-- scene.GameOver
+input.Keyinput +.. input.Keyinput.KeyInput
+input.KeyListener <|.. input.Keyinput.KeyInput
 entity.base.Collectable <|.. entity.derived.Coin
+entity.base.Despawnable <|.. entity.derived.Coin
 entity.base.Entity <|-- entity.derived.Coin
 entity.base.Attackable <|.. entity.derived.Enemy
-entity.base.Entity <|-- entity.derived.Enemy
-entity.base.Attackable <|.. entity.derived.Player
-entity.base.Entity <|-- entity.derived.Player
+entity.base.Despawnable <|.. entity.derived.Enemy
+entity.base.Renderable <|.. entity.derived.Enemy
+entity.base.MoveableEntity <|-- entity.derived.Enemy
+entity.base.Renderable <|.. entity.derived.Player
+entity.base.Despawnable <|.. entity.derived.Player
+entity.base.MoveableEntity <|-- entity.derived.Player
 entity.base.Collectable <|.. entity.derived.Booster
-entity.base.Entity <|-- entity.derived.Booster
+entity.base.MoveableEntity <|-- entity.derived.Booster
 javafx.scene.layout.GridPane <|-- scene.Terrain
 @enduml

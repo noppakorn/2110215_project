@@ -18,7 +18,6 @@ import scene.Terrain;
 import java.util.List;
 
 /**
- *
  * @author Noppakorn Jiravaranun
  * @author Nopparuj Poonsubanan
  */

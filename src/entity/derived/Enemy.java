@@ -1,6 +1,10 @@
 package entity.derived;
 
-import entity.base.*;
+import entity.base.Attackable;
+import entity.base.Despawnable;
+import entity.base.MoveableEntity;
+import entity.base.Renderable;
+import entity.base.Entity;
 import javafx.animation.AnimationTimer;
 
 /**
@@ -46,11 +50,11 @@ public class Enemy extends MoveableEntity implements Attackable, Despawnable, Re
     @Override
     public void attack(Entity e) {
         if (e instanceof Player) {
-            if (((Player)e).isFalling()) {
+            if (((Player) e).isFalling()) {
                 System.out.println(this + " is killed");
                 despawn = true;
             } else {
-                ((Player)e).killPlayer();
+                ((Player) e).killPlayer();
                 System.out.println(this + " killed " + e);
             }
         }

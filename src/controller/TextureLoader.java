@@ -24,7 +24,7 @@ public class TextureLoader {
     public TextureLoader() {
         images = new HashMap<>();
         blockImages = new HashMap<>();
-        blockTextureReader  = new Image(ClassLoader.getSystemResource("MinecraftTexture.png").toString()).getPixelReader();
+        blockTextureReader = new Image(ClassLoader.getSystemResource("MinecraftTexture.png").toString()).getPixelReader();
         blockNameToPos = new HashMap<>();
         blockNameToPos.put("Stone", new Pair<>(1, 0));
         blockNameToPos.put("Cobblestone", new Pair<>(0, 1));
@@ -62,7 +62,7 @@ public class TextureLoader {
             return blockImages.get(blockName);
         } else {
             Pair<Integer, Integer> pos = blockNameToPos.get(blockName);
-            WritableImage image = new WritableImage(blockTextureReader, 128 * pos.getKey(),128 * pos.getValue(),128,128);
+            WritableImage image = new WritableImage(blockTextureReader, 128 * pos.getKey(), 128 * pos.getValue(), 128, 128);
             blockImages.put(blockName, image);
             return image;
         }

@@ -1,6 +1,8 @@
 package entity.derived;
 
-import entity.base.*;
+import entity.base.MoveableEntity;
+import entity.base.Renderable;
+import entity.base.Despawnable;
 import javafx.animation.AnimationTimer;
 
 /**

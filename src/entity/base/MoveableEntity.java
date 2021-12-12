@@ -3,7 +3,7 @@ package entity.base;
 /**
  * The type Moveable entity.
  */
-public class MoveableEntity extends Entity {
+public abstract class MoveableEntity extends Entity {
     /**
      * The Velocity y.
      */
@@ -28,6 +28,10 @@ public class MoveableEntity extends Entity {
      * The Lower bound x.
      */
     protected double lowerBoundX = 20;
+
+    public MoveableEntity() {
+        super();
+    }
 
     /**
      * Instantiates a new Moveable entity.

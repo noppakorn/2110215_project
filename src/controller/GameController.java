@@ -24,10 +24,6 @@ public class GameController {
      */
     public static final boolean debugEnabled = true;
     /**
-     * The Terrain count for identifying the number of terrain generated.
-     */
-    protected static int terrainCount = 0;
-    /**
      * Accumulated points for player
      */
     private static int point = 0;

@@ -65,7 +65,7 @@ public class LevelGenerator {
      *
      * @param amount the amount to be generated
      */
-    public void genCoins(int amount) {
+    private void genCoins(int amount) {
         for (int i = 0; i < amount; ++i) {
             entities.add(new Coin(randInt(30, 600), randInt(200, 300)));
             System.out.println(entities.get(i));
@@ -77,7 +77,7 @@ public class LevelGenerator {
      *
      * @param amount the amount to be generated
      */
-    public void genEnemy(int amount) {
+    private void genEnemy(int amount) {
         for (int i = 0; i < amount; ++i) {
             entities.add(new Enemy("Enemy#" + amount));
         }
