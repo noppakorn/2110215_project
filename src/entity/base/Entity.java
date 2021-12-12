@@ -38,6 +38,12 @@ public abstract class Entity extends ImageView {
         this.name = name;
     }
 
+    public Entity(String name, double x, double y) {
+        this.name = name;
+        this.x = x;
+        this.y = y;
+    }
+
 
     @Override
     public String toString() {
