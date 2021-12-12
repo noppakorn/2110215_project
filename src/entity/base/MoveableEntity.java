@@ -29,6 +29,9 @@ public abstract class MoveableEntity extends Entity {
      */
     protected double lowerBoundX = 20;
 
+    /**
+     * Instantiates a new Moveable entity.
+     */
     public MoveableEntity() {
         super();
     }

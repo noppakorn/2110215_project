@@ -1,5 +1,6 @@
 package entity.derived;
 
+import controller.GameController;
 import entity.base.Attackable;
 import entity.base.Despawnable;
 import entity.base.MoveableEntity;
@@ -28,10 +29,6 @@ public class Enemy extends MoveableEntity implements Attackable, Despawnable, Re
          *
          * @param name the name
          */
-//        Random rand = new Random();
-//        this.x = rand.nextInt((int) lowerBoundX, (int) upperBoundX);
-//        this.y = upperBoundY;
-//        this.velocityX = rand.nextInt(10) - 5;
         this.x = 300;
         this.y = upperBoundY;
         this.velocityY = 0;
@@ -52,6 +49,7 @@ public class Enemy extends MoveableEntity implements Attackable, Despawnable, Re
         if (e instanceof Player) {
             if (((Player) e).isFalling()) {
                 System.out.println(this + " is killed");
+                GameController.increasePoint(1);
                 despawn = true;
             } else {
                 ((Player) e).killPlayer();

@@ -31,7 +31,8 @@ public class GameController {
     /**
      * Time Elapsed in seconds for the current level
      */
-    private static int timeElapsed = 0;
+    private static int secTimeElapsed = 0;
+    private static int minTimeElapsed = 0;
     private static boolean isGameEnd = false;
     private static TextureLoader textureLoader = new TextureLoader();
     private static ArrayList<Text> statusText = new ArrayList<>();
@@ -83,7 +84,7 @@ public class GameController {
         timerText.setTextAlignment(TextAlignment.CENTER);
         timerText.setFont(new Font("Arial", 30));
         Platform.runLater(() -> {
-            timerText.setText("Time: " + timeElapsed);
+            timerText.setText(String.format("Time: %02d:%02d", minTimeElapsed, secTimeElapsed));
         });
         new Thread(() -> {
             while (true) {
@@ -92,8 +93,12 @@ public class GameController {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                if (++secTimeElapsed == 60) {
+                    secTimeElapsed = 0;
+                    ++minTimeElapsed;
+                }
                 Platform.runLater(() -> {
-                    timerText.setText("Time: " + ++timeElapsed);
+                    timerText.setText(String.format("Time: %02d:%02d", minTimeElapsed, secTimeElapsed));
                 });
             }
         }).start();
