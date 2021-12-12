@@ -8,6 +8,8 @@ import javafx.scene.image.ImageView;
  * The type Entity. A base class for all the entity in the game.
  */
 public abstract class Entity extends ImageView {
+    protected int width;
+    protected int height;
 
     /**
      * The X coordinates.
@@ -78,5 +80,11 @@ public abstract class Entity extends ImageView {
     public void moveToPos(double x, double y) {
         this.setX(x);
         this.setY(y);
+    }
+    public int getHeight(){
+        return height;
+    }
+    public int getWidth(){
+        return width;
     }
 }

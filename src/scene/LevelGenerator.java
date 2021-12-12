@@ -6,6 +6,7 @@ import entity.derived.Cactus;
 import entity.derived.Coin;
 import entity.derived.CoinBox;
 import entity.derived.Enemy;
+import entity.derived.Box;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.Random;
 public class LevelGenerator {
     private Random levelRandom;
     private List<Entity> entities;
+    private List<Box> boxs;
 
     /**
      * Instantiates a new Terrain generator with default random seed
@@ -43,8 +45,9 @@ public class LevelGenerator {
      */
     public void genTerrain() {
         entities.clear();
-        genCoins(randInt(1, 6));
-        genCoinBox(randInt(1,2));
+        genBox(1);
+//        genCoins(randInt(1, 6));
+        genCoinBox(randInt(1, 2));
         genEnemy(randInt(1, 6));
         genBoosterBlocks(randInt(1, 3));
         genCactus(randInt(1,3));
@@ -72,6 +75,15 @@ public class LevelGenerator {
     private void genCoins(int amount) {
         for (int i = 0; i < amount; ++i) {
             entities.add(new Coin(randInt(30, 600), randInt(200, 300)));
+            System.out.println(entities.get(i));
+        }
+    }
+
+    private void genBox(int amount) {
+        for (int i = 0; i < amount; ++i) {
+            Box box = new Box("Box", randInt(30, 600), 300);
+            entities.add(box);
+            boxs.add(box);
             System.out.println(entities.get(i));
         }
     }
