@@ -30,15 +30,16 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         super(name);
         despawn = false;
         goNextScene = false;
-
         initializeTexture("Player");
         this.setFocusTraversable(true);
         this.velocityY = 0;
         this.velocityX = 0;
         this.accelationY = 1;
         this.returnToBegin();
-        this.setFitHeight(50);
-        this.setFitWidth(50);
+        this.width = 50;
+        this.height = 50;
+        this.setFitHeight(width);
+        this.setFitWidth(height);
         this.x = lowerBoundX;
         this.y = upperBoundY;
 
