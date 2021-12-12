@@ -146,7 +146,7 @@ public class GameController {
                     e.printStackTrace();
                 }
                 Platform.runLater(() -> {
-                    moneyText.setText("Money: " + point);
+                    moneyText.setText("Money: " + money);
                 });
             }
         }).start();

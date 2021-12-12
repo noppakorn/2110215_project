@@ -24,15 +24,10 @@ public class Enemy extends MoveableEntity implements Attackable, Despawnable, Re
         despawn = false;
         this.setFitWidth(30);
         this.setFitHeight(30);
-        /**
-         * Instantiates a new Enemy.
-         *
-         * @param name the name
-         */
         this.x = 300;
         this.y = upperBoundY;
         this.velocityY = 0;
-        this.velocityX = 5;
+        this.velocityX = 3;
         initializeTexture("Coin");
         AnimationTimer animationTimer = new AnimationTimer() {
             @Override

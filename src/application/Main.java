@@ -46,7 +46,7 @@ public class Main extends Application {
         Menu menu = new Menu();
         Scene scene = new Scene(menu, 800, 600);
         stage.setScene(scene);
-        stage.setTitle("Poprio");
+        stage.setTitle("Minerio");
         stage.setResizable(false);
         stage.show();
         stage.setOnCloseRequest((event) -> {
@@ -103,10 +103,10 @@ public class Main extends Application {
                 }
             }
             // Show game over screen
-            Platform.runLater(() -> {
-                group.getChildren().clear();
-                group.getChildren().add(new GameOver());
-            });
+//            Platform.runLater(() -> {
+//                group.getChildren().clear();
+//                group.getChildren().add(new GameOver());
+//            });
         }).start();
 
 

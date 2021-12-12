@@ -14,10 +14,10 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     private double accelationY;
 
     /**
-     * Instantiates a new Player with a default name Poprio.
+     * Instantiates a new Player with a default name Minerio.
      */
     public Player() {
-        this("Poprio");
+        this("Minerio");
     }
 
     /**
@@ -154,7 +154,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * Kill player.
      */
     public void killPlayer() {
-        despawn = true;
+//        despawn = true;
         System.out.println("Player Killed");
     }
 
