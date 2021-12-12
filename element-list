@@ -2,4 +2,5 @@ application
 entity.base
 entity.derived
 initializer
+input
 scene
