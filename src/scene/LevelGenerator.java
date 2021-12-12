@@ -125,6 +125,10 @@ public class LevelGenerator {
         return entities;
     }
 
+    public List<Box> getBoxs() {
+        return boxs;
+    }
+
     /**
      * Remove the entity from the Terrain.
      *
