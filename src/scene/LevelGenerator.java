@@ -3,6 +3,7 @@ package scene;
 import entity.base.Entity;
 import entity.derived.BoosterBlock;
 import entity.derived.Coin;
+import entity.derived.CoinBox;
 import entity.derived.Enemy;
 
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class LevelGenerator {
     public void genTerrain() {
         entities.clear();
         genCoins(randInt(1, 6));
+        genCoinBox(randInt(1,2));
         genEnemy(randInt(1, 6));
         genBoosterBlocks(randInt(1, 3));
     }
@@ -68,6 +70,18 @@ public class LevelGenerator {
     private void genCoins(int amount) {
         for (int i = 0; i < amount; ++i) {
             entities.add(new Coin(randInt(30, 600), randInt(200, 300)));
+            System.out.println(entities.get(i));
+        }
+    }
+
+    /**
+     * Generate coin entity.
+     *
+     * @param amount the amount to be generated
+     */
+    private void genCoinBox(int amount) {
+        for (int i = 0; i < amount; ++i) {
+            entities.add(new CoinBox(randInt(30, 600), randInt(200, 300)));
             System.out.println(entities.get(i));
         }
     }
