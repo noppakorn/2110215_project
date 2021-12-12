@@ -33,7 +33,7 @@ public class TextureLoader {
         minecraftBlockNameToPos.put("Cobblestone", new Pair<>(0, 1));
         minecraftBlockNameToPos.put("Dirt", new Pair<>(2, 0));
         minecraftBlockNameToPos.put("Grass", new Pair<>(3, 0));
-        minecraftBlockNameToPos.put("Cactus", new Pair<>(4, 6));
+        minecraftBlockNameToPos.put("Cactus", new Pair<>(6, 4));
     }
 
 
@@ -48,7 +48,6 @@ public class TextureLoader {
         if (images.containsKey(resourceName)) {
             return images.get(resourceName);
         } else {
-            System.out.println(resourceName + ".png");
             Image image = new Image(ClassLoader.getSystemResource(resourceName + ".png").toString());
             images.put(resourceName, image);
             return image;

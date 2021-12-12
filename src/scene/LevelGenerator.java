@@ -1,7 +1,12 @@
 package scene;
 
 import entity.base.Entity;
-import entity.derived.*;
+import entity.derived.BoosterBlock;
+import entity.derived.Cactus;
+import entity.derived.Coin;
+import entity.derived.CoinBox;
+import entity.derived.Enemy;
+import entity.derived.Box;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +50,7 @@ public class LevelGenerator {
         genCoinBox(randInt(1, 2));
         genEnemy(randInt(1, 6));
         genBoosterBlocks(randInt(1, 3));
+        genCactus(randInt(1,3));
     }
 
     /**
@@ -113,6 +119,20 @@ public class LevelGenerator {
     public void genBoosterBlocks(int amount) {
         for (int i = 0; i < amount; ++i) {
             entities.add(new BoosterBlock());
+        }
+    }
+
+    /**
+     * Generate Cactus entity.
+     *
+     * @param amount the amount to be generated
+     */
+    public void genCactus(int amount) {
+        for (int i = 0; i < amount; ++i) {
+            int x = randInt(30, 600);
+            for (int j = 0; j < 3; ++j) {
+                entities.add(new Cactus("Cactus", x,400 - 50*j));
+            }
         }
     }
 

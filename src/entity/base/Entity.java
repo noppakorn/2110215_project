@@ -37,7 +37,7 @@ public abstract class Entity extends ImageView {
      * @param name the name
      */
     public Entity(String name) {
-        this.name = name;
+        this(name, 0, 0);
     }
 
     public Entity(String name, double x, double y) {
