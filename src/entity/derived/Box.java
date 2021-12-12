@@ -3,13 +3,23 @@ package entity.derived;
 import entity.base.Entity;
 
 public class Box extends Entity {
+    private final int width;
+    private final int height;
     public Box(String name, double x, double y) {
         super(name, x, y);
-        this.setFitWidth(30);
-        this.setFitHeight(30);
+        this.width = 30;
+        this.height = 30;
+        this.setFitWidth(width);
+        this.setFitHeight(height);
         this.setX(x);
         this.setY(y);
         initializeTexture("Coin");
+    }
+    public int getWidth(){
+        return width;
+    }
+    public int getHeight(){
+        return height;
     }
 
 
