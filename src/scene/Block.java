@@ -20,17 +20,19 @@ public class Block extends Pane {
         this.setPrefWidth(50);
         this.setMinHeight(50);
         this.setMinWidth(50);
-        ImageView imageView = new ImageView(GameController.getTextureLoader().getBlockImage(blockName));
-        imageView.setFitWidth(50);
-        imageView.setFitHeight(50);
-        this.getChildren().add(imageView);
+        if (!blockName.equals("Air")) {
+            ImageView imageView = new ImageView(GameController.getTextureLoader().getBlockImage(blockName));
+            imageView.setFitWidth(50);
+            imageView.setFitHeight(50);
+            this.getChildren().add(imageView);
+        }
     }
 
     /**
      * Instantiates a new Block. Defaults to Dirt Block
      */
     public Block() {
-        this("Dirt");
+        this("Air");
     }
 }
 

@@ -27,6 +27,8 @@ public class TextureLoader {
         blockImages = new HashMap<>();
         blockTextureReader  = new Image(ClassLoader.getSystemResource("MinecraftTexture.png").toString()).getPixelReader();
         blockNameToPos = new HashMap<>();
+        blockNameToPos.put("Stone", new Pair<>(1, 0));
+        blockNameToPos.put("Cobblestone", new Pair<>(0, 1));
         blockNameToPos.put("Dirt", new Pair<>(2, 0));
         blockNameToPos.put("Grass", new Pair<>(3, 0));
     }

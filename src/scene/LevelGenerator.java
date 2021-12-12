@@ -13,14 +13,14 @@ import java.util.Random;
  * The type Terrain generator.
  * Generate all the entities for the terrain
  */
-public class TerrainGenerator {
-    private Random terrainRand;
+public class LevelGenerator {
+    private Random levelRandom;
     private List<Entity> entities;
 
     /**
      * Instantiates a new Terrain generator with default random seed
      */
-    public TerrainGenerator() {
+    public LevelGenerator() {
         this(0);
     }
 
@@ -29,9 +29,9 @@ public class TerrainGenerator {
      *
      * @param seed the seed for the random number generator
      */
-    public TerrainGenerator(long seed) {
-        terrainRand = new Random();
-        terrainRand.setSeed(seed);
+    public LevelGenerator(long seed) {
+        levelRandom = new Random();
+        levelRandom.setSeed(seed);
         entities = new ArrayList<>();
         genTerrain();
     }
@@ -57,7 +57,7 @@ public class TerrainGenerator {
         if (max <= min) {
             throw new IllegalArgumentException("Max should be more that min");
         }
-        return (Math.abs(terrainRand.nextInt()) % (max - min)) + min;
+        return (Math.abs(levelRandom.nextInt()) % (max - min)) + min;
     }
 
     /**

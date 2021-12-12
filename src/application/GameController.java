@@ -10,7 +10,7 @@ import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import scene.TerrainGenerator;
+import scene.LevelGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -160,7 +160,7 @@ public class GameController {
      * @param terrainGenerator the terrain generator
      * @return the List of Entities to be removed from the scene
      */
-    public static List<Entity> checkCollision(Player player, TerrainGenerator terrainGenerator) {
+    public static List<Entity> checkCollision(Player player, LevelGenerator terrainGenerator) {
         List<Entity> toBeRemoved = new ArrayList<>();
 
         for (Entity entity : terrainGenerator.getEntities()) {
@@ -171,7 +171,8 @@ public class GameController {
                     System.out.println(entity + " Collected");
                     ((Collectable) entity).collect();
                 } else if (entity instanceof Attackable) {
-                    System.out.println(entity + " Attacked");
+                    System.out.println(player + " attacked by " + entity);
+                    ((Attackable) entity).attack(player);
                 }
             }
         }

@@ -11,7 +11,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import scene.Menu;
 import scene.Terrain;
-import scene.TerrainGenerator;
+import scene.LevelGenerator;
 
 import java.util.List;
 
@@ -64,7 +64,7 @@ public class Main extends Application {
             Group group = new Group();
             Terrain terrain = new Terrain();
             Player player = new Player();
-            TerrainGenerator terrainGenerator = new TerrainGenerator(7689746521534L);
+            LevelGenerator terrainGenerator = new LevelGenerator(7689746521534L);
             group.getChildren().add(terrain);
             group.getChildren().addAll(terrainGenerator.getEntities());
             group.getChildren().addAll(GameController.getStatusText());

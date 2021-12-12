@@ -7,33 +7,54 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /**
  * The type Terrain.
  * Represents the terrain of each scene in the level
  */
 public class Terrain extends GridPane {
+    private Random terrainRandom;
+    private List<String> backgroundBlockType;
 
-    /**
-     * Instantiates a new Terrain.
-     */
     public Terrain() {
-        super();
-        this.setMinHeight(600);
-        this.setMaxHeight(600);
-        this.setMinWidth(800);
-        this.setMaxWidth(800);
-        initializeTerrain();
+        this(0);
     }
 
 
     /**
-     * Initialize terrain with blocks at the bottom
+     * Instantiates a new Terrain.
      */
-    public void initializeTerrain() {
+    public Terrain(long seed) {
+        super();
+        terrainRandom = new Random(seed);
+        backgroundBlockType = new ArrayList<>();
+        backgroundBlockType.add("Stone");
+        backgroundBlockType.add("Cobblestone");
+        this.setMinHeight(600);
+        this.setMaxHeight(600);
+        this.setMinWidth(800);
+        this.setMaxWidth(800);
+        initializeTerrain("Empty");
+    }
+
+
+    /**
+     * Initialize terrain background
+     *
+     * @param backgroundType the background type that can be "Stone" or "Empty"
+     */
+    public void initializeTerrain(String backgroundType) {
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTSKYBLUE, null, null)));
         for (int i = 0; i < 12; ++i) {
             for (int j = 0; j < 16; ++j) {
-                this.add(genEmptyPane(), i, j);
+                if (backgroundType.equals("Stone")) {
+                    this.add(genStoneBackground(), j, i); // Stone Background
+                } else {
+                    this.add(new Block(), j, i); // Empty Background
+                }
             }
         }
         for (int j = 0; j < 16; ++j) {
@@ -42,26 +63,22 @@ public class Terrain extends GridPane {
         }
         for (int i = 10; i < 12; ++i) {
             for (int j = 0; j < 16; ++j) {
-                Block block = new Block();
+                Block block = new Block("Dirt");
                 this.add(block, j, i);
             }
         }
-        System.out.println("Terrain Initialized");
+        System.out.println(backgroundType + " Background Terrain initialized");
     }
 
 
     /**
-     * Generate an empty pane.
+     * Generate a stone background.
      *
      * @return the pane
      */
-    public Pane genEmptyPane() {
-        Pane tmpPane = new Pane();
-        tmpPane.setMaxHeight(50);
-        tmpPane.setMaxWidth(50);
-        tmpPane.setMinHeight(50);
-        tmpPane.setMinWidth(50);
-        return tmpPane;
+    private Pane genStoneBackground() {
+        Block block = new Block(backgroundBlockType.get(terrainRandom.nextInt(2)));
+        return block;
     }
 
 }
