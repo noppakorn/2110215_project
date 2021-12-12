@@ -1,6 +1,6 @@
 package entity.derived;
 
-import application.GameController;
+import controller.GameController;
 import entity.base.Collectable;
 import entity.base.Despawnable;
 import entity.base.Entity;

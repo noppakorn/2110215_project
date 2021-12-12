@@ -1,7 +1,6 @@
 package scene;
 
-import application.GameController;
-import javafx.scene.image.Image;
+import controller.GameController;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 

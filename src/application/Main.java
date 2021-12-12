@@ -1,5 +1,6 @@
 package application;
 
+import controller.GameController;
 import entity.base.Entity;
 import entity.derived.Player;
 import javafx.application.Application;

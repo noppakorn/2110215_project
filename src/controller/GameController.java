@@ -1,11 +1,10 @@
-package application;
+package controller;
 
 import entity.base.Attackable;
 import entity.base.Collectable;
 import entity.base.Despawnable;
 import entity.base.Entity;
 import entity.derived.Player;
-import initializer.TextureLoader;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;

@@ -1,7 +1,7 @@
 package entity.base;
 
 
-import application.GameController;
+import controller.GameController;
 import javafx.scene.image.ImageView;
 
 /**
