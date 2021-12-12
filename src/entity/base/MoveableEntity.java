@@ -1,5 +1,7 @@
 package entity.base;
 
+import javafx.geometry.Point2D;
+
 /**
  * The type Moveable entity.
  */
@@ -55,5 +57,12 @@ public abstract class MoveableEntity extends Entity {
 
     public void setLowerBoundX(double lowerBoundX) {
         this.lowerBoundX = lowerBoundX;
+    }
+
+    public double setVelocityX(double velocityX){
+        return this.velocityX = velocityX;
+    }
+    public double setVelocityY(double velocityY){
+        return this.velocityY = velocityY;
     }
 }
