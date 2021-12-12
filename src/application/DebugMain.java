@@ -1,10 +1,13 @@
 package application;
 
+import initializer.TextureLoader;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 
 /**
@@ -23,17 +26,12 @@ public class DebugMain extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-//        TerrainGenerator terrainGenerator = new TerrainGenerator();
-//        terrainGenerator.genTerrain();
         Group group = new Group();
-        ImageView image = new ImageView(new Image(ClassLoader.getSystemResource("Coin.png").toString()));
-        image.setFitWidth(20);
-        image.setFitHeight(20);
-        image.setX(500);
-        image.setY(200);
-//        group.getChildren().addAll(terrainGenerator.getEntities());
-        group.getChildren().add(image);
-        Scene scene = new Scene(group, 800, 600);
+        TextureLoader t = new TextureLoader();
+        ImageView imageView = new ImageView(t.getBlockImage("Dirt"));
+
+        group.getChildren().add(imageView);
+        Scene scene = new Scene(group, 2048, 2048);
         stage.setScene(scene);
         stage.show();
         stage.setTitle("Poprio");

@@ -3,7 +3,7 @@ package entity.base;
 /**
  * The type Moveable entity.
  */
-public class MoveableEntity extends Entity{
+public class MoveableEntity extends Entity {
     /**
      * The Velocity y.
      */
@@ -34,7 +34,7 @@ public class MoveableEntity extends Entity{
      *
      * @param name the name
      */
-    public MoveableEntity(String name){
+    public MoveableEntity(String name) {
         super(name);
     }
 }

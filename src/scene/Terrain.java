@@ -36,7 +36,11 @@ public class Terrain extends GridPane {
                 this.add(genEmptyPane(), i, j);
             }
         }
-        for (int i = 9; i < 12; ++i) {
+        for (int j = 0; j < 16; ++j) {
+            Block grassBlock = new Block("Grass");
+            this.add(grassBlock, j, 9);
+        }
+        for (int i = 10; i < 12; ++i) {
             for (int j = 0; j < 16; ++j) {
                 Block block = new Block();
                 this.add(block, j, i);

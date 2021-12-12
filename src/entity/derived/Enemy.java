@@ -3,8 +3,6 @@ package entity.derived;
 import entity.base.*;
 import javafx.animation.AnimationTimer;
 
-import java.util.Random;
-
 /**
  * The type Enemy.
  */

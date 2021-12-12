@@ -10,7 +10,7 @@ public class Keyinput {
     /**
      * The type Key input.
      */
-    public class KeyInput implements KeyListener{
+    public class KeyInput implements KeyListener {
 
         @Override
         public void keyTyped(KeyEvent e) {
@@ -19,7 +19,7 @@ public class Keyinput {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            switch (e.getKeyCode()){
+            switch (e.getKeyCode()) {
                 case KeyEvent.VK_LEFT -> {
                     break;
                 }
