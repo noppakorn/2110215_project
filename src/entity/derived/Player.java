@@ -172,4 +172,12 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         return despawn;
     }
 
+    public void setCorX(double x) {
+        this.x = x;
+    }
+
+    public void setCorY(double y) {
+        this.y = y;
+    }
+
 }

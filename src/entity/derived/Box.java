@@ -1,10 +1,9 @@
 package entity.derived;
 
 import entity.base.Entity;
+import controller.GameController;
 
 public class Box extends Entity {
-    private final int width;
-    private final int height;
     public Box(String name, double x, double y) {
         super(name, x, y);
         this.width = 30;

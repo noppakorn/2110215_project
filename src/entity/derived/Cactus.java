@@ -10,7 +10,7 @@ public class Cactus extends Entity implements Solid {
         this.setFitHeight(50);
         this.setFitWidth(50);
         this.setX(x);
-        this.setY(y);
+       this.setY(y);
 
         initializeTexture("Cactus");
     }
