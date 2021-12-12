@@ -1,5 +1,6 @@
 package entity.derived;
 
+import controller.GameController;
 import entity.base.MoveableEntity;
 import entity.base.Renderable;
 import entity.base.Despawnable;
@@ -79,6 +80,11 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
                 }
             }
         });
+        this.setOnKeyReleased(keyEvent -> {
+            switch (keyEvent.getCode()) {
+                case RIGHT, LEFT -> this.velocityX = 0;
+            }
+        });
     }
 
     /**
@@ -154,8 +160,10 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * Kill player.
      */
     public void killPlayer() {
-//        despawn = true;
-        System.out.println("Player Killed");
+        if (!GameController.debugEnabled) {
+            despawn = true;
+            System.out.println("Player Killed");
+        }
     }
 
     @Override
