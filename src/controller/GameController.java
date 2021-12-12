@@ -1,6 +1,7 @@
 package controller;
 
 import entity.base.*;
+import entity.derived.Box;
 import entity.derived.Player;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
@@ -8,6 +9,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import scene.LevelGenerator;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -159,6 +161,27 @@ public class GameController {
      */
     public static List<Entity> checkCollision(Player player, LevelGenerator terrainGenerator) {
         List<Entity> toBeRemoved = new ArrayList<>();
+
+        for (Box box: terrainGenerator.getBoxs()){
+            System.out.println("box " + box.getX());
+            System.out.println("box+w " + (box.getX() + box.getWidth()));
+            System.out.println("p " + player.getX());
+            System.out.println("p+w " + (player.getX() + player.getWidth()));
+            if (player.getX() + player.getWidth() > box.getX()
+                    && player.getX() + player.getWidth() < box.getX() + box.getWidth()
+                    && player.getY() - player.getHeight() <= box.getY()){
+                player.setCorY(box.getY()+40);
+                player.setVelocityY(-1*player.getVelocityY());
+
+            }
+            else if (player.getX() > box.getX()
+                    && player.getX() < box.getX() + box.getWidth()
+                    && player.getY() - player.getHeight() <= box.getY()){
+                player.setCorY(box.getY()+40);
+                player.setVelocityY(-1*player.getVelocityY());
+
+            }
+        }
 
         for (Entity entity : terrainGenerator.getEntities()) {
             if (entity instanceof Solid) {
