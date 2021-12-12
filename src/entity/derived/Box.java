@@ -15,12 +15,6 @@ public class Box extends Entity {
         this.setY(y);
         initializeTexture("Coin");
     }
-    public int getWidth(){
-        return width;
-    }
-    public int getHeight(){
-        return height;
-    }
 
 
 }
