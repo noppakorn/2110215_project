@@ -51,6 +51,13 @@ public class TextureLoader {
             return image;
         }
     }
+
+    /**
+     * Gets block image.
+     *
+     * @param blockName the block name
+     * @return the block image
+     */
     public WritableImage getBlockImage(String blockName) {
         if (blockImages.containsKey(blockName)) {
             return blockImages.get(blockName);

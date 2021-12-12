@@ -9,8 +9,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * The type Game over.
+ */
 public class GameOver extends VBox {
     private Text title;
+
+    /**
+     * Instantiates a new GameOver screen with the Player stats
+     */
     public GameOver() {
         super();
         this.setAlignment(Pos.CENTER);
@@ -21,5 +28,6 @@ public class GameOver extends VBox {
         title.setFont(new Font("Arial", 72));
         title.setTextAlignment(TextAlignment.CENTER);
         this.getChildren().add(title);
+        // TODO: show Player stats when Game Over
     }
 }

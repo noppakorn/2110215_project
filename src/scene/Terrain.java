@@ -19,6 +19,9 @@ public class Terrain extends GridPane {
     private Random terrainRandom;
     private List<String> backgroundBlockType;
 
+    /**
+     * Instantiates a new Terrain.
+     */
     public Terrain() {
         this(0);
     }
@@ -26,6 +29,8 @@ public class Terrain extends GridPane {
 
     /**
      * Instantiates a new Terrain.
+     *
+     * @param seed the seed
      */
     public Terrain(long seed) {
         super();
