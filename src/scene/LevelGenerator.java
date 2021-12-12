@@ -79,7 +79,7 @@ public class LevelGenerator {
      */
     public void genEnemy(int amount) {
         for (int i = 0; i < amount; ++i) {
-            entities.add(new Enemy("Enemy: " + amount));
+            entities.add(new Enemy("Enemy#" + amount));
         }
     }
 
