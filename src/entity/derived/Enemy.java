@@ -44,8 +44,16 @@ public class Enemy extends MoveableEntity implements Attackable, Despawnable, Re
 
 
     @Override
-    public boolean attack(Entity e) {
-        return false;
+    public void attack(Entity e) {
+        if (e instanceof Player) {
+            if (((Player)e).isFalling()) {
+                System.out.println(this + " is killed");
+                despawn = true;
+            } else {
+                ((Player)e).killPlayer();
+                System.out.println(this + " killed " + e);
+            }
+        }
     }
 
     @Override

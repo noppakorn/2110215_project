@@ -1,19 +1,15 @@
 package entity.derived;
 
-import entity.base.Attackable;
-import entity.base.Entity;
-import entity.base.MoveableEntity;
-import entity.base.Renderable;
+import entity.base.*;
 import javafx.animation.AnimationTimer;
 
 /**
  * The type Player. This type represents the main player of the game;
  */
-public class Player extends MoveableEntity implements Attackable, Renderable {
+public class Player extends MoveableEntity implements Renderable, Despawnable {
+    private boolean despawn;
     private boolean goNextScene;
-    //    private double vx;
     private double accelationY;
-    private boolean isOnTheGround;
 
     /**
      * Instantiates a new Player with a default name Poprio.
@@ -29,13 +25,15 @@ public class Player extends MoveableEntity implements Attackable, Renderable {
      */
     public Player(String name) {
         super(name);
+        despawn = false;
+        goNextScene = false;
+
         initializeTexture("Player");
         this.setFocusTraversable(true);
         this.velocityY = 0;
         this.velocityX = 0;
         this.accelationY = 1;
         this.returnToBegin();
-        this.goNextScene = false;
         this.setFitHeight(50);
         this.setFitWidth(50);
         this.x = lowerBoundX;
@@ -56,8 +54,6 @@ public class Player extends MoveableEntity implements Attackable, Renderable {
 
         };
         animationTimer.start();
-
-        System.out.println("Player: " + this + " initialized");
     }
 
     /**
@@ -99,6 +95,7 @@ public class Player extends MoveableEntity implements Attackable, Renderable {
         return !(y < upperBoundY);
     }
 
+    @Override
     public void update() {
         if (this.x - velocityX > sceneUpperBoundX) {
             this.setGoNextScene(true);
@@ -110,29 +107,18 @@ public class Player extends MoveableEntity implements Attackable, Renderable {
         }
         if (this.y - velocityY > upperBoundY) {
             this.y = upperBoundY;
+            velocityY = 0;
         } else {
             this.y -= velocityY;
         }
         this.setX(x);
         this.setY(y);
     }
-//    @Override
-//    public void moveToPos(double x, double y) {
-//        if (x >= lowerBoundX && x <= upperBoundX && y <= upperBoundY) {
-//            this.setX(x);
-//            this.setY(y);
-//        } else if (x >= sceneUpperBoundX) {
-//            this.setGoNextScene(true);
-//        }
-//    }
+
 
     @Override
-    public boolean attack(Entity e) {
-        return false;
-    }
-
     public String toString() {
-        return "Player: " + name + " at (" + this.getX() + "," + this.getY() + ")";
+        return super.toString() + " at (" + this.getX() + "," + this.getY() + ")";
     }
 
     /**
@@ -154,47 +140,24 @@ public class Player extends MoveableEntity implements Attackable, Renderable {
     }
 
     /**
-     * Gets scene upper bound x.
+     * Check if the player is falling
      *
-     * @return the scene upper bound x
+     * @return the boolean representing the falling status of the player
      */
-    public double getSceneUpperBoundX() {
-        return sceneUpperBoundX;
+    public boolean isFalling() {
+        return velocityY < 0;
     }
 
     /**
-     * Sets scene upper bound x.
-     *
-     * @param sceneUpperBoundX the scene upper bound x
+     * Kill player.
      */
-
-    /**
-     * Gets upper bound x.
-     *
-     * @return the upper bound x
-     */
-    public double getUpperBoundX() {
-        return upperBoundX;
+    public void killPlayer() {
+        despawn = true;
+        System.out.println("Player Killed");
     }
 
-
-    /**
-     * Gets upper bound y.
-     *
-     * @return the upper bound y
-     */
-    public double getUpperBoundY() {
-        return upperBoundY;
+    @Override
+    public boolean isDespawn() {
+        return despawn;
     }
-
-
-    /**
-     * Gets lower bound x.
-     *
-     * @return the lower bound x
-     */
-    public double getLowerBoundX() {
-        return lowerBoundX;
-    }
-
 }

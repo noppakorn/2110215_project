@@ -59,7 +59,8 @@ public class Coin extends Entity implements Collectable, Despawnable {
         return despawn;
     }
 
+    @Override
     public String toString() {
-        return "Coin valued " + value + " at (" + this.getX() + "," + this.getY() + ")";
+        return super.toString() + " valued " + value + " at (" + this.getX() + "," + this.getY() + ")";
     }
 }

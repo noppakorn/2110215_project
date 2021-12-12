@@ -41,7 +41,7 @@ public abstract class Entity extends ImageView {
 
     @Override
     public String toString() {
-        return "Name: " + name;
+        return this.getClass() + ": " + name;
     }
 
     /**

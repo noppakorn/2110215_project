@@ -8,7 +8,6 @@ public interface Attackable {
      * Do attack action to another entity.
      *
      * @param e the entity to be attacked.
-     * @return the result of the attack.
      */
-    boolean attack(Entity e);
+    void attack(Entity e);
 }
