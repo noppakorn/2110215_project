@@ -37,6 +37,7 @@ public class LevelGenerator {
         levelRandom = new Random();
         levelRandom.setSeed(seed);
         entities = new ArrayList<>();
+        boxs = new ArrayList<>();
         genTerrain();
     }
 
