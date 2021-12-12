@@ -59,10 +59,16 @@ public abstract class MoveableEntity extends Entity {
         this.lowerBoundX = lowerBoundX;
     }
 
-    public double setVelocityX(double velocityX){
-        return this.velocityX = velocityX;
+    public void setVelocityX(double velocityX){
+        this.velocityX = velocityX;
     }
-    public double setVelocityY(double velocityY){
-        return this.velocityY = velocityY;
+    public void setVelocityY(double velocityY){
+         this.velocityY = velocityY;
+    }
+    public double getVelocityY(){
+        return velocityY;
+    }
+    public double getVelocityX(){
+        return velocityX;
     }
 }
