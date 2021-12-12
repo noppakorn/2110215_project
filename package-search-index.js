@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"application"},{"l":"entity.base"},{"l":"entity.derived"},{"l":"initializer"},{"l":"input"},{"l":"scene"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"application"},{"l":"controller"},{"l":"entity.base"},{"l":"entity.derived"},{"l":"input"},{"l":"scene"}];updateSearchResults();

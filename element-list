@@ -1,6 +1,6 @@
 application
+controller
 entity.base
 entity.derived
-initializer
 input
 scene
