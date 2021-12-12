@@ -165,7 +165,7 @@ public class GameController {
 
         for (Entity entity : terrainGenerator.getEntities()) {
             if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
-                    && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() <= entity.getY() + entity.getFitHeight()) {
+                    && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY() + entity.getFitHeight()) {
                 System.out.println(player + " collision occurred with " + entity);
                 if (entity instanceof Collectable) {
                     System.out.println(entity + " Collected");
