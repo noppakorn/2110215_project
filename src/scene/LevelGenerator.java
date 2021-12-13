@@ -37,26 +37,25 @@ public class LevelGenerator {
         levelRandom = new Random();
         levelRandom.setSeed(seed);
         entities = new ArrayList<>();
-        genTerrain();
+        genAllEntities();
     }
 
     /**
-     * Generate the entity at random
+     * Generate the entities for current level
      */
-    public void genTerrain() {
+    public void genAllEntities() {
         levelGeneratorBusy = true;
         entities.clear();
-//        genBox(1);
-        genCoins(randInt(1, 6));
-        genCoinBox(2);
-//        genEnemy(randInt(1, 6));
-//        genBoosterBlocks(randInt(1, 3));
-        genCactus(randInt(1, 2));
+        genEntity("Enemy", randInt(1, 6));
+        genEntity("Coin", randInt(1, 6));
+        genEntity("Cactus", 2);
+        genEntity("Box", 1);
+        genEntity("CoinBox", 2);
         levelGeneratorBusy = false;
     }
 
     /**
-     * Generate a positive integer between [min, max) using terrainRandom
+     * Generate a positive integer between [min, max).
      *
      * @param min the minimum value to be generated
      * @param max the maximum value to be generated + 1
@@ -70,90 +69,44 @@ public class LevelGenerator {
     }
 
     /**
-     * Generate coin entity.
+     * Generate entity for the level.
      *
-     * @param amount the amount to be generated
+     * @param entityType The type of Entity to be generated
+     * @param amount The amount of Entity to be generated
      */
-    private void genCoins(int amount) {
+    private void genEntity(String entityType, int amount) {
         for (int i = 0; i < amount; ++i) {
-            entities.add(new Coin(randInt(30, 600), randInt(200, 300)));
+            Entity entity;
+            switch (entityType) {
+                case "Coin" -> entity = new Coin(randInt(30, 600), randInt(200, 300));
+                case "Box" -> entity = new Box("Box", randInt(30, 600), 300);
+                case "CoinBox" -> entity = new CoinBox("CoinBox", randInt(30, 600), 300);
+                case "Enemy" -> entity = new Enemy("Enemy#" + amount);
+                case "BoosterBlock" -> entity = new BoosterBlock();
+                case "Cactus" -> {
+                    int x = randInt(30, 600);
+                    for (int j = 0; j < 3; ++j) {
+                        entity = new Cactus("Cactus", x, 400 - 50 * j);
+                        entities.add(entity);
+                    }
+                    return;
+                }
+                default -> throw new IllegalArgumentException("Invalid entity type name");
+            }
+            entities.add(entity);
             System.out.println(entities.get(i));
         }
     }
 
-    private void genBox(int amount) {
-        for (int i = 0; i < amount; ++i) {
-            Box box = new Box("Box", randInt(30, 600), 300);
-            entities.add(box);
-        }
-    }
-
     /**
-     * Generate coin entity.
+     * Get the entities that have been generated for this level.
      *
-     * @param amount the amount to be generated
-     */
-    private void genCoinBox(int amount) {
-        for (int i = 0; i < amount; ++i) {
-            CoinBox coinBox = new CoinBox("CoinBox", randInt(30, 600), 300);
-            entities.add(coinBox);
-        }
-    }
-
-    /**
-     * Generate enemy entity.
-     *
-     * @param amount the amount to be generated
-     */
-    private void genEnemy(int amount) {
-        for (int i = 0; i < amount; ++i) {
-            entities.add(new Enemy("Enemy#" + amount));
-        }
-    }
-
-    /**
-     * Generate BoosterBlock entity.
-     *
-     * @param amount the amount to be generated
-     */
-    public void genBoosterBlocks(int amount) {
-        for (int i = 0; i < amount; ++i) {
-            entities.add(new BoosterBlock());
-        }
-    }
-
-    /**
-     * Generate Cactus entity.
-     *
-     * @param amount the amount to be generated
-     */
-    public void genCactus(int amount) {
-        for (int i = 0; i < amount; ++i) {
-            int x = randInt(30, 600);
-            for (int j = 0; j < 3; ++j) {
-                entities.add(new Cactus("Cactus", x, 400 - 50 * j));
-            }
-        }
-    }
-
-    /**
-     * Get the entities that have been generated for this scene.
-     *
-     * @return the entities
+     * @return the list of all entities currently in the level
      */
     public List<Entity> getEntities() {
         return entities;
     }
 
-    /**
-     * Remove the entity from the Terrain.
-     *
-     * @param e the entity to be removed
-     * @return the boolean representing the status of the removal
-     */
-    public boolean removeEntities(Entity e) {
-        return entities.remove(e);
-    }
 
     /**
      * Is level generator busy boolean.

@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import scene.GameOver;
 import scene.LevelGenerator;
 import scene.Menu;
 import scene.Terrain;
@@ -89,7 +88,7 @@ public class Main extends Application {
                     Platform.runLater(() -> {
                         group.getChildren().clear();
 
-                        levelGenerator.genTerrain();
+                        levelGenerator.genAllEntities();
                         group.getChildren().add(terrain);
                         group.getChildren().addAll(levelGenerator.getEntities());
                         group.getChildren().addAll(GameController.getStatusText());
