@@ -28,6 +28,9 @@ public class TextureLoader {
     public static Image boxCoin1 = new Image(ClassLoader.getSystemResource(  "boxCoin1.png").toString());
     public static Image boxCoin2 = new Image(ClassLoader.getSystemResource(  "boxCoin2.png").toString());
     public static Image boxCoin3 = new Image(ClassLoader.getSystemResource(  "boxCoin3.png").toString());
+    public static Image enemy1 = new Image(ClassLoader.getSystemResource("enemy1.png").toString());
+    public static Image enemy2 = new Image(ClassLoader.getSystemResource("enemy2.png").toString());
+    public static Image enemyDead = new Image(ClassLoader.getSystemResource("enemyDead.png").toString());
 
     /**
      * Instantiates a new Texture loader.

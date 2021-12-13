@@ -46,7 +46,7 @@ public class LevelGenerator {
     public void genAllEntities() {
         levelGeneratorBusy = true;
         entities.clear();
-//        genEntity("Enemy", randInt(1, 6));
+        genEntity("Enemy", 1);
         genEntity("Coin", randInt(1, 6));
         genEntity("Cactus", 2);
 //        genEntity("Box", 1);

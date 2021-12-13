@@ -1,6 +1,7 @@
 package entity.derived;
 
 import controller.GameController;
+import controller.TextureLoader;
 import entity.base.Attackable;
 import entity.base.Despawnable;
 import entity.base.MoveableEntity;
@@ -13,6 +14,10 @@ import javafx.animation.AnimationTimer;
  */
 public class Enemy extends MoveableEntity implements Attackable, Despawnable, Renderable {
     private boolean despawn;
+    private AnimationTimer animationTimer;
+    private int timer;
+    private int pic;
+
 
     /**
      * Instantiates a new Enemy.
@@ -22,14 +27,16 @@ public class Enemy extends MoveableEntity implements Attackable, Despawnable, Re
     public Enemy(String name) {
         super(name);
         despawn = false;
-        this.setFitWidth(30);
-        this.setFitHeight(30);
+        setFitHeight(30);
+        setFitWidth(30);
         this.x = 300;
-        this.y = upperBoundY;
+        this.y = upperBoundY + 20;
         this.velocityY = 0;
         this.velocityX = 3;
-        initializeTexture("Coin");
-        AnimationTimer animationTimer = new AnimationTimer() {
+        this.pic = 1;
+        this.timer = 0;
+        this.setImage(TextureLoader.enemy1);
+        animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 update();
@@ -60,6 +67,18 @@ public class Enemy extends MoveableEntity implements Attackable, Despawnable, Re
 
     @Override
     public void update() {
+        ++timer;
+        if (timer == 10){
+            timer = 0;
+            if (pic == 1){
+                pic = 2;
+                setImage(TextureLoader.enemy2);
+            }
+            else {
+                pic = 1;
+                setImage(TextureLoader.enemy1);
+            }
+        }
         if (this.x + velocityX > upperBoundX) {
             velocityX *= -1;
         } else if (this.x + velocityX < lowerBoundX) {
