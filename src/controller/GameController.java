@@ -163,25 +163,46 @@ public class GameController {
      */
     public static List<Entity> checkCollision(Player player, LevelGenerator terrainGenerator) {
         List<Entity> toBeRemoved = new ArrayList<>();
+        boolean test = true;
 
         if (!GameController.getLevelGenerator().isLevelGeneratorBusy()) {
             for (Entity entity : terrainGenerator.getEntities()) {
                 if (entity instanceof Box) {
-                    if (player.getX() + player.getWidth() > entity.getX()
-                            && player.getX() + player.getWidth() < entity.getX() + entity.getWidth()
-                            && player.getY() - player.getHeight() <= entity.getY()) {
-                        player.setCorY(entity.getY() + 40);
-                        player.setVelocityY(-1 * player.getVelocityY());
-
-                    } else if (player.getX() > entity.getX()
-                            && player.getX() < entity.getX() + entity.getWidth()
-                            && player.getY() - player.getHeight() <= entity.getY()) {
-                        player.setCorY(entity.getY() + 40);
-                        player.setVelocityY(-1 * player.getVelocityY());
-
+//                    if (player.getX() + player.getWidth() > entity.getX()
+//                            && player.getX() + player.getWidth() < entity.getX() + entity.getWidth()
+//                            && player.getY() - player.getHeight() <= entity.getY()) {
+//                        player.setCorY(entity.getY() + 40);
+//                        player.setVelocityY(-1 * player.getVelocityY());
+//
+//                    } else if (player.getX() > entity.getX()
+//                            && player.getX() < entity.getX() + entity.getWidth()
+//                            && player.getY() - player.getHeight() <= entity.getY()) {
+//                        player.setCorY(entity.getY() + 40);
+//                        player.setVelocityY(-1 * player.getVelocityY());
+//
+//                    }
+                    if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() + player.getFitWidth() >= entity.getX()) {
+                        if (player.getY() <= entity.getY() + entity.getFitHeight() && player.getY() > entity.getY()) {
+                            if (player.isUpEnabled()) {
+                                player.setCorY(entity.getY() + entity.getFitHeight());
+                                player.setVelocityY(-1 * player.getVelocityY());
+                            }
+                            player.setUpEnabled(false);
+                            while (!player.isOnTheGround()) {
+                                try {
+                                    Thread.sleep(10);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            player.setVelocityY(0);
+                            player.setUpEnabled(true);
+                        } else if (player.getY() + player.getFitHeight() >= entity.getY() && player.getY() + player.getFitHeight() < entity.getY() + entity.getFitHeight()) {
+                            player.setCorY(entity.getY() - player.getFitHeight());
+                            player.setVelocityY(0);
+                        }
                     }
 
-                    // Temp Side Collision
 //                    if (player.getY() + player.getFitWidth() >= entity.getY()) {
 //                        if (player.getX() + player.getWidth() >= entity.getX() && player.getX() <= entity.getX() + entity.getFitWidth() / 2) {
 //                            if (player.getRightEnabled()) {

@@ -12,9 +12,10 @@ import javafx.animation.AnimationTimer;
 public class Player extends MoveableEntity implements Renderable, Despawnable {
     private boolean despawn;
     private boolean goNextScene;
-    private double accelationY;
+    public double accelationY;
     private boolean leftEnabled;
     private boolean rightEnabled;
+    private boolean upEnabled;
 
     /**
      * Instantiates a new Player with a default name Minerio.
@@ -46,6 +47,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         this.y = upperBoundY;
         this.leftEnabled = true;
         this.rightEnabled = true;
+        this.upEnabled = true;
 
         initializeMovement();
         AnimationTimer animationTimer = new AnimationTimer() {
@@ -81,7 +83,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
                     }
                 }
                 case UP -> {
-                    if (isOnTheGround()) {
+                    if (isOnTheGround() && upEnabled) {
                         velocityY = 20;
                     }
                 }
@@ -116,7 +118,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @return the boolean
      */
     public boolean isOnTheGround() {
-        return !(y < upperBoundY);
+        return y >= upperBoundY;
     }
 
     @Override
@@ -230,6 +232,14 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      */
     public boolean getLeftEnabled() {
         return leftEnabled;
+    }
+
+    public boolean isUpEnabled() {
+        return upEnabled;
+    }
+
+    public void setUpEnabled(boolean upEnabled) {
+        this.upEnabled = upEnabled;
     }
 
     /**
