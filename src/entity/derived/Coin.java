@@ -4,12 +4,16 @@ import controller.GameController;
 import entity.base.Collectable;
 import entity.base.Despawnable;
 import entity.base.Entity;
+import javafx.animation.AnimationTimer;
+import javafx.scene.image.Image;
 
 
 /**
  * The type Coin.
  */
 public class Coin extends Entity implements Collectable, Despawnable {
+    private Image[] images = new Image[3];
+    private int timer;
     /**
      * The Value.
      */
@@ -50,8 +54,21 @@ public class Coin extends Entity implements Collectable, Despawnable {
         this.setFitHeight(20);
         this.setX(x);
         this.setY(y);
-        initializeTexture("Coin");
+        this.timer = 0;
+        images[0] = new Image(ClassLoader.getSystemResource(  "coin0.png").toString());
+        images[1] = new Image(ClassLoader.getSystemResource(  "coin1.png").toString());
+        images[2] = new Image(ClassLoader.getSystemResource(  "coin2.png").toString());
+//        initializeTexture("Coin");
         despawn = false;
+        AnimationTimer animationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                aniamte();
+                setImage();
+            }
+
+        };
+        animationTimer.start();
     }
 
     @Override
@@ -69,4 +86,16 @@ public class Coin extends Entity implements Collectable, Despawnable {
     public String toString() {
         return super.toString() + " valued " + value + " at (" + this.getX() + "," + this.getY() + ")";
     }
+    public void setImage(){
+        if (timer<28)this.setImage(images[0]);
+        else if (timer<37)this.setImage(images[1]);
+        else this.setImage(images[2]);
+    }
+    public void aniamte(){
+       timer++;
+       if (timer == 50){
+           timer=0;
+       }
+    }
+
 }
