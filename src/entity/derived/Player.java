@@ -57,9 +57,6 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
             @Override
             public void handle(long now) {
                 update();
-                if (Player.super.getY() > upperBoundY) {
-                    velocityY = 0;
-                }
             }
 
         };
