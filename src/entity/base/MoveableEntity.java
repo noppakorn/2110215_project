@@ -47,6 +47,10 @@ public abstract class MoveableEntity extends Entity {
         super(name);
     }
 
+    public MoveableEntity(String name, double x, double y) {
+        super(name, x, y);
+    }
+
     /**
      * Sets upper bound x.
      *
