@@ -18,7 +18,7 @@ import java.util.Random;
  */
 public class LevelGenerator {
     private Random levelRandom;
-    private List<Entity> entities;
+    public static List<Entity> entities;
     private boolean levelGeneratorBusy;
 
     /**
