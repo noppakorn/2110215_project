@@ -36,6 +36,7 @@ public class GameController {
     private static boolean isGameEnd = false;
     private static TextureLoader textureLoader = new TextureLoader();
     private static ArrayList<Text> statusText = new ArrayList<>();
+    private static LevelGenerator levelGenerator = new LevelGenerator(5646468575612L);
 
 
     /**
@@ -163,53 +164,53 @@ public class GameController {
     public static List<Entity> checkCollision(Player player, LevelGenerator terrainGenerator) {
         List<Entity> toBeRemoved = new ArrayList<>();
 
-        for (Box box: terrainGenerator.getBoxs()){
-            if (player.getX() + player.getWidth() > box.getX()
-                    && player.getX() + player.getWidth() < box.getX() + box.getWidth()
-                    && player.getY() - player.getHeight() <= box.getY()){
-                player.setCorY(box.getY()+40);
-                player.setVelocityY(-1*player.getVelocityY());
+        if (!GameController.getLevelGenerator().isLevelGeneratorBusy()) {
+            for (Entity entity : terrainGenerator.getEntities()) {
+                if (entity instanceof Box) {
+                    if (player.getX() + player.getWidth() > entity.getX()
+                            && player.getX() + player.getWidth() < entity.getX() + entity.getWidth()
+                            && player.getY() - player.getHeight() <= entity.getY()) {
+                        player.setCorY(entity.getY() + 40);
+                        player.setVelocityY(-1 * player.getVelocityY());
 
-            }
-            else if (player.getX() > box.getX()
-                    && player.getX() < box.getX() + box.getWidth()
-                    && player.getY() - player.getHeight() <= box.getY()){
-                player.setCorY(box.getY()+40);
-                player.setVelocityY(-1*player.getVelocityY());
+                    } else if (player.getX() > entity.getX()
+                            && player.getX() < entity.getX() + entity.getWidth()
+                            && player.getY() - player.getHeight() <= entity.getY()) {
+                        player.setCorY(entity.getY() + 40);
+                        player.setVelocityY(-1 * player.getVelocityY());
 
-            }
-        }
+                    }
 
-        for (Entity entity : terrainGenerator.getEntities()) {
-            if (entity instanceof Cactus) {
-                if (player.getY() + player.getFitWidth() >= entity.getY()) {
-                    if (player.getX() + player.getWidth() >= entity.getX() && player.getX() <= entity.getX() + entity.getFitWidth()) {
-                        if (player.getRightEnabled()) {
-                            player.setX(player.getX());
-                            player.setVelocityX(0);
-                        }
-                        player.setRightEnabled(false);
+                    // Temp Side Collision
+//                    if (player.getY() + player.getFitWidth() >= entity.getY()) {
+//                        if (player.getX() + player.getWidth() >= entity.getX() && player.getX() <= entity.getX() + entity.getFitWidth() / 2) {
+//                            if (player.getRightEnabled()) {
+//                                player.setX(player.getX());
+//                                player.setVelocityX(0);
+//                            }
+//                            player.setRightEnabled(false);
 //                    } else if (player.getX() >= entity.getX() + entity.getFitWidth()) {
 //                        if (player.getLeftEnabled()) {
 //                            player.setX(player.getX());
 //                            player.setVelocityX(0);
 //                        }
 //                        player.setLeftEnabled(false);
-                    }
-                } else {
-                    player.setLeftEnabled(true);
-                    player.setRightEnabled(true);
-                }
-            } else if (entity instanceof Despawnable) {
-                if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
-                        && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY() + entity.getFitHeight()) {
-                    System.out.println(player + " collision occurred with " + entity);
-                    if (entity instanceof Collectable) {
-                        System.out.println(entity + " Collected");
-                        ((Collectable) entity).collect();
-                    } else if (entity instanceof Attackable) {
-                        System.out.println(player + " attacked by " + entity);
-                        ((Attackable) entity).attack(player);
+//                        }
+//                    } else {
+//                        player.setLeftEnabled(true);
+//                        player.setRightEnabled(true);
+//                    }
+                } else if (entity instanceof Despawnable) {
+                    if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
+                            && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY() + entity.getFitHeight()) {
+                        System.out.println(player + " collision occurred with " + entity);
+                        if (entity instanceof Collectable) {
+                            System.out.println(entity + " Collected");
+                            ((Collectable) entity).collect();
+                        } else if (entity instanceof Attackable) {
+                            System.out.println(player + " attacked by " + entity);
+                            ((Attackable) entity).attack(player);
+                        }
                     }
                 }
             }
@@ -265,5 +266,14 @@ public class GameController {
      */
     public static void increaseMoney(int dMoney) {
         money += dMoney;
+    }
+
+    /**
+     * Gets level generator.
+     *
+     * @return the level generator
+     */
+    public static LevelGenerator getLevelGenerator() {
+        return levelGenerator;
     }
 }

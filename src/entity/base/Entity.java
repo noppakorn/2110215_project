@@ -8,7 +8,13 @@ import javafx.scene.image.ImageView;
  * The type Entity. A base class for all the entity in the game.
  */
 public abstract class Entity extends ImageView {
+    /**
+     * The Width.
+     */
     protected int width;
+    /**
+     * The Height.
+     */
     protected int height;
 
     /**
@@ -40,6 +46,13 @@ public abstract class Entity extends ImageView {
         this(name, 0, 0);
     }
 
+    /**
+     * Instantiates a new Entity.
+     *
+     * @param name the name
+     * @param x    the x
+     * @param y    the y
+     */
     public Entity(String name, double x, double y) {
         this.name = name;
         this.x = x;
@@ -81,10 +94,22 @@ public abstract class Entity extends ImageView {
         this.setX(x);
         this.setY(y);
     }
-    public int getHeight(){
+
+    /**
+     * Get height int.
+     *
+     * @return the int
+     */
+    public int getHeight() {
         return height;
     }
-    public int getWidth(){
+
+    /**
+     * Get width int.
+     *
+     * @return the int
+     */
+    public int getWidth() {
         return width;
     }
 }

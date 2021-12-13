@@ -47,28 +47,66 @@ public abstract class MoveableEntity extends Entity {
         super(name);
     }
 
+    /**
+     * Sets upper bound x.
+     *
+     * @param upperBoundX the upper bound x
+     */
     public void setUpperBoundX(double upperBoundX) {
         this.upperBoundX = upperBoundX;
     }
 
+    /**
+     * Sets upper bound y.
+     *
+     * @param upperBoundY the upper bound y
+     */
     public void setUpperBoundY(double upperBoundY) {
         this.upperBoundY = upperBoundY;
     }
 
+    /**
+     * Sets lower bound x.
+     *
+     * @param lowerBoundX the lower bound x
+     */
     public void setLowerBoundX(double lowerBoundX) {
         this.lowerBoundX = lowerBoundX;
     }
 
-    public void setVelocityX(double velocityX){
-        this.velocityX = velocityX;
-    }
-    public void setVelocityY(double velocityY){
-         this.velocityY = velocityY;
-    }
-    public double getVelocityY(){
+    /**
+     * Get velocity y double.
+     *
+     * @return the double
+     */
+    public double getVelocityY() {
         return velocityY;
     }
-    public double getVelocityX(){
+
+    /**
+     * Set velocity y.
+     *
+     * @param velocityY the velocity y
+     */
+    public void setVelocityY(double velocityY) {
+        this.velocityY = velocityY;
+    }
+
+    /**
+     * Get velocity x double.
+     *
+     * @return the double
+     */
+    public double getVelocityX() {
         return velocityX;
+    }
+
+    /**
+     * Set velocity x.
+     *
+     * @param velocityX the velocity x
+     */
+    public void setVelocityX(double velocityX) {
+        this.velocityX = velocityX;
     }
 }

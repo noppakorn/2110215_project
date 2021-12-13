@@ -19,7 +19,7 @@ import java.util.Random;
 public class LevelGenerator {
     private Random levelRandom;
     private List<Entity> entities;
-    private List<Box> boxs;
+    private boolean levelGeneratorBusy;
 
     /**
      * Instantiates a new Terrain generator with default random seed
@@ -37,7 +37,6 @@ public class LevelGenerator {
         levelRandom = new Random();
         levelRandom.setSeed(seed);
         entities = new ArrayList<>();
-        boxs = new ArrayList<>();
         genTerrain();
     }
 
@@ -45,13 +44,15 @@ public class LevelGenerator {
      * Generate the entity at random
      */
     public void genTerrain() {
+        levelGeneratorBusy = true;
         entities.clear();
 //        genBox(1);
-//        genCoins(randInt(1, 6));
-//        genCoinBox(randInt(1, 2));
+        genCoins(randInt(1, 6));
+        genCoinBox(2);
 //        genEnemy(randInt(1, 6));
 //        genBoosterBlocks(randInt(1, 3));
-        genCactus(randInt(1,2));
+        genCactus(randInt(1, 2));
+        levelGeneratorBusy = false;
     }
 
     /**
@@ -84,8 +85,6 @@ public class LevelGenerator {
         for (int i = 0; i < amount; ++i) {
             Box box = new Box("Box", randInt(30, 600), 300);
             entities.add(box);
-            boxs.add(box);
-            System.out.println(entities.get(i));
         }
     }
 
@@ -96,8 +95,8 @@ public class LevelGenerator {
      */
     private void genCoinBox(int amount) {
         for (int i = 0; i < amount; ++i) {
-            entities.add(new CoinBox(randInt(30, 600), randInt(200, 300)));
-            System.out.println(entities.get(i));
+            CoinBox coinBox = new CoinBox("CoinBox", randInt(30, 600), 300);
+            entities.add(coinBox);
         }
     }
 
@@ -132,7 +131,7 @@ public class LevelGenerator {
         for (int i = 0; i < amount; ++i) {
             int x = randInt(30, 600);
             for (int j = 0; j < 3; ++j) {
-                entities.add(new Cactus("Cactus", x,400 - 50*j));
+                entities.add(new Cactus("Cactus", x, 400 - 50 * j));
             }
         }
     }
@@ -146,10 +145,6 @@ public class LevelGenerator {
         return entities;
     }
 
-    public List<Box> getBoxs() {
-        return boxs;
-    }
-
     /**
      * Remove the entity from the Terrain.
      *
@@ -158,5 +153,14 @@ public class LevelGenerator {
      */
     public boolean removeEntities(Entity e) {
         return entities.remove(e);
+    }
+
+    /**
+     * Is level generator busy boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isLevelGeneratorBusy() {
+        return levelGeneratorBusy;
     }
 }

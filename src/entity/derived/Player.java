@@ -187,25 +187,57 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         return despawn;
     }
 
+    /**
+     * Sets cor x.
+     *
+     * @param x the x
+     */
     public void setCorX(double x) {
         this.x = x;
     }
 
+    /**
+     * Sets cor y.
+     *
+     * @param y the y
+     */
     public void setCorY(double y) {
         this.y = y;
     }
 
-    public void setLeftEnabled(boolean leftEnabled) {
-        this.leftEnabled = leftEnabled;
-    }
-
-    public void setRightEnabled(boolean rightEnabled) {
-        this.rightEnabled = rightEnabled;
-    }
+    /**
+     * Gets right enabled.
+     *
+     * @return the right enabled
+     */
     public boolean getRightEnabled() {
         return rightEnabled;
     }
+
+    /**
+     * Sets right enabled.
+     *
+     * @param rightEnabled the right enabled
+     */
+    public void setRightEnabled(boolean rightEnabled) {
+        this.rightEnabled = rightEnabled;
+    }
+
+    /**
+     * Gets left enabled.
+     *
+     * @return the left enabled
+     */
     public boolean getLeftEnabled() {
         return leftEnabled;
+    }
+
+    /**
+     * Sets left enabled.
+     *
+     * @param leftEnabled the left enabled
+     */
+    public void setLeftEnabled(boolean leftEnabled) {
+        this.leftEnabled = leftEnabled;
     }
 }

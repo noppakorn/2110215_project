@@ -1,9 +1,18 @@
 package entity.derived;
 
 import entity.base.Entity;
-import controller.GameController;
 
+/**
+ * The type Box.
+ */
 public class Box extends Entity {
+    /**
+     * Instantiates a new Box.
+     *
+     * @param name the name
+     * @param x    the x
+     * @param y    the y
+     */
     public Box(String name, double x, double y) {
         super(name, x, y);
         this.width = 30;

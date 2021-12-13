@@ -69,7 +69,7 @@ public class Main extends Application {
             Group group = new Group();
             Terrain terrain = new Terrain();
             Player player = new Player();
-            LevelGenerator levelGenerator = new LevelGenerator(5646468575612L);
+            LevelGenerator levelGenerator = GameController.getLevelGenerator();
             group.getChildren().add(terrain);
             group.getChildren().addAll(levelGenerator.getEntities());
             group.getChildren().addAll(GameController.getStatusText());
