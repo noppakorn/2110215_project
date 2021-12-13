@@ -29,7 +29,6 @@ public class CoinBox extends Box {
             @Override
             public void handle(long now) {
                 aniamte();
-                setImage();
             }
 
         };
@@ -54,6 +53,7 @@ public class CoinBox extends Box {
         if (timer == 50) {
             timer = 0;
         }
+        setImage();
     }
 
     public void setIsEmpty(boolean isEmpty) {
