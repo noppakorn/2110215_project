@@ -168,19 +168,6 @@ public class GameController {
         if (!GameController.getLevelGenerator().isLevelGeneratorBusy()) {
             for (Entity entity : terrainGenerator.getEntities()) {
                 if (entity instanceof Box) {
-//                    if (player.getX() + player.getWidth() > entity.getX()
-//                            && player.getX() + player.getWidth() < entity.getX() + entity.getWidth()
-//                            && player.getY() - player.getHeight() <= entity.getY()) {
-//                        player.setCorY(entity.getY() + 40);
-//                        player.setVelocityY(-1 * player.getVelocityY());
-//
-//                    } else if (player.getX() > entity.getX()
-//                            && player.getX() < entity.getX() + entity.getWidth()
-//                            && player.getY() - player.getHeight() <= entity.getY()) {
-//                        player.setCorY(entity.getY() + 40);
-//                        player.setVelocityY(-1 * player.getVelocityY());
-//
-//                    }
                     if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() + player.getFitWidth() >= entity.getX()) {
                         if (player.getY() <= entity.getY() + entity.getFitHeight() && player.getY() > entity.getY()) {
                             if (player.isUpEnabled()) {
@@ -215,24 +202,21 @@ public class GameController {
                         }
                     }
 
-//                    if (player.getY() + player.getFitWidth() >= entity.getY()) {
-//                        if (player.getX() + player.getWidth() >= entity.getX() && player.getX() <= entity.getX() + entity.getFitWidth() / 2) {
-//                            if (player.getRightEnabled()) {
-//                                player.setX(player.getX());
-//                                player.setVelocityX(0);
-//                            }
-//                            player.setRightEnabled(false);
-//                    } else if (player.getX() >= entity.getX() + entity.getFitWidth()) {
-//                        if (player.getLeftEnabled()) {
-//                            player.setX(player.getX());
-//                            player.setVelocityX(0);
-//                        }
-//                        player.setLeftEnabled(false);
-//                        }
-//                    } else {
-//                        player.setLeftEnabled(true);
-//                        player.setRightEnabled(true);
-//                    }
+                    if (player.getY() < entity.getY() + entity.getFitHeight() && player.getY() + player.getFitWidth() > entity.getY()){
+                        if (player.getX() + player.getFitWidth() >= entity.getX() && player.getX() + player.getFitWidth() < entity.getX() + entity.getFitWidth()) {
+                            if (player.getRightEnabled()) {
+                                player.setCorX(entity.getX() - player.getFitWidth());
+                                player.setVelocityX(0);
+                                player.setRightEnabled(false);
+                            }
+                        } else if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() >= entity.getX()){
+                            if (player.getLeftEnabled()) {
+                                player.setCorX(entity.getX() + entity.getFitWidth());
+                                player.setVelocityX(0);
+                                player.setLeftEnabled(false);
+                            }
+                        }
+                    }
                 } else if (entity instanceof Despawnable) {
                     if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
                             && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY() + entity.getFitHeight()) {
@@ -247,21 +231,21 @@ public class GameController {
                     }
                 }
             }
+            terrainGenerator.getEntities().removeIf(entity -> {
+                if (entity instanceof Despawnable) {
+                    if (((Despawnable) entity).isDespawn()) {
+                        toBeRemoved.add(entity);
+                        return true;
+                    }
+                }
+                return false;
+            });
+            if (player.isDespawn()) {
+                toBeRemoved.add(player);
+                setGameEnd();
+            }
         }
 
-        terrainGenerator.getEntities().removeIf(entity -> {
-            if (entity instanceof Despawnable) {
-                if (((Despawnable) entity).isDespawn()) {
-                    toBeRemoved.add(entity);
-                    return true;
-                }
-            }
-            return false;
-        });
-        if (player.isDespawn()) {
-            toBeRemoved.add(player);
-            setGameEnd();
-        }
         return toBeRemoved;
     }
 
