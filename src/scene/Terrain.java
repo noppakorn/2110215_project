@@ -43,7 +43,6 @@ public class Terrain extends GridPane {
         this.setMinWidth(800);
         this.setMaxWidth(800);
         initializeTerrain("Empty");
-//        initializeTerrain("Stone");
     }
 
 
@@ -56,10 +55,9 @@ public class Terrain extends GridPane {
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTSKYBLUE, null, null)));
         for (int i = 0; i < 12; ++i) {
             for (int j = 0; j < 16; ++j) {
-                if (backgroundType.equals("Stone")) {
-                    this.add(genStoneBackground(), j, i); // Stone Background
-                } else {
-                    this.add(new Block(), j, i); // Empty Background
+                switch (backgroundType) {
+                    case "Stone" -> this.add(genStoneBackground(), j, i); // Stone Background
+                    default -> this.add(new Block(), j, i); // Empty Background
                 }
             }
         }
@@ -73,7 +71,6 @@ public class Terrain extends GridPane {
                 this.add(block, j, i);
             }
         }
-        System.out.println(backgroundType + " Background Terrain initialized");
     }
 
 
@@ -83,8 +80,7 @@ public class Terrain extends GridPane {
      * @return the pane
      */
     private Pane genStoneBackground() {
-        Block block = new Block(backgroundBlockType.get(terrainRandom.nextInt(2)));
-        return block;
+        return new Block(backgroundBlockType.get(terrainRandom.nextInt(2)));
     }
 
 }
