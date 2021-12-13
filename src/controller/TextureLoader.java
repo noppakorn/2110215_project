@@ -20,6 +20,10 @@ public class TextureLoader {
     public static Image coin0 = new Image(ClassLoader.getSystemResource(  "coin0.png").toString());
     public static Image coin1 = new Image(ClassLoader.getSystemResource(  "coin1.png").toString());
     public static Image coin2 = new Image(ClassLoader.getSystemResource(  "coin2.png").toString());
+    public static Image coinBox0 = new Image(ClassLoader.getSystemResource(  "coinBox0.png").toString());
+    public static Image coinBox1 = new Image(ClassLoader.getSystemResource(  "coinBox1.png").toString());
+    public static Image coinBox2 = new Image(ClassLoader.getSystemResource(  "coinBox2.png").toString());
+    public static Image coinBox3 = new Image(ClassLoader.getSystemResource(  "coinBox3.png").toString());
 
     /**
      * Instantiates a new Texture loader.
