@@ -46,12 +46,12 @@ public class LevelGenerator {
      */
     public void genTerrain() {
         entities.clear();
-        genBox(1);
+//        genBox(1);
 //        genCoins(randInt(1, 6));
-        genCoinBox(randInt(1, 2));
-        genEnemy(randInt(1, 6));
-        genBoosterBlocks(randInt(1, 3));
-        genCactus(randInt(1,3));
+//        genCoinBox(randInt(1, 2));
+//        genEnemy(randInt(1, 6));
+//        genBoosterBlocks(randInt(1, 3));
+        genCactus(randInt(1,2));
     }
 
     /**

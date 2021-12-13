@@ -13,8 +13,8 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     private boolean despawn;
     private boolean goNextScene;
     private double accelationY;
-    public boolean rightOverride;
-    public boolean leftOverride;
+    private boolean leftEnabled;
+    private boolean rightEnabled;
 
     /**
      * Instantiates a new Player with a default name Minerio.
@@ -44,8 +44,8 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         this.setFitWidth(height);
         this.x = lowerBoundX;
         this.y = upperBoundY;
-        this.rightOverride = false;
-        this.leftOverride = false;
+        this.leftEnabled = true;
+        this.rightEnabled = true;
 
         initializeMovement();
         AnimationTimer animationTimer = new AnimationTimer() {
@@ -71,14 +71,14 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         this.setOnKeyPressed(keyEvent -> {
             switch (keyEvent.getCode()) {
                 case LEFT -> {
-                    this.velocityX = 5;
-                    rightOverride = false;
-                    leftOverride = true;
+                    if (leftEnabled) {
+                        this.velocityX = 5;
+                    }
                 }
                 case RIGHT -> {
-                    this.velocityX = -5;
-                    leftOverride = false;
-                    rightOverride = true;
+                    if (rightEnabled) {
+                        this.velocityX = -5;
+                    }
                 }
                 case UP -> {
                     if (isOnTheGround()) {
@@ -93,11 +93,11 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
             switch (keyEvent.getCode()) {
                 case LEFT -> {
                     this.velocityX = 0;
-                    leftOverride = false;
+                    setRightEnabled(true);
                 }
                 case RIGHT -> {
                     this.velocityX = 0;
-                    rightOverride = false;
+                    setLeftEnabled(true);
                 }
             }
         });
@@ -195,4 +195,17 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         this.y = y;
     }
 
+    public void setLeftEnabled(boolean leftEnabled) {
+        this.leftEnabled = leftEnabled;
+    }
+
+    public void setRightEnabled(boolean rightEnabled) {
+        this.rightEnabled = rightEnabled;
+    }
+    public boolean getRightEnabled() {
+        return rightEnabled;
+    }
+    public boolean getLeftEnabled() {
+        return leftEnabled;
+    }
 }

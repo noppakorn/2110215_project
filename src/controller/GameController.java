@@ -182,15 +182,25 @@ public class GameController {
 
         for (Entity entity : terrainGenerator.getEntities()) {
             if (entity instanceof Cactus) {
-                if (player.getX() + player.getWidth() == entity.getX() && player.getY() <= entity.getY() && !player.leftOverride) {
-                    player.setX(player.getX());
-                    player.setVelocityX(0);
-                } else if (player.getX() == entity.getX() + entity.getFitWidth() && player.getY() <= entity.getY()) {
-                    player.setX(player.getX());
-                    player.setVelocityX(0);
+                if (player.getY() + player.getFitWidth() >= entity.getY()) {
+                    if (player.getX() + player.getWidth() >= entity.getX() && player.getX() <= entity.getX() + entity.getFitWidth()) {
+                        if (player.getRightEnabled()) {
+                            player.setX(player.getX());
+                            player.setVelocityX(0);
+                        }
+                        player.setRightEnabled(false);
+//                    } else if (player.getX() >= entity.getX() + entity.getFitWidth()) {
+//                        if (player.getLeftEnabled()) {
+//                            player.setX(player.getX());
+//                            player.setVelocityX(0);
+//                        }
+//                        player.setLeftEnabled(false);
+                    }
+                } else {
+                    player.setLeftEnabled(true);
+                    player.setRightEnabled(true);
                 }
-            }
-            else if (entity instanceof Despawnable) {
+            } else if (entity instanceof Despawnable) {
                 if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
                         && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY() + entity.getFitHeight()) {
                     System.out.println(player + " collision occurred with " + entity);
