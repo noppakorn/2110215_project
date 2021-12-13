@@ -17,6 +17,9 @@ public class TextureLoader {
     private Map<String, WritableImage> blockImages;
     private PixelReader blockTextureReader;
     private Map<String, Pair<Integer, Integer>> minecraftBlockNameToPos;
+    public static Image coin0 = new Image(ClassLoader.getSystemResource(  "coin0.png").toString());
+    public static Image coin1 = new Image(ClassLoader.getSystemResource(  "coin1.png").toString());
+    public static Image coin2 = new Image(ClassLoader.getSystemResource(  "coin2.png").toString());
 
     /**
      * Instantiates a new Texture loader.
