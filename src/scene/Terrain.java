@@ -42,8 +42,8 @@ public class Terrain extends GridPane {
         this.setMaxHeight(600);
         this.setMinWidth(800);
         this.setMaxWidth(800);
-//        initializeTerrain("Empty");
-        initializeTerrain("Stone");
+        initializeTerrain("Empty");
+//        initializeTerrain("Stone");
     }
 
 
