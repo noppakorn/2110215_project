@@ -57,9 +57,6 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
             @Override
             public void handle(long now) {
                 update();
-                if (Player.super.getY() < upperBoundY) {
-                    velocityY -= accelerationY;
-                }
                 if (Player.super.getY() > upperBoundY) {
                     velocityY = 0;
                 }
@@ -139,8 +136,10 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         if (this.y - velocityY >= upperBoundY) {
             this.y = upperBoundY;
             velocityY = 0;
+            downEnabled = false;
             jumping = false;
         } else if (downEnabled) {
+            velocityY -= accelerationY;
             this.y -= velocityY;
         }
         this.setX(x);

@@ -173,7 +173,7 @@ public class GameController {
                                 ((CoinBox) entity).coinPop();
                             }
                             if (player.isUpEnabled()) {
-                                player.setCorY(entity.getY() + entity.getFitHeight());
+//                                player.setCorY(entity.getY() + entity.getFitHeight());
                                 player.setVelocityY(-1 * player.getVelocityY());
                             }
                             player.setUpEnabled(false);
