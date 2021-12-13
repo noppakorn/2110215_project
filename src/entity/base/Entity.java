@@ -31,16 +31,16 @@ public abstract class Entity extends ImageView {
     protected String name;
 
     /**
-     * Instantiates a new Entity.
+     * Instantiates a new Anonymous Entity.
      */
     public Entity() {
         this("Anonymous");
     }
 
     /**
-     * Instantiates a new Entity.
+     * Instantiates a new Entity at (0,0).
      *
-     * @param name the name
+     * @param name the name of the entity
      */
     public Entity(String name) {
         this(name, 0, 0);
@@ -49,9 +49,9 @@ public abstract class Entity extends ImageView {
     /**
      * Instantiates a new Entity.
      *
-     * @param name the name
-     * @param x    the x
-     * @param y    the y
+     * @param name the name of the entity
+     * @param x    the x coordinate
+     * @param y    the y coordinate
      */
     public Entity(String name, double x, double y) {
         this.name = name;

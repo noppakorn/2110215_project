@@ -26,7 +26,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     /**
      * Instantiates a new Player.
      *
-     * @param name the name
+     * @param name the name of the Player.
      */
     public Player(String name) {
         super(name);
