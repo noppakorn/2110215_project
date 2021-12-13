@@ -16,10 +16,8 @@ public class Box extends Entity {
      */
     public Box(String name, double x, double y) {
         super(name, x, y);
-        this.width = 30;
-        this.height = 30;
-        this.setFitWidth(width);
-        this.setFitHeight(height);
+        this.setFitWidth(50);
+        this.setFitHeight(50);
         this.setX(x);
         this.setY(y);
         initializeBlockTexture("Dirt");

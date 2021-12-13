@@ -10,12 +10,14 @@ import javafx.animation.AnimationTimer;
  * The type Player. This type represents the main player of the game;
  */
 public class Player extends MoveableEntity implements Renderable, Despawnable {
+    private final double accelerationY = 1;
     private boolean despawn;
     private boolean goNextScene;
-    public double accelationY;
     private boolean leftEnabled;
     private boolean rightEnabled;
     private boolean upEnabled;
+    private boolean downEnabled;
+    private boolean jumping;
 
     /**
      * Instantiates a new Player with a default name Minerio.
@@ -31,23 +33,24 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      */
     public Player(String name) {
         super(name);
-        despawn = false;
-        goNextScene = false;
         initializeTexture("Player");
         this.setFocusTraversable(true);
         this.velocityY = 0;
         this.velocityX = 0;
-        this.accelationY = 1;
         this.returnToBegin();
-        this.width = 50;
-        this.height = 50;
-        this.setFitHeight(width);
-        this.setFitWidth(height);
+        this.setFitHeight(50);
+        this.setFitWidth(50);
+
         this.x = lowerBoundX;
         this.y = upperBoundY;
-        this.leftEnabled = true;
-        this.rightEnabled = true;
-        this.upEnabled = true;
+
+        despawn = false;
+        goNextScene = false;
+        leftEnabled = true;
+        rightEnabled = true;
+        upEnabled = true;
+        downEnabled = true;
+        jumping = false;
 
         initializeMovement();
         AnimationTimer animationTimer = new AnimationTimer() {
@@ -55,7 +58,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
             public void handle(long now) {
                 update();
                 if (Player.super.getY() < upperBoundY) {
-                    velocityY -= accelationY;
+                    velocityY -= accelerationY;
                 }
                 if (Player.super.getY() > upperBoundY) {
                     velocityY = 0;
@@ -83,8 +86,10 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
                     }
                 }
                 case UP -> {
-                    if (isOnTheGround() && upEnabled) {
+                    if (upEnabled && !jumping) {
                         velocityY = 20;
+                        downEnabled = true;
+                        jumping = true;
                     }
                 }
                 case DOWN -> {
@@ -131,10 +136,11 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         } else {
             this.x -= velocityX;
         }
-        if (this.y - velocityY > upperBoundY) {
+        if (this.y - velocityY >= upperBoundY) {
             this.y = upperBoundY;
             velocityY = 0;
-        } else {
+            jumping = false;
+        } else if (downEnabled) {
             this.y -= velocityY;
         }
         this.setX(x);
@@ -249,5 +255,17 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      */
     public void setLeftEnabled(boolean leftEnabled) {
         this.leftEnabled = leftEnabled;
+    }
+
+    public boolean isDownEnabled() {
+        return downEnabled;
+    }
+
+    public void setDownEnabled(boolean downEnabled) {
+        this.downEnabled = downEnabled;
+    }
+
+    public void setJumping(boolean jumping) {
+        this.jumping = jumping;
     }
 }

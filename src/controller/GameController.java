@@ -197,9 +197,21 @@ public class GameController {
                             }
                             player.setVelocityY(0);
                             player.setUpEnabled(true);
-                        } else if (player.getY() + player.getFitHeight() >= entity.getY() && player.getY() + player.getFitHeight() < entity.getY() + entity.getFitHeight()) {
-                            player.setCorY(entity.getY() - player.getFitHeight());
-                            player.setVelocityY(0);
+                        } else if (player.getY() + player.getFitHeight() > entity.getY() && player.getY() + player.getFitHeight() < entity.getY() + entity.getFitHeight()) {
+                            if (player.isDownEnabled()) {
+                                player.setCorY(entity.getY() - player.getFitHeight());
+                                player.setVelocityY(0);
+                                player.setDownEnabled(false);
+                                player.setJumping(false);
+                            }
+                            while (!(player.getX() + player.getFitWidth() < entity.getX() || player.getX() > entity.getX() + entity.getFitWidth() || player.isDownEnabled())) {
+                                try {
+                                    Thread.sleep(10);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            player.setDownEnabled(true);
                         }
                     }
 

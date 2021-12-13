@@ -9,15 +9,6 @@ import javafx.scene.image.ImageView;
  */
 public abstract class Entity extends ImageView {
     /**
-     * The Width.
-     */
-    protected int width;
-    /**
-     * The Height.
-     */
-    protected int height;
-
-    /**
      * The X coordinates.
      */
     protected double x;
@@ -84,32 +75,4 @@ public abstract class Entity extends ImageView {
         this.setImage(GameController.getTextureLoader().getImage(resourceName));
     }
 
-    /**
-     * Move object using absolute position on screen with bound checking that position will not exceed bounds.
-     *
-     * @param x the x coordinate
-     * @param y the y coordinate
-     */
-    public void moveToPos(double x, double y) {
-        this.setX(x);
-        this.setY(y);
-    }
-
-    /**
-     * Get height int.
-     *
-     * @return the int
-     */
-    public int getHeight() {
-        return height;
-    }
-
-    /**
-     * Get width int.
-     *
-     * @return the int
-     */
-    public int getWidth() {
-        return width;
-    }
 }
