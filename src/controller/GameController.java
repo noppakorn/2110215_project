@@ -1,10 +1,7 @@
 package controller;
 
 import entity.base.*;
-import entity.derived.Box;
-import entity.derived.Cactus;
-import entity.derived.CoinBox;
-import entity.derived.Player;
+import entity.derived.*;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -171,7 +168,8 @@ public class GameController {
                 if (entity instanceof Box) {
                     if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() + player.getFitWidth() >= entity.getX()) {
                         if (player.getY() <= entity.getY() + entity.getFitHeight() && player.getY() > entity.getY()) {
-                            if (entity instanceof CoinBox){
+                            if (entity instanceof CoinBox && ((CoinBox) entity).getIsEmpty() == false){
+                                BoxCoin tmp = new BoxCoin(entity.getX(),entity.getY()-10);
                                 ((CoinBox) entity).setIsEmpty(true);
                             }
                             if (player.isUpEnabled()) {
