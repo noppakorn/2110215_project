@@ -4,6 +4,7 @@ package entity.derived;
 import controller.TextureLoader;
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
+import scene.LevelGenerator;
 
 /**
  * The type Coin box.
@@ -19,12 +20,15 @@ public class CoinBox extends Box {
     private boolean isEmpty;
     private int timer;
     private AnimationTimer animationTimer;
+    private BoxCoin boxCoin;
 
     public CoinBox(String name, int x, int y) {
 
         super(name, x, y);
         timer = 0;
         isEmpty = false;
+        boxCoin = new BoxCoin(x + 17,y);
+        LevelGenerator.entities.add(boxCoin);
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -62,5 +66,9 @@ public class CoinBox extends Box {
 
     public boolean getIsEmpty() {
         return this.isEmpty;
+    }
+    public void coinPop(){
+        boxCoin.pop();
+        LevelGenerator.entities.remove(boxCoin);
     }
 }

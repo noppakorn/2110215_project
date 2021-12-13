@@ -169,8 +169,8 @@ public class GameController {
                     if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() + player.getFitWidth() >= entity.getX()) {
                         if (player.getY() <= entity.getY() + entity.getFitHeight() && player.getY() > entity.getY()) {
                             if (entity instanceof CoinBox && ((CoinBox) entity).getIsEmpty() == false){
-                                BoxCoin tmp = new BoxCoin(entity.getX(),entity.getY()-10);
                                 ((CoinBox) entity).setIsEmpty(true);
+                                ((CoinBox) entity).coinPop();
                             }
                             if (player.isUpEnabled()) {
                                 player.setCorY(entity.getY() + entity.getFitHeight());

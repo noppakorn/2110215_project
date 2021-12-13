@@ -24,19 +24,18 @@ public class BoxCoin extends MoveableEntity {
                 animate();
             }
         };
-        animationTimer.start();
     }
 
-    public void coinPop() {
+    public void pop() {
         animationTimer.start();
 
     }
 
     public void animate() {
-        if (timer<3) setImage(TextureLoader.coinBox0);
-        else if (timer<6) setImage(TextureLoader.coinBox1);
-        else if (timer<9) setImage(TextureLoader.coinBox2);
-        else setImage(TextureLoader.coinBox3);
+        if (timer<3) setImage(TextureLoader.boxCoin0);
+        else if (timer<6) setImage(TextureLoader.boxCoin1);
+        else if (timer<9) setImage(TextureLoader.boxCoin2);
+        else setImage(TextureLoader.boxCoin3);
         ++timer;
         if (timer == 12) {
             timer = 0;
