@@ -1,5 +1,6 @@
 package entity.derived;
 
+import controller.GameController;
 import entity.base.Entity;
 
 /**
@@ -21,6 +22,10 @@ public class Box extends Entity {
         this.setFitHeight(height);
         this.setX(x);
         this.setY(y);
+        initializeBlockTexture("Dirt");
+    }
+    public void initializeBlockTexture(String resourceName){
+        this.setImage(GameController.getTextureLoader().getBlockImage(resourceName));
     }
 
 
