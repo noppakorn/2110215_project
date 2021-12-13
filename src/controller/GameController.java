@@ -2,6 +2,7 @@ package controller;
 
 import entity.base.*;
 import entity.derived.Box;
+import entity.derived.Cactus;
 import entity.derived.Player;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
@@ -180,8 +181,14 @@ public class GameController {
         }
 
         for (Entity entity : terrainGenerator.getEntities()) {
-            if (entity instanceof Solid) {
-
+            if (entity instanceof Cactus) {
+                if (player.getX() + player.getWidth() == entity.getX() && player.getY() <= entity.getY() && !player.leftOverride) {
+                    player.setX(player.getX());
+                    player.setVelocityX(0);
+                } else if (player.getX() == entity.getX() + entity.getFitWidth() && player.getY() <= entity.getY()) {
+                    player.setX(player.getX());
+                    player.setVelocityX(0);
+                }
             }
             else if (entity instanceof Despawnable) {
                 if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()

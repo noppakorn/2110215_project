@@ -13,6 +13,8 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     private boolean despawn;
     private boolean goNextScene;
     private double accelationY;
+    public boolean rightOverride;
+    public boolean leftOverride;
 
     /**
      * Instantiates a new Player with a default name Minerio.
@@ -42,6 +44,8 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         this.setFitWidth(height);
         this.x = lowerBoundX;
         this.y = upperBoundY;
+        this.rightOverride = false;
+        this.leftOverride = false;
 
         initializeMovement();
         AnimationTimer animationTimer = new AnimationTimer() {
@@ -68,9 +72,13 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
             switch (keyEvent.getCode()) {
                 case LEFT -> {
                     this.velocityX = 5;
+                    rightOverride = false;
+                    leftOverride = true;
                 }
                 case RIGHT -> {
                     this.velocityX = -5;
+                    leftOverride = false;
+                    rightOverride = true;
                 }
                 case UP -> {
                     if (isOnTheGround()) {
@@ -83,7 +91,14 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         });
         this.setOnKeyReleased(keyEvent -> {
             switch (keyEvent.getCode()) {
-                case RIGHT, LEFT -> this.velocityX = 0;
+                case LEFT -> {
+                    this.velocityX = 0;
+                    leftOverride = false;
+                }
+                case RIGHT -> {
+                    this.velocityX = 0;
+                    rightOverride = false;
+                }
             }
         });
     }

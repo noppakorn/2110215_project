@@ -4,13 +4,13 @@ import controller.GameController;
 import entity.base.Entity;
 import entity.base.Solid;
 
-public class Cactus extends Entity implements Solid {
+public class Cactus extends Box implements Solid {
     public Cactus(String name, int x, int y) {
         super(name, x, y);
         this.setFitHeight(50);
         this.setFitWidth(50);
         this.setX(x);
-       this.setY(y);
+        this.setY(y);
 
         initializeTexture("Cactus");
     }

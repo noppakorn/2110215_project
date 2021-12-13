@@ -12,7 +12,6 @@ public class Box extends Entity {
         this.setFitHeight(height);
         this.setX(x);
         this.setY(y);
-        initializeTexture("Coin");
     }
 
 

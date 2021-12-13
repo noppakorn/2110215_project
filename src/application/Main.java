@@ -78,11 +78,6 @@ public class Main extends Application {
                 scene.setRoot(group);
             });
             while (!GameController.isGameEnd()) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 List<Entity> toBeRemoved = GameController.checkCollision(player, levelGenerator);
                 if (toBeRemoved.size() > 0) {
                     Platform.runLater(() -> {
