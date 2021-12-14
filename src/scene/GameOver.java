@@ -25,6 +25,7 @@ public class GameOver extends VBox {
         super();
         this.setAlignment(Pos.CENTER);
         this.setBackground(new Background(new BackgroundFill(Color.PINK, null, null)));
+        this.setSpacing(20);
 
         title = genAndAddText("You Died!");
         title.setFont(new Font("Arial", 72));
