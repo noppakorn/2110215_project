@@ -1,11 +1,13 @@
 package scene;
 
+import controller.GameController;
 import entity.base.Entity;
 import entity.derived.Box;
 import entity.derived.Cactus;
 import entity.derived.Coin;
 import entity.derived.CoinBox;
 import entity.derived.Enemy;
+import exception.InvalidLevelException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,24 +25,24 @@ public class LevelGenerator {
     private Random levelRandom;
     private boolean levelGeneratorBusy;
     private int currentLevel;
+    private int maxLevelToGen;
 
-    /**
-     * Instantiates a new Terrain generator with default random seed
-     */
-    public LevelGenerator() {
-        this(0);
-    }
 
     /**
      * Instantiates a new Terrain generator.
      *
      * @param seed the seed for the random number generator
      */
-    public LevelGenerator(long seed) {
+    public LevelGenerator(long seed, int maxLevelToGen) throws InvalidLevelException {
         levelRandom = new Random();
         levelRandom.setSeed(seed);
         entities = new ArrayList<>();
-        currentLevel = 9;
+        currentLevel = 2;
+        if (maxLevelToGen > 10) {
+            throw new InvalidLevelException(1,10);
+        } else {
+            this.maxLevelToGen = 10;
+        }
         genNextLevel();
     }
 
@@ -50,6 +52,9 @@ public class LevelGenerator {
     public void genNextLevel() {
         levelGeneratorBusy = true;
         entities.clear();
+        if (currentLevel == maxLevelToGen) {
+            GameController.setGameEnd();
+        }
         switch (currentLevel) {
             case 0 -> {
 //                genEntity("Enemy", randInt(300, 700), 450);
@@ -173,7 +178,6 @@ public class LevelGenerator {
      * Generate entity for the level.
      *
      * @param entityType The type of Entity to be generated
-     * @param amount     The amount of Entity to be generated
      */
     private void genEntity(String entityType, double x, double y) {
         Entity entity;

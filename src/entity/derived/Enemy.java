@@ -2,7 +2,6 @@ package entity.derived;
 
 import controller.GameController;
 import entity.base.Despawnable;
-import entity.base.Entity;
 import entity.base.MoveableEntity;
 import entity.base.Renderable;
 import javafx.animation.AnimationTimer;
@@ -47,20 +46,18 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
 
 
     /**
-     * Attack.
+     * Attack the player.
      *
-     * @param e the e
+     * @param player the player to be attacked
      */
-    public void attack(Entity e) {
-        if (e instanceof Player) {
-            if (((Player) e).isFalling()) {
-                System.out.println(this + " is killed");
-                GameController.increasePoint(1);
-                despawn = true;
-            } else {
-                ((Player) e).killPlayer();
-                System.out.println(this + " killed " + e);
-            }
+    public void attack(Player player) {
+        if (player.isFalling()) {
+            System.out.println(this + " is killed");
+            GameController.increasePoint(1);
+            despawn = true;
+        } else {
+            player.killPlayer();
+            System.out.println(this + " killed " + player);
         }
     }
 

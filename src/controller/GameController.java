@@ -7,6 +7,7 @@ import entity.derived.Coin;
 import entity.derived.CoinBox;
 import entity.derived.Enemy;
 import entity.derived.Player;
+import exception.InvalidLevelException;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -45,8 +46,8 @@ public class GameController {
      *
      * @param seed the seed
      */
-    public static void initLevelGenerator(long seed) {
-        levelGenerator = new LevelGenerator(seed);
+    public static void initLevelGenerator(long seed, int maxLevelToGen) throws InvalidLevelException {
+        levelGenerator = new LevelGenerator(seed, maxLevelToGen);
     }
 
 

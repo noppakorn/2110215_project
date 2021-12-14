@@ -45,7 +45,6 @@ public class Main extends Application {
 
         Menu menu = new Menu();
         Scene scene = new Scene(menu, 800, 600);
-        GameController.initLevelGenerator(456478971L);
         stage.setScene(scene);
         stage.setTitle("Minerio");
         stage.setResizable(false);
@@ -57,7 +56,7 @@ public class Main extends Application {
         });
         new Thread(() -> {
             if (!GameController.debugEnabled) {
-                while (!menu.gameStart) {
+                while (!menu.isGameStart()) {
                     try {
                         Thread.sleep(500);
                     } catch (InterruptedException e) {
