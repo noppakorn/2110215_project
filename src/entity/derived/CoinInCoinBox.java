@@ -6,7 +6,7 @@ import javafx.animation.AnimationTimer;
 /**
  * The type Box coin.
  */
-public class BoxCoin extends MoveableEntity {
+public class CoinInCoinBox extends MoveableEntity {
     private int timer;
     private AnimationTimer animationTimer;
     private int jumpTime;
@@ -14,12 +14,12 @@ public class BoxCoin extends MoveableEntity {
     private int jumpHeight;
 
     /**
-     * Instantiates a new Box coin.
+     * Instantiates a new Coin that is inside coin box.
      *
-     * @param x the x
-     * @param y the y
+     * @param x the x coordinates
+     * @param y the y coordinates
      */
-    public BoxCoin(double x, double y) {
+    public CoinInCoinBox(double x, double y) {
         super("coinBox", x, y);
         jumpTime = 15;
         fallingTime = 0;
@@ -35,15 +35,14 @@ public class BoxCoin extends MoveableEntity {
     }
 
     /**
-     * Pop.
+     * Handle animation when the coin pops out from the box.
      */
     public void pop() {
         animationTimer.start();
-
     }
 
     /**
-     * Animate.
+     * Handle animation for the coin.
      */
     public void animate() {
         if (timer < 3) initializeTexture("boxCoin0");

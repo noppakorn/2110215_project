@@ -8,17 +8,10 @@ import scene.LevelGenerator;
  * The type Coin box.
  */
 public class CoinBox extends Box {
-    /**
-     * Instantiates a new Coin box.
-     *
-     * @param name the name
-     * @param x    the x
-     * @param y    the y
-     */
     private boolean isEmpty;
     private int timer;
     private AnimationTimer animationTimer;
-    private BoxCoin boxCoin;
+    private CoinInCoinBox boxCoin;
 
     /**
      * Instantiates a new Coin box.
@@ -32,12 +25,12 @@ public class CoinBox extends Box {
         super(name, x, y);
         timer = 0;
         isEmpty = false;
-        boxCoin = new BoxCoin(x + 17, y);
+        boxCoin = new CoinInCoinBox(x + 17, y);
         LevelGenerator.entities.add(boxCoin);
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                aniamte();
+                animate();
             }
 
         };
@@ -60,9 +53,9 @@ public class CoinBox extends Box {
     }
 
     /**
-     * Aniamte.
+     * Animate.
      */
-    public void aniamte() {
+    public void animate() {
         timer++;
         if (timer == 50) {
             timer = 0;
@@ -93,6 +86,5 @@ public class CoinBox extends Box {
      */
     public void coinPop() {
         boxCoin.pop();
-        LevelGenerator.entities.remove(boxCoin);
     }
 }

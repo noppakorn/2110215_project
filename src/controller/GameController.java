@@ -172,12 +172,11 @@ public class GameController {
                 if (entity instanceof Box) {
                     if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() + player.getFitWidth() >= entity.getX()) {
                         if (player.getY() <= entity.getY() + entity.getFitHeight() && player.getY() > entity.getY()) {
-                            if (entity instanceof CoinBox && ((CoinBox) entity).getIsEmpty() == false) {
+                            if (entity instanceof CoinBox && !((CoinBox) entity).getIsEmpty()) {
                                 ((CoinBox) entity).setIsEmpty(true);
                                 ((CoinBox) entity).coinPop();
                             }
                             if (player.isUpEnabled()) {
-//                                player.setCorY(entity.getY() + entity.getFitHeight());
                                 player.setVelocityY(-1 * player.getVelocityY());
                             }
                             player.setUpEnabled(false);
@@ -274,7 +273,7 @@ public class GameController {
     }
 
     /**
-     * Gets texture loader.
+     * Gets texture loader instance.
      *
      * @return the texture loader
      */
@@ -285,14 +284,14 @@ public class GameController {
     /**
      * Increase money.
      *
-     * @param dMoney the d money
+     * @param dMoney the amount of money to add or remove
      */
     public static void increaseMoney(int dMoney) {
         money += dMoney;
     }
 
     /**
-     * Gets level generator.
+     * Gets level generator instance.
      *
      * @return the level generator
      */
