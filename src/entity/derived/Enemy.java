@@ -21,19 +21,12 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
     /**
      * Instantiates a new Enemy.
      *
-<<<<<<< HEAD
      * @param name the name
      * @param x    the x
      * @param y    the y
      * @param lowerBound the lowerBound
      * @param upperBound the upperBound
      * direction must be 1 or -1
-=======
-     * @param name      the name
-     * @param x         the x
-     * @param y         the y
-     * @param direction the direction
->>>>>>> f4dce4553eb32f6d9a88d8b0b020ebe17b2e48a7
      */
     public Enemy(String name, double x, double y, int lowerBound, int upperBound, int direction) {
         super(name);
