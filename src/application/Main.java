@@ -36,16 +36,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        String themeSong = ClassLoader.getSystemResource("mario.mp3").toString();
-        Media marioThemeSong = new Media(themeSong);
-        MediaPlayer music = new MediaPlayer(marioThemeSong);
-        if (!GameController.debugEnabled) {
-            music.play();
-        }
+        MediaPlayer music = new MediaPlayer(new Media(ClassLoader.getSystemResource("mario.mp3").toString()));
 
         stage.setTitle("Minerio");
         stage.setResizable(false);
-        stage.show();
         stage.setOnCloseRequest((event) -> {
             GameController.setGameEnd();
             Platform.exit();
@@ -58,6 +52,8 @@ public class Main extends Application {
                 Scene scene = new Scene(menu, 800, 600);
                 Platform.runLater(() -> {
                     stage.setScene(scene);
+                    stage.show();
+                    music.play();
                 });
                 if (!GameController.debugEnabled) {
                     while (!menu.isGameStart()) {
@@ -103,9 +99,12 @@ public class Main extends Application {
                 }
                 // Show game over screen
                 if (!GameController.debugEnabled) {
+                    MediaPlayer deadSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("GameOver.mp3").toString()));
                     GameOver gameOver = new GameOver();
                     Platform.runLater(() -> {
                         scene.setRoot(gameOver);
+                        music.stop();
+                        deadSound.play();
                     });
                     while (gameOver.getRetryOrExit() == 0) {
                         try {
