@@ -3,7 +3,7 @@ package scene;
 import controller.GameController;
 import entity.base.Entity;
 import entity.derived.Box;
-import entity.derived.Cactus;
+import entity.derived.Pipe;
 import entity.derived.Coin;
 import entity.derived.CoinBox;
 import entity.derived.Enemy;
@@ -25,7 +25,6 @@ public class LevelGenerator {
     private Random levelRandom;
     private boolean levelGeneratorBusy;
     private int currentLevel;
-    private int maxLevelToGen;
 
 
     /**
@@ -39,11 +38,10 @@ public class LevelGenerator {
         levelRandom = new Random();
         levelRandom.setSeed(seed);
         entities = new ArrayList<>();
-        currentLevel = 0;
         if (maxLevelToGen > 10) {
             throw new InvalidLevelException(1, 10);
         } else {
-            this.maxLevelToGen = 10;
+            currentLevel = 10 - maxLevelToGen;
         }
         genNextLevel();
     }
@@ -54,12 +52,8 @@ public class LevelGenerator {
     public void genNextLevel() {
         levelGeneratorBusy = true;
         entities.clear();
-        if (currentLevel == maxLevelToGen) {
-            GameController.setGameEnd();
-        }
         switch (currentLevel) {
             case 0 -> {
-//                genEntity("Enemy", randInt(300, 700), 450);
                 for (int i = 0; i < 1; ++i) {
                     genEntity("Coin", randInt(100, 700), 250);
                 }
@@ -68,11 +62,8 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 1 -> {
-//                for (int i = 0; i < 1; ++i) {
-//                    genEntity("Enemy", randInt(300, 700), 450);
-//                }
                 genEntity("Coin", 300, 200);
-                genEntity("Cactus", 200, 450);
+                genEntity("Pipe", 200, 310);
                 genEntity("CoinBox", 400, 250);
                 genEntity("CoinBox", 500, 250);
                 ++currentLevel;
@@ -81,7 +72,7 @@ public class LevelGenerator {
 //                genEntity("Enemy", randInt(300, 400), 450);
                 genEnemy(300,450,200,700,1);
                 genEntity("Coin", randInt(100, 700), 200);
-                genEntity("Cactus", 150, 450);
+                genEntity("Pipe", 150, 310);
                 genEntity("CoinBox", 420, 250);
                 genEntity("CoinBox", 540, 250);
                 ++currentLevel;
@@ -92,8 +83,8 @@ public class LevelGenerator {
 //                }
                 genEnemy(400,450,350,670,1);
                 genEntity("Coin", randInt(100, 700), 200);
-                genEntity("Cactus", 300, 450);
-                genEntity("Cactus", 670, 450);
+                genEntity("Pipe", 300, 310);
+                genEntity("Pipe", 670, 310);
                 genEntity("CoinBox", 180, 250);
                 genEntity("CoinBox", 500, 250);
                 ++currentLevel;
@@ -119,8 +110,8 @@ public class LevelGenerator {
                 genEnemy(400,450,350,640,1);
                 genEnemy(200,450,100,300,1);
                 genEntity("Coin", randInt(100, 700), 200);
-                genEntity("Cactus", 300, 450);
-                genEntity("Cactus", 640, 450);
+                genEntity("Pipe", 300, 310);
+                genEntity("Pipe", 640, 310);
                 genEntity("CoinBox", 470, 250);
                 ++currentLevel;
             }
@@ -131,9 +122,9 @@ public class LevelGenerator {
                 genEnemy(300,450,250,540,-1);
                 genEnemy(600,450,590,680,-1);
                 genEntity("Coin", randInt(100, 700), 200);
-                genEntity("Cactus", 200, 450);
-                genEntity("Cactus", 540, 450);
-                genEntity("Cactus", 680, 450);
+                genEntity("Pipe", 200, 310);
+                genEntity("Pipe", 540, 310);
+                genEntity("Pipe", 680, 310);
                 genEntity("CoinBox", 370, 250);
                 ++currentLevel;
             }
@@ -148,9 +139,9 @@ public class LevelGenerator {
                 genEnemy(500,450,450,650,-1);
                 genEnemy(600,450,450,650,1);
                 genEntity("Coin", randInt(100, 700), 200);
-                genEntity("Cactus", 150, 450);
-                genEntity("Cactus", 400, 450);
-                genEntity("Cactus", 650, 450);
+                genEntity("Pipe", 150, 310);
+                genEntity("Pipe", 400, 310);
+                genEntity("Pipe", 650, 310);
                 ++currentLevel;
             }
             case 8 -> {
@@ -166,8 +157,8 @@ public class LevelGenerator {
                 genEnemy(440,450,250,600,1);
                 genEnemy(280,450,250,600,1);
                 genEntity("Coin", randInt(100, 700), 200);
-                genEntity("Cactus", 200, 450);
-                genEntity("Cactus", 600, 450);
+                genEntity("Pipe", 200, 310);
+                genEntity("Pipe", 600, 310);
                 genEntity("CoinBox", 400, 250);
                 ++currentLevel;
             }
@@ -236,17 +227,12 @@ public class LevelGenerator {
             case "Coin" -> entity = new Coin(x, y);
             case "Box" -> entity = new Box("Box", x, y);
 //            case "Enemy" -> entity = new Enemy("Enemy", x, y);
+//            case "Enemy" -> entity = new Enemy("Enemy", x, y, randInt(-1, 1));
+            case "Pipe" -> entity = new Pipe("Pipe", x, y);
             case "CoinBox" -> {
                 CoinBox coinBox = new CoinBox("CoinBox", x, y);
                 entities.add(coinBox.getCoinInCoinBox());
                 entities.add(coinBox);
-                return;
-            }
-            case "Cactus" -> {
-                for (int j = 0; j < 3; ++j) {
-                    entity = new Cactus("Cactus", x, 400 - 50 * j);
-                    entities.add(entity);
-                }
                 return;
             }
             default -> throw new IllegalArgumentException("Invalid entity type name");
