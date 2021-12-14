@@ -38,7 +38,7 @@ public class GameController {
     private static int minTimeElapsed = 0;
     private static boolean isGameEnd = false;
     private static TextureLoader textureLoader = new TextureLoader();
-    private static ArrayList<Text> statusText = new ArrayList<>();
+    private static Text statusText = new Text();
     private static LevelGenerator levelGenerator;
 
     /**
@@ -74,30 +74,20 @@ public class GameController {
      *
      * @return the status texts
      */
-    public static ArrayList<Text> getStatusText() {
+    public static Text getStatusText() {
         return statusText;
-    }
-
-    /**
-     * Start status text.
-     */
-    public static void startStatusText() {
-        timeUpdater();
-        pointUpdater();
-        moneyUpdater();
     }
 
     /**
      * Start the game timer.
      */
-    private static void timeUpdater() {
-        Text timerText = new Text();
-        timerText.setX(200);
-        timerText.setY(30);
-        timerText.setTextAlignment(TextAlignment.CENTER);
-        timerText.setFont(new Font("Arial", 30));
+    public static void startStatusText() {
+        statusText.setX(200);
+        statusText.setY(30);
+        statusText.setTextAlignment(TextAlignment.CENTER);
+        statusText.setFont(new Font("Arial", 30));
         Platform.runLater(() -> {
-            timerText.setText(String.format("Time: %02d:%02d", minTimeElapsed, secTimeElapsed));
+            statusText.setText(String.format("Time: %02d:%02d  Money: %d  Point: %d", minTimeElapsed, secTimeElapsed, money, point));
         });
         new Thread(() -> {
             while (true) {
@@ -110,60 +100,20 @@ public class GameController {
                     secTimeElapsed = 0;
                     ++minTimeElapsed;
                 }
-                Platform.runLater(() -> {
-                    timerText.setText(String.format("Time: %02d:%02d", minTimeElapsed, secTimeElapsed));
-                });
             }
         }).start();
-        statusText.add(timerText);
-    }
-
-    /**
-     * Point updater.
-     */
-    private static void pointUpdater() {
-        Text pointText = new Text();
-        pointText.setX(600);
-        pointText.setY(30);
-        pointText.setTextAlignment(TextAlignment.CENTER);
-        pointText.setFont(new Font("Arial", 30));
         new Thread(() -> {
             while (true) {
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 Platform.runLater(() -> {
-                    pointText.setText("Points: " + point);
+                    statusText.setText(String.format("Time: %02d:%02d  Money: %d  Point: %d", minTimeElapsed, secTimeElapsed, money, point));
                 });
             }
         }).start();
-        statusText.add(pointText);
-    }
-
-    /**
-     * Money updater.
-     */
-    private static void moneyUpdater() {
-        Text moneyText = new Text();
-        moneyText.setX(400);
-        moneyText.setY(30);
-        moneyText.setTextAlignment(TextAlignment.CENTER);
-        moneyText.setFont(new Font("Arial", 30));
-        new Thread(() -> {
-            while (true) {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Platform.runLater(() -> {
-                    moneyText.setText("Money: " + money);
-                });
-            }
-        }).start();
-        statusText.add(moneyText);
     }
 
     /**

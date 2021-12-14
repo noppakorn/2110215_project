@@ -53,7 +53,9 @@ public class LevelGenerator {
         switch (currentLevel) {
             case 0 -> {
                 genEntity("Enemy", randInt(300, 700), 450);
-                genEntity("Coin", randInt(100, 700), 200);
+                for (int i = 0; i < 5; ++i) {
+                    genEntity("Coin", randInt(100, 700), 250);
+                }
                 genEntity("Cactus", randInt(100, 700), 450);
                 genEntity("CoinBox", randInt(100, 700), 250);
                 ++currentLevel;
