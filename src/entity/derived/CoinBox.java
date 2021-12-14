@@ -42,13 +42,13 @@ public class CoinBox extends Box {
 
     public void setImage() {
         if (isEmpty) {
-            this.setImage(TextureLoader.coinBox3);
+            initializeTexture("coinBox3");
             animationTimer.stop();
         }
         else {
-            if (timer < 28) this.setImage(TextureLoader.coinBox0);
-            else if (timer < 37) this.setImage(TextureLoader.coinBox1);
-            else this.setImage(TextureLoader.coinBox2);
+            if (timer < 28) initializeTexture("coinBox0");
+            else if (timer < 37) initializeTexture("coinBox1");
+            else initializeTexture("coinBox2");
         }
     }
 

@@ -1,6 +1,5 @@
 package entity.derived;
 
-import controller.TextureLoader;
 import entity.base.MoveableEntity;
 import javafx.animation.AnimationTimer;
 
@@ -32,10 +31,10 @@ public class BoxCoin extends MoveableEntity {
     }
 
     public void animate() {
-        if (timer<3) setImage(TextureLoader.boxCoin0);
-        else if (timer<6) setImage(TextureLoader.boxCoin1);
-        else if (timer<9) setImage(TextureLoader.boxCoin2);
-        else setImage(TextureLoader.boxCoin3);
+        if (timer < 3) initializeTexture("boxCoin0");
+        else if (timer < 6) initializeTexture("boxCoin1");
+        else if (timer < 9) initializeTexture("boxCoin2");
+        else initializeTexture("boxCoin3");
         ++timer;
         if (timer == 12) {
             timer = 0;
@@ -44,11 +43,10 @@ public class BoxCoin extends MoveableEntity {
             y -= jumpHeight;
             --jumpTime;
             if (jumpTime == 0) fallingTime = 15;
-        } else if (fallingTime > 0){
+        } else if (fallingTime > 0) {
             y += jumpHeight;
             --fallingTime;
-        }
-        else {
+        } else {
             animationTimer.stop();
         }
         this.setX(x);

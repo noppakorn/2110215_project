@@ -42,7 +42,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         this.returnToBegin();
         this.setFitHeight(50);
         this.setFitWidth(50);
-        this.setImage(TextureLoader.marioRight0);
+        initializeTexture("marioRight0");
         this.timer = 0;
 
         this.x = lowerBoundX;
@@ -162,33 +162,32 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     public void animate(){
         if (velocityX == 0){
             System.out.println(movingRight);
-            if (movingRight) setImage(TextureLoader.marioRight0);
-            else setImage(TextureLoader.marioLeft0);
+            if (movingRight) initializeTexture("marioRight0");
+            else initializeTexture("marioLeft0");
         }
         else if (downEnabled || jumping){
-            if (movingRight) setImage(TextureLoader.marioRight4);
-            else setImage(TextureLoader.marioLeft4);
+            if (movingRight) initializeTexture("marioRight4");
+            else initializeTexture("marioLeft4");
         }
         else if (movingRight) {
             ++this.timer;
             if (timer == 20){
                 timer = 0;
             }
-            if (timer < 5) setImage(TextureLoader.marioRight0);
-            else if (timer < 10) setImage(TextureLoader.marioRight1);
-            else if (timer < 15) setImage(TextureLoader.marioRight2);
-            else if (timer < 20) setImage(TextureLoader.marioRight3);
+            if (timer < 5) initializeTexture("marioRight0");
+            else if (timer < 10) initializeTexture("marioRight1");
+            else if (timer < 15) initializeTexture("marioRight2");
+            else if (timer < 20) initializeTexture("marioRight3");
         }
         else {
             ++this.timer;
             if (timer == 20){
                 timer = 0;
             }
-            if (timer < 5) setImage(TextureLoader.marioLeft0);
-            else if (timer < 10) setImage(TextureLoader.marioLeft1);
-            else if (timer < 15) setImage(TextureLoader.marioLeft2);
-            else if (timer < 20) setImage(TextureLoader.marioLeft3);
-
+            if (timer < 5) initializeTexture("marioLeft0");
+            else if (timer < 10) initializeTexture("marioLeft1");
+            else if (timer < 15) initializeTexture("marioLeft2");
+            else if (timer < 20) initializeTexture("marioLeft3");
         }
 
     }

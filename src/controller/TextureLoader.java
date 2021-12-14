@@ -17,30 +17,6 @@ public class TextureLoader {
     private Map<String, WritableImage> blockImages;
     private PixelReader blockTextureReader;
     private Map<String, Pair<Integer, Integer>> minecraftBlockNameToPos;
-    public static Image coin0 = new Image(ClassLoader.getSystemResource(  "coin0.png").toString());
-    public static Image coin1 = new Image(ClassLoader.getSystemResource(  "coin1.png").toString());
-    public static Image coin2 = new Image(ClassLoader.getSystemResource(  "coin2.png").toString());
-    public static Image coinBox0 = new Image(ClassLoader.getSystemResource(  "coinBox0.png").toString());
-    public static Image coinBox1 = new Image(ClassLoader.getSystemResource(  "coinBox1.png").toString());
-    public static Image coinBox2 = new Image(ClassLoader.getSystemResource(  "coinBox2.png").toString());
-    public static Image coinBox3 = new Image(ClassLoader.getSystemResource(  "coinBox3.png").toString());
-    public static Image boxCoin0 = new Image(ClassLoader.getSystemResource(  "boxCoin0.png").toString());
-    public static Image boxCoin1 = new Image(ClassLoader.getSystemResource(  "boxCoin1.png").toString());
-    public static Image boxCoin2 = new Image(ClassLoader.getSystemResource(  "boxCoin2.png").toString());
-    public static Image boxCoin3 = new Image(ClassLoader.getSystemResource(  "boxCoin3.png").toString());
-    public static Image enemy1 = new Image(ClassLoader.getSystemResource("enemy1.png").toString());
-    public static Image enemy2 = new Image(ClassLoader.getSystemResource("enemy2.png").toString());
-    public static Image enemyDead = new Image(ClassLoader.getSystemResource("enemyDead.png").toString());
-    public static Image marioRight0 = new Image(ClassLoader.getSystemResource("marioRight0Lvl0.png").toString());
-    public static Image marioRight1 = new Image(ClassLoader.getSystemResource("marioRight1Lvl0.png").toString());
-    public static Image marioRight2 = new Image(ClassLoader.getSystemResource("marioRight2Lvl0.png").toString());
-    public static Image marioRight3 = new Image(ClassLoader.getSystemResource("marioRight3Lvl0.png").toString());
-    public static Image marioRight4 = new Image(ClassLoader.getSystemResource("marioRight4Lvl0.png").toString());
-    public static Image marioLeft0 = new Image(ClassLoader.getSystemResource("marioLeft0Lvl0.png").toString());
-    public static Image marioLeft1 = new Image(ClassLoader.getSystemResource("marioLeft1Lvl0.png").toString());
-    public static Image marioLeft2 = new Image(ClassLoader.getSystemResource("marioLeft2Lvl0.png").toString());
-    public static Image marioLeft3 = new Image(ClassLoader.getSystemResource("marioLeft3Lvl0.png").toString());
-    public static Image marioLeft4 = new Image(ClassLoader.getSystemResource("marioLeft4Lvl0.png").toString());
 
     /**
      * Instantiates a new Texture loader.

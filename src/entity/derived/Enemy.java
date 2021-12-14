@@ -35,7 +35,7 @@ public class Enemy extends MoveableEntity implements Attackable, Despawnable, Re
         this.velocityX = 3;
         this.pic = 1;
         this.timer = 0;
-        this.setImage(TextureLoader.enemy1);
+        initializeTexture("enemy1");
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -72,11 +72,11 @@ public class Enemy extends MoveableEntity implements Attackable, Despawnable, Re
             timer = 0;
             if (pic == 1){
                 pic = 2;
-                setImage(TextureLoader.enemy2);
+                initializeTexture("enemy2");
             }
             else {
                 pic = 1;
-                setImage(TextureLoader.enemy1);
+                initializeTexture("enemy1");
             }
         }
         if (this.x + velocityX > upperBoundX) {

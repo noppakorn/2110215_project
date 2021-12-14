@@ -6,7 +6,6 @@ import entity.base.Collectable;
 import entity.base.Despawnable;
 import entity.base.Entity;
 import javafx.animation.AnimationTimer;
-import javafx.scene.image.Image;
 
 
 /**
@@ -59,7 +58,7 @@ public class Coin extends Entity implements Collectable, Despawnable {
         AnimationTimer animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                aniamte();
+                animate();
                 setImage();
             }
 
@@ -83,11 +82,11 @@ public class Coin extends Entity implements Collectable, Despawnable {
         return super.toString() + " valued " + value + " at (" + this.getX() + "," + this.getY() + ")";
     }
     public void setImage(){
-        if (timer<28)this.setImage(TextureLoader.coin0);
-        else if (timer<37)this.setImage(TextureLoader.coin1);
-        else this.setImage(TextureLoader.coin2);
+        if (timer < 28) initializeTexture("coin0");
+        else if (timer < 37) initializeTexture("coin1");
+        else initializeTexture("coin2");
     }
-    public void aniamte(){
+    public void animate(){
        timer++;
        if (timer == 50){
            timer=0;
