@@ -14,6 +14,8 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
     private AnimationTimer animationTimer;
     private int timer;
     private int pic;
+    private int lowerBound;
+    private int upperBound;
 
 
     /**
@@ -22,8 +24,11 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
      * @param name the name
      * @param x    the x
      * @param y    the y
+     * @param lowerBound the lowerBound
+     * @param upperBound the upperBound
+     * direction must be 1 or -1
      */
-    public Enemy(String name, double x, double y) {
+    public Enemy(String name, double x, double y, int lowerBound, int upperBound, int direction) {
         super(name);
         despawn = false;
         setFitHeight(30);
@@ -31,9 +36,11 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
         this.x = x;
         this.y = upperBoundY + 20;
         this.velocityY = 0;
-        this.velocityX = 3;
+        this.velocityX = 3 * direction;
         this.pic = 1;
         this.timer = 0;
+        this.lowerBound = lowerBound;
+        this.upperBound = upperBound;
         initializeTexture("enemy1");
         animationTimer = new AnimationTimer() {
             @Override
@@ -79,9 +86,9 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
                 initializeTexture("enemy1");
             }
         }
-        if (this.x + velocityX > upperBoundX) {
+        if (this.x + velocityX > upperBound) {
             velocityX *= -1;
-        } else if (this.x + velocityX < lowerBoundX) {
+        } else if (this.x + velocityX < lowerBound) {
             velocityX *= -1;
         }
         this.x += velocityX;
