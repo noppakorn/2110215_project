@@ -81,7 +81,7 @@ public class Menu extends VBox {
     private void handleLevelInput(TextField levelField) {
         try {
             int levelInput = Integer.parseInt(levelField.getText());
-            GameController.initLevelGenerator(198208432L,levelInput);
+            GameController.initLevelGenerator(198208432L, levelInput);
             gameStart = true;
         } catch (NumberFormatException e) {
             Platform.runLater(() -> {
@@ -97,6 +97,11 @@ public class Menu extends VBox {
         levelField.clear();
     }
 
+    /**
+     * Is game start boolean.
+     *
+     * @return the boolean
+     */
     public boolean isGameStart() {
         return gameStart;
     }

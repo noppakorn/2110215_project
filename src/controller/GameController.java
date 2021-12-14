@@ -44,7 +44,9 @@ public class GameController {
     /**
      * Init level generator.
      *
-     * @param seed the seed
+     * @param seed          the seed
+     * @param maxLevelToGen the max level to gen
+     * @throws InvalidLevelException the invalid level exception
      */
     public static void initLevelGenerator(long seed, int maxLevelToGen) throws InvalidLevelException {
         levelGenerator = new LevelGenerator(seed, maxLevelToGen);

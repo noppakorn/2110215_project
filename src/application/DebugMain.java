@@ -4,15 +4,11 @@ import exception.InvalidLevelException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import scene.ErrorMessageBox;
-import scene.GameOver;
-
-import java.util.Scanner;
 
 /**
  * The type Debug main.

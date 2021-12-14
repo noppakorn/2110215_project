@@ -31,7 +31,9 @@ public class LevelGenerator {
     /**
      * Instantiates a new Terrain generator.
      *
-     * @param seed the seed for the random number generator
+     * @param seed          the seed for the random number generator
+     * @param maxLevelToGen the max level to gen
+     * @throws InvalidLevelException the invalid level exception
      */
     public LevelGenerator(long seed, int maxLevelToGen) throws InvalidLevelException {
         levelRandom = new Random();
@@ -39,7 +41,7 @@ public class LevelGenerator {
         entities = new ArrayList<>();
         currentLevel = 0;
         if (maxLevelToGen > 10) {
-            throw new InvalidLevelException(1,10);
+            throw new InvalidLevelException(1, 10);
         } else {
             this.maxLevelToGen = 10;
         }
