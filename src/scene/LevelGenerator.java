@@ -2,11 +2,11 @@ package scene;
 
 import entity.base.Entity;
 import entity.derived.BoosterBlock;
+import entity.derived.Box;
 import entity.derived.Cactus;
 import entity.derived.Coin;
 import entity.derived.CoinBox;
 import entity.derived.Enemy;
-import entity.derived.Box;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,8 @@ import java.util.Random;
  * Generate all the entities for the terrain
  */
 public class LevelGenerator {
-    private Random levelRandom;
     public static List<Entity> entities;
+    private Random levelRandom;
     private boolean levelGeneratorBusy;
 
     /**
@@ -72,7 +72,7 @@ public class LevelGenerator {
      * Generate entity for the level.
      *
      * @param entityType The type of Entity to be generated
-     * @param amount The amount of Entity to be generated
+     * @param amount     The amount of Entity to be generated
      */
     private void genEntity(String entityType, int amount) {
         for (int i = 0; i < amount; ++i) {

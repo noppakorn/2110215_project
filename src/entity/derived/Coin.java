@@ -1,7 +1,6 @@
 package entity.derived;
 
 import controller.GameController;
-import controller.TextureLoader;
 import entity.base.Collectable;
 import entity.base.Despawnable;
 import entity.base.Entity;
@@ -12,7 +11,6 @@ import javafx.animation.AnimationTimer;
  * The type Coin.
  */
 public class Coin extends Entity implements Collectable, Despawnable {
-    private int timer;
     /**
      * The Value.
      */
@@ -21,6 +19,7 @@ public class Coin extends Entity implements Collectable, Despawnable {
      * The Despawn.
      */
     protected boolean despawn;
+    private int timer;
 
     /**
      * Instantiates a new Coin.
@@ -81,16 +80,18 @@ public class Coin extends Entity implements Collectable, Despawnable {
     public String toString() {
         return super.toString() + " valued " + value + " at (" + this.getX() + "," + this.getY() + ")";
     }
-    public void setImage(){
+
+    public void setImage() {
         if (timer < 28) initializeTexture("coin0");
         else if (timer < 37) initializeTexture("coin1");
         else initializeTexture("coin2");
     }
-    public void animate(){
-       timer++;
-       if (timer == 50){
-           timer=0;
-       }
+
+    public void animate() {
+        timer++;
+        if (timer == 50) {
+            timer = 0;
+        }
     }
 
 }

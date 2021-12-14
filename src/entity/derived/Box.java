@@ -22,7 +22,8 @@ public class Box extends Entity {
         this.setY(y);
         initializeBlockTexture("Dirt");
     }
-    public void initializeBlockTexture(String resourceName){
+
+    public void initializeBlockTexture(String resourceName) {
         this.setImage(GameController.getTextureLoader().getBlockImage(resourceName));
     }
 

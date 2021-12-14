@@ -1,9 +1,7 @@
 package entity.derived;
 
 
-import controller.TextureLoader;
 import javafx.animation.AnimationTimer;
-import javafx.scene.image.Image;
 import scene.LevelGenerator;
 
 /**
@@ -27,7 +25,7 @@ public class CoinBox extends Box {
         super(name, x, y);
         timer = 0;
         isEmpty = false;
-        boxCoin = new BoxCoin(x + 17,y);
+        boxCoin = new BoxCoin(x + 17, y);
         LevelGenerator.entities.add(boxCoin);
         animationTimer = new AnimationTimer() {
             @Override
@@ -44,8 +42,7 @@ public class CoinBox extends Box {
         if (isEmpty) {
             initializeTexture("coinBox3");
             animationTimer.stop();
-        }
-        else {
+        } else {
             if (timer < 28) initializeTexture("coinBox0");
             else if (timer < 37) initializeTexture("coinBox1");
             else initializeTexture("coinBox2");
@@ -60,14 +57,15 @@ public class CoinBox extends Box {
         setImage();
     }
 
+    public boolean getIsEmpty() {
+        return this.isEmpty;
+    }
+
     public void setIsEmpty(boolean isEmpty) {
         this.isEmpty = isEmpty;
     }
 
-    public boolean getIsEmpty() {
-        return this.isEmpty;
-    }
-    public void coinPop(){
+    public void coinPop() {
         boxCoin.pop();
         LevelGenerator.entities.remove(boxCoin);
     }

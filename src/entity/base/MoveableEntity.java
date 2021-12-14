@@ -1,7 +1,5 @@
 package entity.base;
 
-import javafx.geometry.Point2D;
-
 /**
  * The type Moveable entity.
  */

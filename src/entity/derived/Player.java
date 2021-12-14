@@ -1,10 +1,9 @@
 package entity.derived;
 
 import controller.GameController;
-import controller.TextureLoader;
+import entity.base.Despawnable;
 import entity.base.MoveableEntity;
 import entity.base.Renderable;
-import entity.base.Despawnable;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 
@@ -22,6 +21,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     private boolean jumping;
     private boolean movingRight;
     private int timer;
+
     /**
      * Instantiates a new Player with a default name Minerio.
      */
@@ -62,7 +62,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
             @Override
             public void handle(long now) {
                 update();
-                Platform.runLater(()->{
+                Platform.runLater(() -> {
                     animate();
                 });
             }
@@ -159,29 +159,27 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     public String toString() {
         return super.toString() + " at (" + this.getX() + "," + this.getY() + ")";
     }
-    public void animate(){
-        if (velocityX == 0){
+
+    public void animate() {
+        if (velocityX == 0) {
             System.out.println(movingRight);
             if (movingRight) initializeTexture("marioRight0");
             else initializeTexture("marioLeft0");
-        }
-        else if (downEnabled || jumping){
+        } else if (downEnabled || jumping) {
             if (movingRight) initializeTexture("marioRight4");
             else initializeTexture("marioLeft4");
-        }
-        else if (movingRight) {
+        } else if (movingRight) {
             ++this.timer;
-            if (timer == 20){
+            if (timer == 20) {
                 timer = 0;
             }
             if (timer < 5) initializeTexture("marioRight0");
             else if (timer < 10) initializeTexture("marioRight1");
             else if (timer < 15) initializeTexture("marioRight2");
             else if (timer < 20) initializeTexture("marioRight3");
-        }
-        else {
+        } else {
             ++this.timer;
-            if (timer == 20){
+            if (timer == 20) {
                 timer = 0;
             }
             if (timer < 5) initializeTexture("marioLeft0");
@@ -279,14 +277,6 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         return leftEnabled;
     }
 
-    public boolean isUpEnabled() {
-        return upEnabled;
-    }
-
-    public void setUpEnabled(boolean upEnabled) {
-        this.upEnabled = upEnabled;
-    }
-
     /**
      * Sets left enabled.
      *
@@ -294,6 +284,14 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      */
     public void setLeftEnabled(boolean leftEnabled) {
         this.leftEnabled = leftEnabled;
+    }
+
+    public boolean isUpEnabled() {
+        return upEnabled;
+    }
+
+    public void setUpEnabled(boolean upEnabled) {
+        this.upEnabled = upEnabled;
     }
 
     public boolean isDownEnabled() {

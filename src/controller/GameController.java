@@ -1,14 +1,18 @@
 package controller;
 
-import entity.base.*;
-import entity.derived.*;
+import entity.base.Attackable;
+import entity.base.Collectable;
+import entity.base.Despawnable;
+import entity.base.Entity;
+import entity.derived.Box;
+import entity.derived.CoinBox;
+import entity.derived.Player;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import scene.LevelGenerator;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -168,7 +172,7 @@ public class GameController {
                 if (entity instanceof Box) {
                     if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() + player.getFitWidth() >= entity.getX()) {
                         if (player.getY() <= entity.getY() + entity.getFitHeight() && player.getY() > entity.getY()) {
-                            if (entity instanceof CoinBox && ((CoinBox) entity).getIsEmpty() == false){
+                            if (entity instanceof CoinBox && ((CoinBox) entity).getIsEmpty() == false) {
                                 ((CoinBox) entity).setIsEmpty(true);
                                 ((CoinBox) entity).coinPop();
                             }
@@ -204,14 +208,14 @@ public class GameController {
                         }
                     }
 
-                    if (player.getY() < entity.getY() + entity.getFitHeight() && player.getY() + player.getFitWidth() > entity.getY()){
+                    if (player.getY() < entity.getY() + entity.getFitHeight() && player.getY() + player.getFitWidth() > entity.getY()) {
                         if (player.getX() + player.getFitWidth() >= entity.getX() && player.getX() + player.getFitWidth() < entity.getX() + entity.getFitWidth()) {
                             if (player.getRightEnabled()) {
                                 player.setCorX(entity.getX() - player.getFitWidth());
                                 player.setVelocityX(0);
                                 player.setRightEnabled(false);
                             }
-                        } else if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() >= entity.getX()){
+                        } else if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() >= entity.getX()) {
                             if (player.getLeftEnabled()) {
                                 player.setCorX(entity.getX() + entity.getFitWidth());
                                 player.setVelocityX(0);

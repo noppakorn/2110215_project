@@ -1,12 +1,11 @@
 package entity.derived;
 
 import controller.GameController;
-import controller.TextureLoader;
 import entity.base.Attackable;
 import entity.base.Despawnable;
+import entity.base.Entity;
 import entity.base.MoveableEntity;
 import entity.base.Renderable;
-import entity.base.Entity;
 import javafx.animation.AnimationTimer;
 
 /**
@@ -68,13 +67,12 @@ public class Enemy extends MoveableEntity implements Attackable, Despawnable, Re
     @Override
     public void update() {
         ++timer;
-        if (timer == 10){
+        if (timer == 10) {
             timer = 0;
-            if (pic == 1){
+            if (pic == 1) {
                 pic = 2;
                 initializeTexture("enemy2");
-            }
-            else {
+            } else {
                 pic = 1;
                 initializeTexture("enemy1");
             }
