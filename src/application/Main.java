@@ -58,11 +58,10 @@ public class Main extends Application {
                 if (!GameController.debugEnabled) {
                     while (!menu.isGameStart()) {
                         try {
-                            Thread.sleep(500);
+                            Thread.sleep(10);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        System.out.println("Waiting for key press");
                     }
                 }
                 GameController.startStatusText();
