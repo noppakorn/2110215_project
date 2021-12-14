@@ -11,15 +11,6 @@ import scene.GameOver;
 public class DebugMain extends Application {
 
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        GameOver gameOver = new GameOver();
-        Scene scene = new Scene(gameOver, 800, 600);
-        stage.setScene(scene);
-        stage.setTitle("fdausfislj");
-        stage.show();
-    }
-
     /**
      * The entry point of application.
      *
@@ -27,5 +18,14 @@ public class DebugMain extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        GameOver gameOver = new GameOver();
+        Scene scene = new Scene(gameOver, 800, 600);
+        stage.setScene(scene);
+        stage.setTitle("fdausfislj");
+        stage.show();
     }
 }

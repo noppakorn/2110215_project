@@ -15,9 +15,6 @@ import javafx.scene.text.TextAlignment;
  */
 public class GameOver extends VBox {
     private Text title;
-    private Text timeTook;
-    private Text point;
-    private Text money;
 
     /**
      * Instantiates a new GameOver screen with the Player stats
@@ -25,22 +22,21 @@ public class GameOver extends VBox {
     public GameOver() {
         super();
         this.setAlignment(Pos.CENTER);
-        this.setBackground(new Background(new BackgroundFill(Color.LIGHTCYAN, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Color.PINK, null, null)));
 
         title = genAndAddText("You Died!");
         title.setFont(new Font("Arial", 72));
         title.setStyle("-fx-font-weight: bold");
-        // TODO: show Player stats when Game Over
-        timeTook = genAndAddText("Time: " + GameController.getTimeElapsed());
-        money = genAndAddText("Money: " + GameController.getMoney());
-        point = genAndAddText("Point: " + GameController.getPoint());
+        genAndAddText("Time: " + GameController.getTimeElapsed());
+        genAndAddText("Money: " + GameController.getMoney());
+        genAndAddText("Point: " + GameController.getPoint());
     }
 
     /**
-     * Gen and add text text.
+     * Create and add text with proper format to the scene.
      *
-     * @param textToGen the text to gen
-     * @return the text
+     * @param textToGen the text to gets generated
+     * @return the text generated
      */
     public Text genAndAddText(String textToGen) {
         Text text = new Text(textToGen);

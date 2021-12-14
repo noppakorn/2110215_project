@@ -267,7 +267,7 @@ public class GameController {
      * @return the time elapsed
      */
     public static String getTimeElapsed() {
-        return String.format("%02d:%02d",minTimeElapsed, secTimeElapsed);
+        return String.format("%02d:%02d", minTimeElapsed, secTimeElapsed);
     }
 
     /**
