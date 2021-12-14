@@ -14,7 +14,6 @@ import javafx.scene.text.TextAlignment;
 import scene.LevelGenerator;
 
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.List;
 
 
@@ -25,7 +24,7 @@ public class GameController {
     /**
      * Set game to debug mode
      */
-    public static final boolean debugEnabled = true;
+    public static final boolean debugEnabled = false;
     /**
      * Accumulated points for player
      */
@@ -260,5 +259,23 @@ public class GameController {
      */
     public static LevelGenerator getLevelGenerator() {
         return levelGenerator;
+    }
+
+    /**
+     * Gets time elapsed.
+     *
+     * @return the time elapsed
+     */
+    public static String getTimeElapsed() {
+        return String.format("%02d:%02d",minTimeElapsed, secTimeElapsed);
+    }
+
+    /**
+     * Gets money.
+     *
+     * @return the money
+     */
+    public static int getMoney() {
+        return money;
     }
 }
