@@ -1,12 +1,11 @@
 package scene;
 
-import controller.GameController;
 import entity.base.Entity;
 import entity.derived.Box;
-import entity.derived.Pipe;
 import entity.derived.Coin;
 import entity.derived.CoinBox;
 import entity.derived.Enemy;
+import entity.derived.Pipe;
 import exception.InvalidLevelException;
 
 import java.util.ArrayList;
@@ -69,7 +68,7 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 2 -> {
-                genEnemy(300,450,200,700,1);
+                genEnemy(300, 450, 200, 700, 1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 150, 310);
                 genEntity("CoinBox", 420, 250);
@@ -77,7 +76,7 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 3 -> {
-                genEnemy(400,450,350,670,1);
+                genEnemy(400, 450, 350, 670, 1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 300, 310);
                 genEntity("Pipe", 670, 310);
@@ -86,19 +85,19 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 4 -> {
-                genEnemy(200,450,100,700,1);
-                genEnemy(300,450,100,700,-1);
-                genEnemy(600,450,100,700,1);
+                genEnemy(200, 450, 100, 700, 1);
+                genEnemy(300, 450, 100, 700, -1);
+                genEnemy(600, 450, 100, 700, 1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("CoinBox", 300, 250);
                 genEntity("CoinBox", 350, 250);
                 ++currentLevel;
             }
             case 5 -> {
-                genEnemy(360,450,350,640,-1);
-                genEnemy(200,450,100,300,-1);
-                genEnemy(400,450,350,640,1);
-                genEnemy(200,450,100,300,1);
+                genEnemy(360, 450, 350, 640, -1);
+                genEnemy(200, 450, 100, 300, -1);
+                genEnemy(400, 450, 350, 640, 1);
+                genEnemy(200, 450, 100, 300, 1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 300, 310);
                 genEntity("Pipe", 640, 310);
@@ -106,8 +105,8 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 6 -> {
-                genEnemy(300,450,250,540,-1);
-                genEnemy(600,450,590,680,-1);
+                genEnemy(300, 450, 250, 540, -1);
+                genEnemy(600, 450, 590, 680, -1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 200, 310);
                 genEntity("Pipe", 540, 310);
@@ -116,12 +115,12 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 7 -> {
-                genEnemy(300,450,200,400,-1);
-                genEnemy(400,450,200,400,-1);
-                genEnemy(300,450,200,400,1);
-                genEnemy(460,450,450,650,1);
-                genEnemy(500,450,450,650,-1);
-                genEnemy(600,450,450,650,1);
+                genEnemy(300, 450, 200, 400, -1);
+                genEnemy(400, 450, 200, 400, -1);
+                genEnemy(300, 450, 200, 400, 1);
+                genEnemy(460, 450, 450, 650, 1);
+                genEnemy(500, 450, 450, 650, -1);
+                genEnemy(600, 450, 450, 650, 1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 150, 310);
                 genEntity("Pipe", 400, 310);
@@ -129,14 +128,14 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 8 -> {
-                genEnemy(300,450,250,600,-1);
-                genEnemy(500,450,250,600,-1);
-                genEnemy(520,450,250,600,-1);
-                genEnemy(360,450,250,600,-1);
-                genEnemy(470,450,250,600,1);
-                genEnemy(500,450,250,600,1);
-                genEnemy(440,450,250,600,1);
-                genEnemy(280,450,250,600,1);
+                genEnemy(300, 450, 250, 600, -1);
+                genEnemy(500, 450, 250, 600, -1);
+                genEnemy(520, 450, 250, 600, -1);
+                genEnemy(360, 450, 250, 600, -1);
+                genEnemy(470, 450, 250, 600, 1);
+                genEnemy(500, 450, 250, 600, 1);
+                genEnemy(440, 450, 250, 600, 1);
+                genEnemy(280, 450, 250, 600, 1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 200, 310);
                 genEntity("Pipe", 600, 310);
@@ -144,17 +143,17 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 9 -> {
-                genEnemy(300,450,100,700,-1);
-                genEnemy(330,450,100,700,-1);
-                genEnemy(470,450,100,700,-1);
-                genEnemy(579,450,100,700,-1);
-                genEnemy(549,450,100,700,-1);
-                genEnemy(409,450,100,700,1);
-                genEnemy(430,450,100,700,1);
-                genEnemy(398,450,100,700,1);
-                genEnemy(654,450,100,700,1);
-                genEnemy(178,450,100,700,1);
-                genEnemy(284,450,100,700,1);
+                genEnemy(300, 450, 100, 700, -1);
+                genEnemy(330, 450, 100, 700, -1);
+                genEnemy(470, 450, 100, 700, -1);
+                genEnemy(579, 450, 100, 700, -1);
+                genEnemy(549, 450, 100, 700, -1);
+                genEnemy(409, 450, 100, 700, 1);
+                genEnemy(430, 450, 100, 700, 1);
+                genEnemy(398, 450, 100, 700, 1);
+                genEnemy(654, 450, 100, 700, 1);
+                genEnemy(178, 450, 100, 700, 1);
+                genEnemy(284, 450, 100, 700, 1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("CoinBox", 100, 250);
                 genEntity("CoinBox", 300, 250);
@@ -180,17 +179,18 @@ public class LevelGenerator {
         }
         return (Math.abs(levelRandom.nextInt()) % (max - min)) + min;
     }
+
     /**
      * Generate enemy for the level.
      *
-     * @param x the coordinate x
-     * @param y the coordinate y
+     * @param x          the coordinate x
+     * @param y          the coordinate y
      * @param lowerBound the lowerBound
      * @param upperBound the upperBound
-     * @param direction direction of the enemy
+     * @param direction  direction of the enemy
      */
-    private void genEnemy(double x, double y,int lowerBound,int upperBound,int direction){
-        Entity enemy = new Enemy("Enemy", x, y,lowerBound,upperBound - 30,direction);
+    private void genEnemy(double x, double y, int lowerBound, int upperBound, int direction) {
+        Entity enemy = new Enemy("Enemy", x, y, lowerBound, upperBound - 30, direction);
         entities.add(enemy);
     }
 

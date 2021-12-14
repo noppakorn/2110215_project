@@ -41,6 +41,9 @@ public class GameController {
     private static Text statusText = new Text();
     private static LevelGenerator levelGenerator;
 
+    /**
+     * Reset game controller.
+     */
     public static void resetGameController() {
         point = 0;
         money = 0;

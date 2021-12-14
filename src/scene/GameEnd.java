@@ -1,12 +1,7 @@
 package scene;
 
-import controller.GameController;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -15,7 +10,13 @@ import javafx.scene.text.TextAlignment;
  * Base scene for game ending.
  */
 public abstract class GameEnd extends VBox {
+    /**
+     * The Title.
+     */
     protected Text title;
+    /**
+     * Indicating if the player want to retry or exit the game
+     */
     protected int retryOrExit;
 
 
@@ -33,6 +34,9 @@ public abstract class GameEnd extends VBox {
         return text;
     }
 
+    /**
+     * Add button.
+     */
     protected void addButton() {
         Button retryButton = new Button("Play Again");
         retryButton.setFont(new Font("Arial", 18));
@@ -47,6 +51,11 @@ public abstract class GameEnd extends VBox {
         this.getChildren().addAll(retryButton, exitButton);
     }
 
+    /**
+     * Gets retry or exit.
+     *
+     * @return the retry or exit
+     */
     public int getRetryOrExit() {
         return retryOrExit;
     }

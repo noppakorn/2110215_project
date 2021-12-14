@@ -7,6 +7,9 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+/**
+ * The type Game over.
+ */
 public class GameOver extends GameEnd {
     /**
      * Instantiates a new GameOver screen with the Player stats
