@@ -160,6 +160,9 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         return super.toString() + " at (" + this.getX() + "," + this.getY() + ")";
     }
 
+    /**
+     * Animate.
+     */
     public void animate() {
         if (velocityX == 0) {
             System.out.println(movingRight);
@@ -286,22 +289,47 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         this.leftEnabled = leftEnabled;
     }
 
+    /**
+     * Is up enabled boolean.
+     *
+     * @return the boolean
+     */
     public boolean isUpEnabled() {
         return upEnabled;
     }
 
+    /**
+     * Sets up enabled.
+     *
+     * @param upEnabled the up enabled
+     */
     public void setUpEnabled(boolean upEnabled) {
         this.upEnabled = upEnabled;
     }
 
+    /**
+     * Is down enabled boolean.
+     *
+     * @return the boolean
+     */
     public boolean isDownEnabled() {
         return downEnabled;
     }
 
+    /**
+     * Sets down enabled.
+     *
+     * @param downEnabled the down enabled
+     */
     public void setDownEnabled(boolean downEnabled) {
         this.downEnabled = downEnabled;
     }
 
+    /**
+     * Sets jumping.
+     *
+     * @param jumping the jumping
+     */
     public void setJumping(boolean jumping) {
         this.jumping = jumping;
     }

@@ -17,6 +17,9 @@ import java.util.Random;
  * Generate all the entities for the terrain
  */
 public class LevelGenerator {
+    /**
+     * The Entities.
+     */
     public static List<Entity> entities;
     private Random levelRandom;
     private boolean levelGeneratorBusy;

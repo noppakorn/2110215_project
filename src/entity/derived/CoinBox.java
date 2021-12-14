@@ -20,6 +20,13 @@ public class CoinBox extends Box {
     private AnimationTimer animationTimer;
     private BoxCoin boxCoin;
 
+    /**
+     * Instantiates a new Coin box.
+     *
+     * @param name the name
+     * @param x    the x
+     * @param y    the y
+     */
     public CoinBox(String name, int x, int y) {
 
         super(name, x, y);
@@ -38,6 +45,9 @@ public class CoinBox extends Box {
 
     }
 
+    /**
+     * Sets image.
+     */
     public void setImage() {
         if (isEmpty) {
             initializeTexture("coinBox3");
@@ -49,6 +59,9 @@ public class CoinBox extends Box {
         }
     }
 
+    /**
+     * Aniamte.
+     */
     public void aniamte() {
         timer++;
         if (timer == 50) {
@@ -57,14 +70,27 @@ public class CoinBox extends Box {
         setImage();
     }
 
+    /**
+     * Gets is empty.
+     *
+     * @return the is empty
+     */
     public boolean getIsEmpty() {
         return this.isEmpty;
     }
 
+    /**
+     * Sets is empty.
+     *
+     * @param isEmpty the is empty
+     */
     public void setIsEmpty(boolean isEmpty) {
         this.isEmpty = isEmpty;
     }
 
+    /**
+     * Coin pop.
+     */
     public void coinPop() {
         boxCoin.pop();
         LevelGenerator.entities.remove(boxCoin);

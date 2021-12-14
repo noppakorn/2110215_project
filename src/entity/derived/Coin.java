@@ -81,12 +81,18 @@ public class Coin extends Entity implements Collectable, Despawnable {
         return super.toString() + " valued " + value + " at (" + this.getX() + "," + this.getY() + ")";
     }
 
+    /**
+     * Sets image.
+     */
     public void setImage() {
         if (timer < 28) initializeTexture("coin0");
         else if (timer < 37) initializeTexture("coin1");
         else initializeTexture("coin2");
     }
 
+    /**
+     * Animate.
+     */
     public void animate() {
         timer++;
         if (timer == 50) {

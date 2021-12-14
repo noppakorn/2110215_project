@@ -23,6 +23,11 @@ public class Box extends Entity {
         initializeBlockTexture("Dirt");
     }
 
+    /**
+     * Initialize block texture.
+     *
+     * @param resourceName the resource name
+     */
     public void initializeBlockTexture(String resourceName) {
         this.setImage(GameController.getTextureLoader().getBlockImage(resourceName));
     }

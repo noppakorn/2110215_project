@@ -45,6 +45,13 @@ public abstract class MoveableEntity extends Entity {
         super(name);
     }
 
+    /**
+     * Instantiates a new Moveable entity.
+     *
+     * @param name the name
+     * @param x    the x
+     * @param y    the y
+     */
     public MoveableEntity(String name, double x, double y) {
         super(name, x, y);
     }

@@ -3,6 +3,9 @@ package entity.derived;
 import entity.base.MoveableEntity;
 import javafx.animation.AnimationTimer;
 
+/**
+ * The type Box coin.
+ */
 public class BoxCoin extends MoveableEntity {
     private int timer;
     private AnimationTimer animationTimer;
@@ -10,6 +13,12 @@ public class BoxCoin extends MoveableEntity {
     private int fallingTime;
     private int jumpHeight;
 
+    /**
+     * Instantiates a new Box coin.
+     *
+     * @param x the x
+     * @param y the y
+     */
     public BoxCoin(double x, double y) {
         super("coinBox", x, y);
         jumpTime = 15;
@@ -25,11 +34,17 @@ public class BoxCoin extends MoveableEntity {
         };
     }
 
+    /**
+     * Pop.
+     */
     public void pop() {
         animationTimer.start();
 
     }
 
+    /**
+     * Animate.
+     */
     public void animate() {
         if (timer < 3) initializeTexture("boxCoin0");
         else if (timer < 6) initializeTexture("boxCoin1");
