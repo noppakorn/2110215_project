@@ -2,6 +2,7 @@ package scene;
 
 import controller.GameController;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
@@ -15,6 +16,7 @@ import javafx.scene.text.TextAlignment;
  */
 public class GameOver extends VBox {
     private Text title;
+    public int retryOrExit;
 
     /**
      * Instantiates a new GameOver screen with the Player stats
@@ -23,6 +25,7 @@ public class GameOver extends VBox {
         super();
         this.setAlignment(Pos.CENTER);
         this.setBackground(new Background(new BackgroundFill(Color.PINK, null, null)));
+        this.setSpacing(20);
 
         title = genAndAddText("You Died!");
         title.setFont(new Font("Arial", 72));
@@ -30,6 +33,9 @@ public class GameOver extends VBox {
         genAndAddText("Time: " + GameController.getTimeElapsed());
         genAndAddText("Money: " + GameController.getMoney());
         genAndAddText("Point: " + GameController.getPoint());
+
+        retryOrExit = 0;
+        addButton();
     }
 
     /**
@@ -44,5 +50,21 @@ public class GameOver extends VBox {
         text.setTextAlignment(TextAlignment.CENTER);
         this.getChildren().add(text);
         return text;
+    }
+
+    private void addButton() {
+        Button retryButton = new Button("Retry");
+        retryButton.setOnAction((event) -> {
+            retryOrExit = 1;
+        });
+        Button exitButton = new Button("Exit");
+        exitButton.setOnAction((event) -> {
+            retryOrExit = -1;
+        });
+        this.getChildren().addAll(retryButton, exitButton);
+    }
+
+    public int getRetryOrExit() {
+        return retryOrExit;
     }
 }
