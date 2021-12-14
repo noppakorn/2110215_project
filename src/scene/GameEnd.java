@@ -1,15 +1,20 @@
 package scene;
 
+import controller.GameController;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 /**
- * Base scene for game ending.
+ * scene for game ending.
  */
-public abstract class GameEnd extends VBox {
+public class GameEnd extends VBox {
     /**
      * The Title.
      */
@@ -18,6 +23,33 @@ public abstract class GameEnd extends VBox {
      * Indicating if the player want to retry or exit the game
      */
     protected int retryOrExit;
+
+
+    /**
+     * Instantiates a new Game end.
+     *
+     * @param isWin the is win
+     */
+    public GameEnd(boolean isWin) {
+        this.setAlignment(Pos.CENTER);
+        this.setSpacing(20);
+        if (isWin) {
+            this.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
+            title = genAndAddText("You Win!");
+        } else {
+            this.setBackground(new Background(new BackgroundFill(Color.PINK, null, null)));
+            title = genAndAddText("You Died!");
+        }
+
+        title.setFont(new Font("Arial", 72));
+        title.setStyle("-fx-font-weight: bold");
+        genAndAddText("Time: " + GameController.getTimeElapsed());
+        genAndAddText("Money: " + GameController.getMoney());
+        genAndAddText("Point: " + GameController.getPoint());
+
+        retryOrExit = 0;
+        addButton();
+    }
 
 
     /**

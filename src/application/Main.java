@@ -11,8 +11,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import scene.GameEnd;
-import scene.GameOver;
-import scene.GameWin;
 import scene.LevelGenerator;
 import scene.Menu;
 import scene.Terrain;
@@ -101,23 +99,14 @@ public class Main extends Application {
                 // Show game over screen
                 if (!GameController.debugEnabled) {
                     MediaPlayer deadSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("GameOver.mp3").toString()));
-                    GameWin gameWin = new GameWin();
-                    GameOver gameOver = new GameOver();
+                    GameEnd gameEnd = new GameEnd(GameController.getLevelGenerator().isGameWin());
                     Platform.runLater(() -> {
-                        if (GameController.getLevelGenerator().isGameWin()) {
-                            scene.setRoot(gameWin);
-                        } else {
-                            scene.setRoot(gameOver);
+                        scene.setRoot(gameEnd);
+                        if (!GameController.getLevelGenerator().isGameWin()) {
                             deadSound.play();
                             music.stop();
                         }
                     });
-                    GameEnd gameEnd;
-                    if (GameController.getLevelGenerator().isGameWin()) {
-                        gameEnd = gameWin;
-                    } else {
-                        gameEnd = gameOver;
-                    }
                     while (gameEnd.getRetryOrExit() == 0) {
                         try {
                             Thread.sleep(10);
