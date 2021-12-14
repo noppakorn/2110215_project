@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="Poprio">
+  <artifact type="jar" build-on-make="true" name="Minerio">
     <output-path>$PROJECT_DIR$</output-path>
-    <root id="archive" name="Poprio.jar">
+    <root id="archive" name="Minerio.jar">
       <element id="module-output" name="2110215_project" />
       <element id="library" level="project" name="javafx-swt" />
       <element id="dir-copy" path="$PROJECT_DIR$/res" />

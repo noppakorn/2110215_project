@@ -7,5 +7,5 @@
 - javafx 15
 ## Running the program
 ```sh
-java --module-path <PATH TO JAVAFX LIB> --add-modules=javafx.controls,javafx.fxml,javafx.media -jar Poprio.jar
+java --module-path <PATH TO JAVAFX LIB> --add-modules=javafx.controls,javafx.fxml,javafx.media -jar Minerio.jar
 ```
