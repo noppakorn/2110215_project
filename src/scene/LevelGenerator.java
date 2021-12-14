@@ -37,7 +37,7 @@ public class LevelGenerator {
         levelRandom = new Random();
         levelRandom.setSeed(seed);
         entities = new ArrayList<>();
-        currentLevel = 2;
+        currentLevel = 0;
         if (maxLevelToGen > 10) {
             throw new InvalidLevelException(1,10);
         } else {
