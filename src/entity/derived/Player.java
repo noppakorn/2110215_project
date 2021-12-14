@@ -6,6 +6,9 @@ import entity.base.MoveableEntity;
 import entity.base.Renderable;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 /**
  * The type Player. This type represents the main player of the game;
@@ -56,7 +59,6 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         downEnabled = true;
         jumping = false;
         movingRight = true;
-
         initializeMovement();
         AnimationTimer animationTimer = new AnimationTimer() {
             @Override
@@ -92,9 +94,12 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
                 }
                 case UP -> {
                     if (upEnabled && !jumping) {
-                        velocityY = 20;
+                        velocityY = 23;
                         downEnabled = true;
                         jumping = true;
+                        MediaPlayer jumpSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("Jump.mp3").toString()));
+                        jumpSound.setStartTime(Duration.millis(7));
+                        jumpSound.play();
                     }
                 }
                 case DOWN -> {

@@ -36,10 +36,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        String themeSong = ClassLoader.getSystemResource("mario.mp3").toString();
+        Media marioThemeSong = new Media(themeSong);
+        MediaPlayer music = new MediaPlayer(marioThemeSong);
         if (!GameController.debugEnabled) {
-            String bgMusicPath = ClassLoader.getSystemResource("mario.mp3").toString();
-            Media media = new Media(bgMusicPath);
-            MediaPlayer music = new MediaPlayer(media);
             music.play();
         }
 
