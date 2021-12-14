@@ -19,7 +19,7 @@ public class CoinBox extends Box {
      * @param x    the x coordinates
      * @param y    the y coordinates
      */
-    public CoinBox(String name, int x, int y) {
+    public CoinBox(String name, double x, double y) {
         super(name, x, y);
         timer = 0;
         isEmpty = false;

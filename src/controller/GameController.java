@@ -14,6 +14,7 @@ import javafx.scene.text.TextAlignment;
 import scene.LevelGenerator;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 
@@ -235,6 +236,12 @@ public class GameController {
                         }
                     }
                 }
+            }
+
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
 
             terrainGenerator.getEntities().removeIf(entity -> {

@@ -90,7 +90,7 @@ public class Main extends Application {
                     Platform.runLater(() -> {
                         group.getChildren().clear();
 
-                        levelGenerator.genAllEntities();
+                        levelGenerator.genNextLevel();
                         group.getChildren().add(terrain);
                         group.getChildren().addAll(levelGenerator.getEntities());
                         group.getChildren().addAll(GameController.getStatusText());

@@ -22,12 +22,12 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
      *
      * @param name the name
      */
-    public Enemy(String name) {
+    public Enemy(String name, double x, double y) {
         super(name);
         despawn = false;
         setFitHeight(30);
         setFitWidth(30);
-        this.x = 300;
+        this.x = x;
         this.y = upperBoundY + 20;
         this.velocityY = 0;
         this.velocityX = 3;

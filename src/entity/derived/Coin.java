@@ -33,7 +33,7 @@ public class Coin extends Entity implements Despawnable {
      * @param x the x
      * @param y the y
      */
-    public Coin(int x, int y) {
+    public Coin(double x, double y) {
         this(1, x, y);
     }
 
@@ -44,7 +44,7 @@ public class Coin extends Entity implements Despawnable {
      * @param x     the x
      * @param y     the y
      */
-    public Coin(int value, int x, int y) {
+    public Coin(int value, double x, double y) {
         super("Coin");
         this.value = value;
         this.setFitWidth(20);

@@ -22,6 +22,7 @@ public class LevelGenerator {
     private List<Entity> entities;
     private Random levelRandom;
     private boolean levelGeneratorBusy;
+    private int currentLevel;
 
     /**
      * Instantiates a new Terrain generator with default random seed
@@ -39,22 +40,37 @@ public class LevelGenerator {
         levelRandom = new Random();
         levelRandom.setSeed(seed);
         entities = new ArrayList<>();
-        genAllEntities();
+        currentLevel = 0;
+        genNextLevel();
     }
 
     /**
      * Generate the entities for current level
      */
-    public void genAllEntities() {
+    public void genNextLevel() {
         levelGeneratorBusy = true;
         entities.clear();
-        genEntity("Enemy", 1);
-        genEntity("Coin", randInt(1, 6));
-        genEntity("Cactus", 2);
-//        genEntity("Box", 1);
-        genEntity("CoinBox", 2);
+        switch (currentLevel) {
+            case 0 -> {
+                genEntity("Enemy", randInt(300, 700), 450);
+                genEntity("Coin", randInt(100, 700), 200);
+                genEntity("Cactus", randInt(100, 700), 450);
+                genEntity("CoinBox", randInt(100, 700), 250);
+                ++currentLevel;
+            }
+            case 1 -> {
+                for (int i = 0; i < 3; ++i) {
+                    genEntity("Enemy", randInt(300, 700), 450);
+                }
+                genEntity("Coin", randInt(100, 700), 200);
+                genEntity("Cactus", randInt(100, 700), 450);
+                genEntity("CoinBox", randInt(100, 700), 250);
+                ++currentLevel;
+            }
+        }
         levelGeneratorBusy = false;
     }
+
 
     /**
      * Generate a positive integer between [min, max).
@@ -76,33 +92,31 @@ public class LevelGenerator {
      * @param entityType The type of Entity to be generated
      * @param amount     The amount of Entity to be generated
      */
-    private void genEntity(String entityType, int amount) {
-        for (int i = 0; i < amount; ++i) {
-            Entity entity;
-            switch (entityType) {
-                case "Coin" -> entity = new Coin(randInt(30, 600), randInt(200, 300));
-                case "Box" -> entity = new Box("Box", randInt(30, 600), 300);
-                case "Enemy" -> entity = new Enemy("Enemy#" + amount);
-                case "CoinBox" -> {
-                    CoinBox coinBox = new CoinBox("CoinBox", randInt(30, 600), 300);
-                    entities.add(coinBox.getCoinInCoinBox());
-                    entities.add(coinBox);
-                    return;
-                }
-                case "Cactus" -> {
-                    int x = randInt(30, 600);
-                    for (int j = 0; j < 3; ++j) {
-                        entity = new Cactus("Cactus", x, 400 - 50 * j);
-                        entities.add(entity);
-                    }
-                    return;
-                }
-                default -> throw new IllegalArgumentException("Invalid entity type name");
+    private void genEntity(String entityType, double x, double y) {
+        Entity entity;
+        switch (entityType) {
+            case "Coin" -> entity = new Coin(x, y);
+            case "Box" -> entity = new Box("Box", x, y);
+            case "Enemy" -> entity = new Enemy("Enemy", x, y);
+            case "CoinBox" -> {
+                CoinBox coinBox = new CoinBox("CoinBox", x, y);
+                entities.add(coinBox.getCoinInCoinBox());
+                entities.add(coinBox);
+                return;
             }
-            entities.add(entity);
-            System.out.println(entities.get(i));
+            case "Cactus" -> {
+                for (int j = 0; j < 3; ++j) {
+                    entity = new Cactus("Cactus", x, 400 - 50 * j);
+                    entities.add(entity);
+                }
+                return;
+            }
+            default -> throw new IllegalArgumentException("Invalid entity type name");
         }
+        System.out.println(entity);
+        entities.add(entity);
     }
+
 
     /**
      * Get the entities that have been generated for this level.
