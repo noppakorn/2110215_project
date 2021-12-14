@@ -1,10 +1,12 @@
 package entity.derived;
 
 import controller.GameController;
+import controller.TextureLoader;
 import entity.base.MoveableEntity;
 import entity.base.Renderable;
 import entity.base.Despawnable;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 
 /**
  * The type Player. This type represents the main player of the game;
@@ -18,7 +20,8 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     private boolean upEnabled;
     private boolean downEnabled;
     private boolean jumping;
-
+    private boolean movingRight;
+    private int timer;
     /**
      * Instantiates a new Player with a default name Minerio.
      */
@@ -33,13 +36,14 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      */
     public Player(String name) {
         super(name);
-        initializeTexture("Player");
         this.setFocusTraversable(true);
         this.velocityY = 0;
         this.velocityX = 0;
         this.returnToBegin();
         this.setFitHeight(50);
         this.setFitWidth(50);
+        this.setImage(TextureLoader.marioRight0);
+        this.timer = 0;
 
         this.x = lowerBoundX;
         this.y = upperBoundY;
@@ -51,16 +55,20 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         upEnabled = true;
         downEnabled = true;
         jumping = false;
+        movingRight = true;
 
         initializeMovement();
         AnimationTimer animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 update();
+                Platform.runLater(()->{
+                    animate();
+                });
             }
-
         };
         animationTimer.start();
+
     }
 
     /**
@@ -72,11 +80,14 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
                 case LEFT -> {
                     if (leftEnabled) {
                         this.velocityX = 5;
+                        movingRight = false;
                     }
                 }
                 case RIGHT -> {
                     if (rightEnabled) {
+                        ++this.timer;
                         this.velocityX = -5;
+                        movingRight = true;
                     }
                 }
                 case UP -> {
@@ -147,6 +158,39 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     @Override
     public String toString() {
         return super.toString() + " at (" + this.getX() + "," + this.getY() + ")";
+    }
+    public void animate(){
+        if (velocityX == 0){
+            System.out.println(movingRight);
+            if (movingRight) setImage(TextureLoader.marioRight0);
+            else setImage(TextureLoader.marioLeft0);
+        }
+        else if (downEnabled || jumping){
+            if (movingRight) setImage(TextureLoader.marioRight4);
+            else setImage(TextureLoader.marioLeft4);
+        }
+        else if (movingRight) {
+            ++this.timer;
+            if (timer == 20){
+                timer = 0;
+            }
+            if (timer < 5) setImage(TextureLoader.marioRight0);
+            else if (timer < 10) setImage(TextureLoader.marioRight1);
+            else if (timer < 15) setImage(TextureLoader.marioRight2);
+            else if (timer < 20) setImage(TextureLoader.marioRight3);
+        }
+        else {
+            ++this.timer;
+            if (timer == 20){
+                timer = 0;
+            }
+            if (timer < 5) setImage(TextureLoader.marioLeft0);
+            else if (timer < 10) setImage(TextureLoader.marioLeft1);
+            else if (timer < 15) setImage(TextureLoader.marioLeft2);
+            else if (timer < 20) setImage(TextureLoader.marioLeft3);
+
+        }
+
     }
 
     /**
