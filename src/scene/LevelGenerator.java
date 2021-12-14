@@ -161,6 +161,7 @@ public class LevelGenerator {
                 genEntity("CoinBox", 700, 250);
                 ++currentLevel;
             }
+            default -> ++currentLevel;
         }
         levelGeneratorBusy = false;
     }
@@ -235,6 +236,9 @@ public class LevelGenerator {
      */
     public boolean isLevelGeneratorBusy() {
         return levelGeneratorBusy;
+    }
+    public boolean isGameWin(){
+        return currentLevel > 11;
     }
 
 }

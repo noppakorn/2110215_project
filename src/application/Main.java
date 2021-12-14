@@ -10,10 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import scene.GameOver;
-import scene.LevelGenerator;
-import scene.Menu;
-import scene.Terrain;
+import scene.*;
 
 import java.util.List;
 
@@ -76,7 +73,7 @@ public class Main extends Application {
                 Platform.runLater(() -> {
                     scene.setRoot(group);
                 });
-                while (!GameController.isGameEnd()) {
+                while (!GameController.isGameEnd() && !GameController.getLevelGenerator().isGameWin()) {
                     List<Entity> toBeRemoved = GameController.checkCollision(player, levelGenerator);
                     if (toBeRemoved.size() > 0) {
                         Platform.runLater(() -> {
@@ -99,11 +96,12 @@ public class Main extends Application {
                 // Show game over screen
                 if (!GameController.debugEnabled) {
                     MediaPlayer deadSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("GameOver.mp3").toString()));
-                    GameOver gameOver = new GameOver();
+                    GameEnd gameEnd;
                     Platform.runLater(() -> {
-                        scene.setRoot(gameOver);
-                        music.stop();
+                        if (GameController.getLevelGenerator().isGameWin())    {
+                        }
                         deadSound.play();
+                        music.stop();
                     });
                     while (gameOver.getRetryOrExit() == 0) {
                         try {
