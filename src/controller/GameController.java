@@ -41,6 +41,16 @@ public class GameController {
     private static Text statusText = new Text();
     private static LevelGenerator levelGenerator;
 
+    public static void resetGameController() {
+        point = 0;
+        money = 0;
+        secTimeElapsed = 0;
+        minTimeElapsed = 0;
+        isGameEnd = false;
+        textureLoader = new TextureLoader();
+        statusText = new Text();
+    }
+
     /**
      * Init level generator.
      *
@@ -92,7 +102,7 @@ public class GameController {
             statusText.setText(String.format("Time: %02d:%02d  Money: %d  Point: %d", minTimeElapsed, secTimeElapsed, money, point));
         });
         new Thread(() -> {
-            while (true) {
+            while (!isGameEnd()) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -105,7 +115,7 @@ public class GameController {
             }
         }).start();
         new Thread(() -> {
-            while (true) {
+            while (!isGameEnd()) {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {

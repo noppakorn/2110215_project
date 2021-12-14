@@ -43,9 +43,6 @@ public class Main extends Application {
             music.play();
         }
 
-        Menu menu = new Menu();
-        Scene scene = new Scene(menu, 800, 600);
-        stage.setScene(scene);
         stage.setTitle("Minerio");
         stage.setResizable(false);
         stage.show();
@@ -55,57 +52,75 @@ public class Main extends Application {
             System.exit(0);
         });
         new Thread(() -> {
-            if (!GameController.debugEnabled) {
-                while (!menu.isGameStart()) {
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("Waiting for key press");
-                }
-            }
-            GameController.startStatusText();
-            Group group = new Group();
-            Terrain terrain = new Terrain();
-            Player player = new Player();
-            LevelGenerator levelGenerator = GameController.getLevelGenerator();
-            group.getChildren().add(terrain);
-            group.getChildren().addAll(levelGenerator.getEntities());
-            group.getChildren().addAll(GameController.getStatusText());
-            group.getChildren().add(player);
-            Platform.runLater(() -> {
-                scene.setRoot(group);
-            });
-            while (!GameController.isGameEnd()) {
-                List<Entity> toBeRemoved = GameController.checkCollision(player, levelGenerator);
-                if (toBeRemoved.size() > 0) {
-                    Platform.runLater(() -> {
-                        group.getChildren().removeAll(toBeRemoved);
-                    });
-                }
-                if (player.isGoNextScene()) {
-                    player.setGoNextScene(false);
-                    Platform.runLater(() -> {
-                        group.getChildren().clear();
-
-                        levelGenerator.genNextLevel();
-                        group.getChildren().add(terrain);
-                        group.getChildren().addAll(levelGenerator.getEntities());
-                        group.getChildren().addAll(GameController.getStatusText());
-                        group.getChildren().add(player);
-                    });
-                }
-            }
-            // Show game over screen
-            if (!GameController.debugEnabled) {
+            while (true) {
+                GameController.resetGameController();
+                Menu menu = new Menu();
+                Scene scene = new Scene(menu, 800, 600);
                 Platform.runLater(() -> {
-                    GameOver gameOver = new GameOver();
-                    scene.setRoot(gameOver);
+                    stage.setScene(scene);
                 });
+                if (!GameController.debugEnabled) {
+                    while (!menu.isGameStart()) {
+                        try {
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("Waiting for key press");
+                    }
+                }
+                GameController.startStatusText();
+                Group group = new Group();
+                Terrain terrain = new Terrain();
+                Player player = new Player();
+                LevelGenerator levelGenerator = GameController.getLevelGenerator();
+                group.getChildren().add(terrain);
+                group.getChildren().addAll(levelGenerator.getEntities());
+                group.getChildren().addAll(GameController.getStatusText());
+                group.getChildren().add(player);
+                Platform.runLater(() -> {
+                    scene.setRoot(group);
+                });
+                while (!GameController.isGameEnd()) {
+                    List<Entity> toBeRemoved = GameController.checkCollision(player, levelGenerator);
+                    if (toBeRemoved.size() > 0) {
+                        Platform.runLater(() -> {
+                            group.getChildren().removeAll(toBeRemoved);
+                        });
+                    }
+                    if (player.isGoNextScene()) {
+                        player.setGoNextScene(false);
+                        Platform.runLater(() -> {
+                            group.getChildren().clear();
+
+                            levelGenerator.genNextLevel();
+                            group.getChildren().add(terrain);
+                            group.getChildren().addAll(levelGenerator.getEntities());
+                            group.getChildren().addAll(GameController.getStatusText());
+                            group.getChildren().add(player);
+                        });
+                    }
+                }
+                // Show game over screen
+                if (!GameController.debugEnabled) {
+                    GameOver gameOver = new GameOver();
+                    Platform.runLater(() -> {
+                        scene.setRoot(gameOver);
+                    });
+                    while (gameOver.getRetryOrExit() == 0) {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (gameOver.getRetryOrExit() == -1) {
+                        Platform.exit();
+                        System.exit(0);
+                    }
+                }
             }
         }).start();
-
 
     }
 }
