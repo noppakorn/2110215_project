@@ -25,7 +25,6 @@ public class LevelGenerator {
     private Random levelRandom;
     private boolean levelGeneratorBusy;
     private int currentLevel;
-    private int maxLevelToGen;
 
 
     /**
@@ -39,11 +38,10 @@ public class LevelGenerator {
         levelRandom = new Random();
         levelRandom.setSeed(seed);
         entities = new ArrayList<>();
-        currentLevel = 0;
         if (maxLevelToGen > 10) {
             throw new InvalidLevelException(1, 10);
         } else {
-            this.maxLevelToGen = 10;
+            currentLevel = 10 - maxLevelToGen;
         }
         genNextLevel();
     }
@@ -54,9 +52,6 @@ public class LevelGenerator {
     public void genNextLevel() {
         levelGeneratorBusy = true;
         entities.clear();
-        if (currentLevel == maxLevelToGen) {
-            GameController.setGameEnd();
-        }
         switch (currentLevel) {
             case 0 -> {
                 for (int i = 0; i < 1; ++i) {
@@ -94,7 +89,7 @@ public class LevelGenerator {
             }
             case 4 -> {
                 for (int i = 0; i < 3; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
+                    genEntity("Enemy", randInt(300, 500), 450);
                 }
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("CoinBox", 300, 250);
@@ -103,7 +98,7 @@ public class LevelGenerator {
             }
             case 5 -> {
                 for (int i = 0; i < 4; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
+                    genEntity("Enemy", randInt(300, 500), 450);
                 }
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 300, 310);
@@ -113,7 +108,7 @@ public class LevelGenerator {
             }
             case 6 -> {
                 for (int i = 0; i < 2; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
+                    genEntity("Enemy", randInt(300, 500), 450);
                 }
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 200, 310);
@@ -124,7 +119,7 @@ public class LevelGenerator {
             }
             case 7 -> {
                 for (int i = 0; i < 6; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
+                    genEntity("Enemy", randInt(300, 500), 450);
                 }
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 150, 310);
@@ -134,7 +129,7 @@ public class LevelGenerator {
             }
             case 8 -> {
                 for (int i = 0; i < 8; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
+                    genEntity("Enemy", randInt(300, 500), 450);
                 }
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 200, 310);
@@ -144,7 +139,7 @@ public class LevelGenerator {
             }
             case 9 -> {
                 for (int i = 0; i < 9; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
+                    genEntity("Enemy", randInt(300, 500), 450);
                 }
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("CoinBox", 100, 250);

@@ -32,9 +32,9 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
         this.y = upperBoundY + 20;
         this.velocityY = 0;
         if (direction >= 0) {
-            this.velocityX = 3;
+            this.velocityX = 2;
         } else {
-            this.velocityX = -3;
+            this.velocityX = -2;
             System.out.println("negative");
         }
         this.pic = 1;
