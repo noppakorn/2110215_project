@@ -38,6 +38,7 @@ public class Menu extends VBox {
         super();
         gameStart = false;
         this.setAlignment(Pos.CENTER);
+        this.setSpacing(20);
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTCYAN, null, null)));
         initializeTitle();
         initializeInstruction();
@@ -57,9 +58,9 @@ public class Menu extends VBox {
     }
 
     private void initializeInstruction() {
-        Text instructionText = new Text("Enter how many level you want to play.\nThen press submit");
+        Text instructionText = new Text("How many level do you want to play?");
         instructionText.setTextAlignment(TextAlignment.CENTER);
-        instructionText.setFont(new Font("Arial", 32));
+        instructionText.setFont(new Font("Arial", 24));
         this.getChildren().add(instructionText);
     }
 

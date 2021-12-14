@@ -18,7 +18,7 @@ import scene.Terrain;
 import java.util.List;
 
 /**
- * The type Main.
+ * The Main entrypoint of the application
  *
  * @author Noppakorn Jiravaranun
  * @author Nopparuj Poonsubanan
