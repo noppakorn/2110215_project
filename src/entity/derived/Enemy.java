@@ -23,7 +23,7 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
      * @param x    the x
      * @param y    the y
      */
-    public Enemy(String name, double x, double y) {
+    public Enemy(String name, double x, double y, double direction) {
         super(name);
         despawn = false;
         setFitHeight(30);
@@ -31,7 +31,12 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
         this.x = x;
         this.y = upperBoundY + 20;
         this.velocityY = 0;
-        this.velocityX = 3;
+        if (direction >= 0) {
+            this.velocityX = 3;
+        } else {
+            this.velocityX = -3;
+            System.out.println("negative");
+        }
         this.pic = 1;
         this.timer = 0;
         initializeTexture("enemy1");

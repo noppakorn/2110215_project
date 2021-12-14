@@ -129,6 +129,11 @@ public class GameController {
         List<Entity> toBeRemoved = new ArrayList<>();
 
         if (!GameController.getLevelGenerator().isLevelGeneratorBusy()) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             for (Entity entity : terrainGenerator.getEntities()) {
                 if (entity instanceof Box) {
                     if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() + player.getFitWidth() >= entity.getX()) {
