@@ -10,7 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import scene.*;
+import scene.GameEnd;
+import scene.GameOver;
+import scene.GameWin;
+import scene.LevelGenerator;
+import scene.Menu;
+import scene.Terrain;
 
 import java.util.List;
 
@@ -96,21 +101,31 @@ public class Main extends Application {
                 // Show game over screen
                 if (!GameController.debugEnabled) {
                     MediaPlayer deadSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("GameOver.mp3").toString()));
-                    GameEnd gameEnd;
+                    GameWin gameWin = new GameWin();
+                    GameOver gameOver = new GameOver();
                     Platform.runLater(() -> {
-                        if (GameController.getLevelGenerator().isGameWin())    {
+                        if (GameController.getLevelGenerator().isGameWin()) {
+                            scene.setRoot(gameWin);
+                        } else {
+                            scene.setRoot(gameOver);
+                            deadSound.play();
+                            music.stop();
                         }
-                        deadSound.play();
-                        music.stop();
                     });
-                    while (gameOver.getRetryOrExit() == 0) {
+                    GameEnd gameEnd;
+                    if (GameController.getLevelGenerator().isGameWin()) {
+                        gameEnd = gameWin;
+                    } else {
+                        gameEnd = gameOver;
+                    }
+                    while (gameEnd.getRetryOrExit() == 0) {
                         try {
                             Thread.sleep(10);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
-                    if (gameOver.getRetryOrExit() == -1) {
+                    if (gameEnd.getRetryOrExit() == -1) {
                         Platform.exit();
                         System.exit(0);
                     }

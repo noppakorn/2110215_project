@@ -237,7 +237,13 @@ public class LevelGenerator {
     public boolean isLevelGeneratorBusy() {
         return levelGeneratorBusy;
     }
-    public boolean isGameWin(){
+
+    /**
+     * Is game win boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isGameWin() {
         return currentLevel > 11;
     }
 

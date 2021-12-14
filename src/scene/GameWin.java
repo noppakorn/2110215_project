@@ -7,8 +7,14 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class GameWin extends GameEnd{
-    public GameWin(){
+/**
+ * The type Game win.
+ */
+public class GameWin extends GameEnd {
+    /**
+     * Instantiates a new Game win.
+     */
+    public GameWin() {
         this.setAlignment(Pos.CENTER);
         this.setBackground(new Background(new BackgroundFill(Color.ORANGE, null, null)));
         this.setSpacing(20);
