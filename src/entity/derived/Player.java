@@ -172,7 +172,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
             else initializeTexture("marioLeft4");
         } else if (movingRight) {
             ++this.timer;
-            if (timer == 20) {
+            if (timer >= 20) {
                 timer = 0;
             }
             if (timer < 5) initializeTexture("marioRight0");
@@ -181,7 +181,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
             else if (timer < 20) initializeTexture("marioRight3");
         } else {
             ++this.timer;
-            if (timer == 20) {
+            if (timer >= 20) {
                 timer = 0;
             }
             if (timer < 5) initializeTexture("marioLeft0");
