@@ -1,11 +1,11 @@
 package controller;
 
-import entity.base.Attackable;
-import entity.base.Collectable;
 import entity.base.Despawnable;
 import entity.base.Entity;
 import entity.derived.Box;
+import entity.derived.Coin;
 import entity.derived.CoinBox;
+import entity.derived.Enemy;
 import entity.derived.Player;
 import javafx.application.Platform;
 import javafx.scene.text.Font;
@@ -38,7 +38,11 @@ public class GameController {
     private static boolean isGameEnd = false;
     private static TextureLoader textureLoader = new TextureLoader();
     private static ArrayList<Text> statusText = new ArrayList<>();
-    private static LevelGenerator levelGenerator = new LevelGenerator(5646468575612L);
+    private static LevelGenerator levelGenerator;
+
+    public static void initLevelGenerator(long seed) {
+        levelGenerator = new LevelGenerator(seed);
+    }
 
 
     /**
@@ -165,7 +169,6 @@ public class GameController {
      */
     public static List<Entity> checkCollision(Player player, LevelGenerator terrainGenerator) {
         List<Entity> toBeRemoved = new ArrayList<>();
-        boolean test = true;
 
         if (!GameController.getLevelGenerator().isLevelGeneratorBusy()) {
             for (Entity entity : terrainGenerator.getEntities()) {
@@ -223,19 +226,17 @@ public class GameController {
                         }
                     }
                 } else if (entity instanceof Despawnable) {
-                    if (player.getX() <= entity.getX() && player.getX() + player.getFitWidth() >= entity.getX() + entity.getFitWidth()
+                    if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() + player.getFitWidth() >= entity.getX()
                             && player.getY() <= entity.getY() && player.getY() + player.getFitHeight() >= entity.getY() + entity.getFitHeight()) {
-                        System.out.println(player + " collision occurred with " + entity);
-                        if (entity instanceof Collectable) {
-                            System.out.println(entity + " Collected");
-                            ((Collectable) entity).collect();
-                        } else if (entity instanceof Attackable) {
-                            System.out.println(player + " attacked by " + entity);
-                            ((Attackable) entity).attack(player);
+                        if (entity instanceof Coin) {
+                            ((Coin) entity).collect();
+                        } else if (entity instanceof Enemy) {
+                            ((Enemy) entity).attack(player);
                         }
                     }
                 }
             }
+
             terrainGenerator.getEntities().removeIf(entity -> {
                 if (entity instanceof Despawnable) {
                     if (((Despawnable) entity).isDespawn()) {

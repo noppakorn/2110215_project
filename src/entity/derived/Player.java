@@ -165,7 +165,6 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      */
     public void animate() {
         if (velocityX == 0) {
-            System.out.println(movingRight);
             if (movingRight) initializeTexture("marioRight0");
             else initializeTexture("marioLeft0");
         } else if (downEnabled || jumping) {

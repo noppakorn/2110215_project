@@ -1,7 +1,6 @@
 package scene;
 
 import entity.base.Entity;
-import entity.derived.BoosterBlock;
 import entity.derived.Box;
 import entity.derived.Cactus;
 import entity.derived.Coin;
@@ -20,7 +19,7 @@ public class LevelGenerator {
     /**
      * The Entities.
      */
-    public static List<Entity> entities;
+    private List<Entity> entities;
     private Random levelRandom;
     private boolean levelGeneratorBusy;
 
@@ -83,9 +82,13 @@ public class LevelGenerator {
             switch (entityType) {
                 case "Coin" -> entity = new Coin(randInt(30, 600), randInt(200, 300));
                 case "Box" -> entity = new Box("Box", randInt(30, 600), 300);
-                case "CoinBox" -> entity = new CoinBox("CoinBox", randInt(30, 600), 300);
                 case "Enemy" -> entity = new Enemy("Enemy#" + amount);
-                case "BoosterBlock" -> entity = new BoosterBlock();
+                case "CoinBox" -> {
+                    CoinBox coinBox = new CoinBox("CoinBox", randInt(30, 600), 300);
+                    entities.add(coinBox.getCoinInCoinBox());
+                    entities.add(coinBox);
+                    return;
+                }
                 case "Cactus" -> {
                     int x = randInt(30, 600);
                     for (int j = 0; j < 3; ++j) {
@@ -119,4 +122,5 @@ public class LevelGenerator {
     public boolean isLevelGeneratorBusy() {
         return levelGeneratorBusy;
     }
+
 }

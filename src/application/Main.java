@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import scene.GameOver;
 import scene.LevelGenerator;
 import scene.Menu;
 import scene.Terrain;
@@ -44,6 +45,7 @@ public class Main extends Application {
 
         Menu menu = new Menu();
         Scene scene = new Scene(menu, 800, 600);
+        GameController.initLevelGenerator(456478971L);
         stage.setScene(scene);
         stage.setTitle("Minerio");
         stage.setResizable(false);
@@ -97,10 +99,12 @@ public class Main extends Application {
                 }
             }
             // Show game over screen
-//            Platform.runLater(() -> {
-//                group.getChildren().clear();
-//                group.getChildren().add(new GameOver());
-//            });
+            if (!GameController.debugEnabled) {
+                Platform.runLater(() -> {
+                    group.getChildren().clear();
+                    group.getChildren().add(new GameOver());
+                });
+            }
         }).start();
 
 

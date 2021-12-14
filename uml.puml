@@ -1,29 +1,40 @@
 @startuml
 class scene.LevelGenerator {
-- Random levelRandom
 - List<Entity> entities
+- Random levelRandom
+- boolean levelGeneratorBusy
 + <<Create>> LevelGenerator()
 + <<Create>> LevelGenerator(long)
-+ void genTerrain()
++ void genAllEntities()
 - int randInt(int,int)
-- void genCoins(int)
-- void genEnemy(int)
-+ void genBoosterBlocks(int)
+- void genEntity(String,int)
 + List<Entity> getEntities()
-+ boolean removeEntities(Entity)
++ boolean isLevelGeneratorBusy()
 }
 abstract class entity.base.Entity {
 # double x
+# double y
 # String name
 + <<Create>> Entity()
 + <<Create>> Entity(String)
++ <<Create>> Entity(String,double,double)
 + String toString()
 + String getName()
 + void initializeTexture(String)
-+ void moveToPos(double,double)
 }
-interface entity.base.Attackable {
-~ void attack(Entity)
+class entity.derived.Box {
++ <<Create>> Box(String,double,double)
++ void initializeBlockTexture(String)
+}
+class entity.derived.CoinInCoinBox {
+- int timer
+- AnimationTimer animationTimer
+- int jumpTime
+- int fallingTime
+- int jumpHeight
++ <<Create>> CoinInCoinBox(double,double)
++ void pop()
++ void animate()
 }
 abstract class entity.base.MoveableEntity {
 # double velocityY
@@ -34,6 +45,14 @@ abstract class entity.base.MoveableEntity {
 # double lowerBoundX
 + <<Create>> MoveableEntity()
 + <<Create>> MoveableEntity(String)
++ <<Create>> MoveableEntity(String,double,double)
++ void setUpperBoundX(double)
++ void setUpperBoundY(double)
++ void setLowerBoundX(double)
++ double getVelocityY()
++ void setVelocityY(double)
++ double getVelocityX()
++ void setVelocityX(double)
 }
 class scene.Block {
 + <<Create>> Block(String)
@@ -45,9 +64,6 @@ class scene.Menu {
 ~ Label label
 + <<Create>> Menu()
 + void initializeStartText()
-}
-class entity.derived.BoosterBlock {
-+ <<Create>> BoosterBlock()
 }
 interface entity.base.Despawnable {
 ~ boolean isDespawn()
@@ -63,34 +79,40 @@ class scene.GameOver {
 interface entity.base.Renderable {
 ~ void update()
 }
-class input.Keyinput {
-}
-class input.Keyinput.KeyInput {
-+ void keyTyped(KeyEvent)
-+ void keyPressed(KeyEvent)
-+ void keyReleased(KeyEvent)
-}
 class entity.derived.Coin {
-- int value
-- boolean despawn
+# int value
+# boolean despawn
+- int timer
 + <<Create>> Coin()
 + <<Create>> Coin(int,int)
 + <<Create>> Coin(int,int,int)
 + void collect()
 + boolean isDespawn()
 + String toString()
++ void setImage()
++ void animate()
 }
 class entity.derived.Enemy {
 - boolean despawn
+- AnimationTimer animationTimer
+- int timer
+- int pic
 + <<Create>> Enemy(String)
 + void attack(Entity)
 + boolean isDespawn()
 + void update()
 }
 class entity.derived.Player {
+- double accelerationY
 - boolean despawn
 - boolean goNextScene
-- double accelationY
+- boolean leftEnabled
+- boolean rightEnabled
+- boolean upEnabled
+- boolean downEnabled
+- boolean jumping
+- boolean movingRight
+- int timer
 + <<Create>> Player()
 + <<Create>> Player(String)
 + void initializeMovement()
@@ -98,33 +120,44 @@ class entity.derived.Player {
 + boolean isOnTheGround()
 + void update()
 + String toString()
++ void animate()
 + boolean isGoNextScene()
 + void setGoNextScene(boolean)
 + boolean isFalling()
 + void killPlayer()
 + boolean isDespawn()
++ void setCorX(double)
++ void setCorY(double)
++ boolean getRightEnabled()
++ void setRightEnabled(boolean)
++ boolean getLeftEnabled()
++ void setLeftEnabled(boolean)
++ boolean isUpEnabled()
++ void setUpEnabled(boolean)
++ boolean isDownEnabled()
++ void setDownEnabled(boolean)
++ void setJumping(boolean)
 }
 class controller.TextureLoader {
 - Map<String,Image> images
 - Map<String,WritableImage> blockImages
 - PixelReader blockTextureReader
-- Map<String,Pair<Integer,Integer>> blockNameToPos
+- Map<String,Pair<Integer,Integer>> minecraftBlockNameToPos
 + <<Create>> TextureLoader()
 + Image getImage(String)
 + WritableImage getBlockImage(String)
-}
-class entity.derived.Booster {
-+ <<Create>> Booster(String)
-+ void collect()
 }
 class controller.GameController {
 + {static} boolean debugEnabled
 - {static} int point
 - {static} int money
-- {static} int timeElapsed
+- {static} int secTimeElapsed
+- {static} int minTimeElapsed
 - {static} boolean isGameEnd
 - {static} TextureLoader textureLoader
 - {static} ArrayList<Text> statusText
+- {static} LevelGenerator levelGenerator
++ {static} void initLevelGenerator(long)
 + {static} int getPoint()
 + {static} void increasePoint(int)
 + {static} ArrayList<Text> getStatusText()
@@ -137,9 +170,7 @@ class controller.GameController {
 + {static} void setGameEnd()
 + {static} TextureLoader getTextureLoader()
 + {static} void increaseMoney(int)
-}
-interface entity.base.Collectable {
-~ void collect()
++ {static} LevelGenerator getLevelGenerator()
 }
 class scene.Terrain {
 - Random terrainRandom
@@ -149,28 +180,42 @@ class scene.Terrain {
 + void initializeTerrain(String)
 - Pane genStoneBackground()
 }
+class entity.derived.Cactus {
++ <<Create>> Cactus(String,int,int)
++ void initializeTexture(String)
+}
+class entity.derived.CoinBox {
+- boolean isEmpty
+- int timer
+- AnimationTimer animationTimer
+- CoinInCoinBox coinInCoinBox
++ <<Create>> CoinBox(String,int,int)
++ void setImage()
++ void animate()
++ boolean getIsEmpty()
++ void setIsEmpty(boolean)
++ void coinPop()
++ CoinInCoinBox getCoinInCoinBox()
+}
 
 
 javafx.scene.image.ImageView <|-- entity.base.Entity
+entity.base.Entity <|-- entity.derived.Box
+entity.base.MoveableEntity <|-- entity.derived.CoinInCoinBox
 entity.base.Entity <|-- entity.base.MoveableEntity
 javafx.scene.layout.Pane <|-- scene.Block
 javafx.scene.layout.VBox <|-- scene.Menu
-entity.base.Entity <|-- entity.derived.BoosterBlock
 javafx.application.Application <|-- application.Main
 javafx.scene.layout.VBox <|-- scene.GameOver
-input.Keyinput +.. input.Keyinput.KeyInput
-input.KeyListener <|.. input.Keyinput.KeyInput
-entity.base.Collectable <|.. entity.derived.Coin
 entity.base.Despawnable <|.. entity.derived.Coin
 entity.base.Entity <|-- entity.derived.Coin
-entity.base.Attackable <|.. entity.derived.Enemy
 entity.base.Despawnable <|.. entity.derived.Enemy
 entity.base.Renderable <|.. entity.derived.Enemy
 entity.base.MoveableEntity <|-- entity.derived.Enemy
 entity.base.Renderable <|.. entity.derived.Player
 entity.base.Despawnable <|.. entity.derived.Player
 entity.base.MoveableEntity <|-- entity.derived.Player
-entity.base.Collectable <|.. entity.derived.Booster
-entity.base.MoveableEntity <|-- entity.derived.Booster
 javafx.scene.layout.GridPane <|-- scene.Terrain
+entity.derived.Box <|-- entity.derived.Cactus
+entity.derived.Box <|-- entity.derived.CoinBox
 @enduml

@@ -2,31 +2,28 @@ package entity.derived;
 
 
 import javafx.animation.AnimationTimer;
-import scene.LevelGenerator;
 
 /**
- * The type Coin box.
+ * A box that hold a coin.
  */
 public class CoinBox extends Box {
     private boolean isEmpty;
     private int timer;
     private AnimationTimer animationTimer;
-    private CoinInCoinBox boxCoin;
+    private CoinInCoinBox coinInCoinBox;
 
     /**
-     * Instantiates a new Coin box.
+     * Instantiates a new Coin Box.
      *
-     * @param name the name
-     * @param x    the x
-     * @param y    the y
+     * @param name the name of the box
+     * @param x    the x coordinates
+     * @param y    the y coordinates
      */
     public CoinBox(String name, int x, int y) {
-
         super(name, x, y);
         timer = 0;
         isEmpty = false;
-        boxCoin = new CoinInCoinBox(x + 17, y);
-        LevelGenerator.entities.add(boxCoin);
+        coinInCoinBox = new CoinInCoinBox(x + 17, y);
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -85,6 +82,11 @@ public class CoinBox extends Box {
      * Coin pop.
      */
     public void coinPop() {
-        boxCoin.pop();
+        coinInCoinBox.pop();
     }
+
+    public CoinInCoinBox getCoinInCoinBox() {
+        return coinInCoinBox;
+    }
+
 }

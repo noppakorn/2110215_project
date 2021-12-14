@@ -1,7 +1,6 @@
 package entity.derived;
 
 import controller.GameController;
-import entity.base.Attackable;
 import entity.base.Despawnable;
 import entity.base.Entity;
 import entity.base.MoveableEntity;
@@ -11,7 +10,7 @@ import javafx.animation.AnimationTimer;
 /**
  * The type Enemy.
  */
-public class Enemy extends MoveableEntity implements Attackable, Despawnable, Renderable {
+public class Enemy extends MoveableEntity implements Despawnable, Renderable {
     private boolean despawn;
     private AnimationTimer animationTimer;
     private int timer;
@@ -45,7 +44,6 @@ public class Enemy extends MoveableEntity implements Attackable, Despawnable, Re
     }
 
 
-    @Override
     public void attack(Entity e) {
         if (e instanceof Player) {
             if (((Player) e).isFalling()) {

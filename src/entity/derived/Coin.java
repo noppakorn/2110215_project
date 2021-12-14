@@ -1,7 +1,6 @@
 package entity.derived;
 
 import controller.GameController;
-import entity.base.Collectable;
 import entity.base.Despawnable;
 import entity.base.Entity;
 import javafx.animation.AnimationTimer;
@@ -10,7 +9,7 @@ import javafx.animation.AnimationTimer;
 /**
  * The type Coin.
  */
-public class Coin extends Entity implements Collectable, Despawnable {
+public class Coin extends Entity implements Despawnable {
     /**
      * The Value.
      */
@@ -65,7 +64,6 @@ public class Coin extends Entity implements Collectable, Despawnable {
         animationTimer.start();
     }
 
-    @Override
     public void collect() {
         GameController.increasePoint(value);
         GameController.increaseMoney(value);
