@@ -4,13 +4,15 @@ class scene.LevelGenerator {
 - Random levelRandom
 - boolean levelGeneratorBusy
 - int currentLevel
-+ <<Create>> LevelGenerator()
-+ <<Create>> LevelGenerator(long)
++ <<Create>> LevelGenerator(long,int)
 + void genNextLevel()
 - int randInt(int,int)
 - void genEntity(String,double,double)
 + List<Entity> getEntities()
 + boolean isLevelGeneratorBusy()
+}
+class exception.InvalidLevelException {
++ <<Create>> InvalidLevelException(int,int)
 }
 abstract class entity.base.Entity {
 # double x
@@ -61,10 +63,13 @@ class scene.Block {
 }
 class scene.Menu {
 + boolean gameStart
-~ Text title
-~ Label label
+- Text title
 + <<Create>> Menu()
-+ void initializeStartText()
+- void initializeTitle()
+- void initializeInstruction()
+- void initializeLevelSetter()
+- void handleLevelInput(TextField)
++ boolean isGameStart()
 }
 interface entity.base.Despawnable {
 ~ boolean isDespawn()
@@ -76,6 +81,7 @@ class application.Main {
 class scene.GameOver {
 - Text title
 + <<Create>> GameOver()
++ Text genAndAddText(String)
 }
 interface entity.base.Renderable {
 ~ void update()
@@ -98,8 +104,8 @@ class entity.derived.Enemy {
 - AnimationTimer animationTimer
 - int timer
 - int pic
-+ <<Create>> Enemy(String,double,double)
-+ void attack(Entity)
++ <<Create>> Enemy(String,double,double,double)
++ void attack(Player)
 + boolean isDespawn()
 + void update()
 }
@@ -139,6 +145,9 @@ class entity.derived.Player {
 + void setDownEnabled(boolean)
 + void setJumping(boolean)
 }
+class scene.ErrorMessageBox {
++ <<Create>> ErrorMessageBox(String)
+}
 class controller.TextureLoader {
 - Map<String,Image> images
 - Map<String,WritableImage> blockImages
@@ -156,22 +165,21 @@ class controller.GameController {
 - {static} int minTimeElapsed
 - {static} boolean isGameEnd
 - {static} TextureLoader textureLoader
-- {static} ArrayList<Text> statusText
+- {static} Text statusText
 - {static} LevelGenerator levelGenerator
-+ {static} void initLevelGenerator(long)
++ {static} void initLevelGenerator(long,int)
 + {static} int getPoint()
 + {static} void increasePoint(int)
-+ {static} ArrayList<Text> getStatusText()
++ {static} Text getStatusText()
 + {static} void startStatusText()
-- {static} void timeUpdater()
-- {static} void pointUpdater()
-- {static} void moneyUpdater()
 + {static} List<Entity> checkCollision(Player,LevelGenerator)
 + {static} boolean isGameEnd()
 + {static} void setGameEnd()
 + {static} TextureLoader getTextureLoader()
 + {static} void increaseMoney(int)
 + {static} LevelGenerator getLevelGenerator()
++ {static} String getTimeElapsed()
++ {static} int getMoney()
 }
 class scene.Terrain {
 - Random terrainRandom
@@ -181,9 +189,8 @@ class scene.Terrain {
 + void initializeTerrain(String)
 - Pane genStoneBackground()
 }
-class entity.derived.Cactus {
-+ <<Create>> Cactus(String,double,double)
-+ void initializeTexture(String)
+class entity.derived.Pipe {
++ <<Create>> Pipe(String,double,double)
 }
 class entity.derived.CoinBox {
 - boolean isEmpty
@@ -200,6 +207,7 @@ class entity.derived.CoinBox {
 }
 
 
+exception.Exception <|-- exception.InvalidLevelException
 javafx.scene.image.ImageView <|-- entity.base.Entity
 entity.base.Entity <|-- entity.derived.Box
 entity.base.MoveableEntity <|-- entity.derived.CoinInCoinBox
@@ -216,7 +224,8 @@ entity.base.MoveableEntity <|-- entity.derived.Enemy
 entity.base.Renderable <|.. entity.derived.Player
 entity.base.Despawnable <|.. entity.derived.Player
 entity.base.MoveableEntity <|-- entity.derived.Player
+javafx.scene.control.Alert <|-- scene.ErrorMessageBox
 javafx.scene.layout.GridPane <|-- scene.Terrain
-entity.derived.Box <|-- entity.derived.Cactus
+entity.derived.Box <|-- entity.derived.Pipe
 entity.derived.Box <|-- entity.derived.CoinBox
 @enduml
