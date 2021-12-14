@@ -1,5 +1,6 @@
 package scene;
 
+import controller.GameController;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -21,13 +22,27 @@ public class GameOver extends VBox {
     public GameOver() {
         super();
         this.setAlignment(Pos.CENTER);
-        this.setBackground(new Background(new BackgroundFill(Color.LIGHTCYAN, null, null)));
+        this.setBackground(new Background(new BackgroundFill(Color.PINK, null, null)));
 
-        title = new Text("Game Over!");
-        title.setStyle("-fx-font-weight: bold");
+        title = genAndAddText("You Died!");
         title.setFont(new Font("Arial", 72));
-        title.setTextAlignment(TextAlignment.CENTER);
-        this.getChildren().add(title);
-        // TODO: show Player stats when Game Over
+        title.setStyle("-fx-font-weight: bold");
+        genAndAddText("Time: " + GameController.getTimeElapsed());
+        genAndAddText("Money: " + GameController.getMoney());
+        genAndAddText("Point: " + GameController.getPoint());
+    }
+
+    /**
+     * Create and add text with proper format to the scene.
+     *
+     * @param textToGen the text to gets generated
+     * @return the text generated
+     */
+    public Text genAndAddText(String textToGen) {
+        Text text = new Text(textToGen);
+        text.setFont(new Font("Arial", 32));
+        text.setTextAlignment(TextAlignment.CENTER);
+        this.getChildren().add(text);
+        return text;
     }
 }

@@ -101,8 +101,8 @@ public class Main extends Application {
             // Show game over screen
             if (!GameController.debugEnabled) {
                 Platform.runLater(() -> {
-                    group.getChildren().clear();
-                    group.getChildren().add(new GameOver());
+                    GameOver gameOver = new GameOver();
+                    scene.setRoot(gameOver);
                 });
             }
         }).start();
