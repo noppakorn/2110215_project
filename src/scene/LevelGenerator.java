@@ -69,7 +69,6 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 2 -> {
-//                genEntity("Enemy", randInt(300, 400), 450);
                 genEnemy(300,450,200,700,1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 150, 310);
@@ -78,9 +77,6 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 3 -> {
-//                for (int i = 0; i < 1; ++i) {
-//                    genEntity("Enemy", randInt(300, 400), 450);
-//                }
                 genEnemy(400,450,350,670,1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 300, 310);
@@ -90,9 +86,6 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 4 -> {
-//                for (int i = 0; i < 3; ++i) {
-//                    genEntity("Enemy", randInt(300, 400), 450);
-//                }
                 genEnemy(200,450,100,700,1);
                 genEnemy(300,450,100,700,-1);
                 genEnemy(600,450,100,700,1);
@@ -102,9 +95,6 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 5 -> {
-//                for (int i = 0; i < 4; ++i) {
-//                    genEntity("Enemy", randInt(300, 400), 450);
-//                }
                 genEnemy(360,450,350,640,-1);
                 genEnemy(200,450,100,300,-1);
                 genEnemy(400,450,350,640,1);
@@ -116,9 +106,6 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 6 -> {
-//                for (int i = 0; i < 2; ++i) {
-//                    genEntity("Enemy", randInt(300, 400), 450);
-//                }
                 genEnemy(300,450,250,540,-1);
                 genEnemy(600,450,590,680,-1);
                 genEntity("Coin", randInt(100, 700), 200);
@@ -129,9 +116,6 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 7 -> {
-//                for (int i = 0; i < 6; ++i) {
-//                    genEntity("Enemy", randInt(300, 400), 450);
-//                }
                 genEnemy(300,450,200,400,-1);
                 genEnemy(400,450,200,400,-1);
                 genEnemy(300,450,200,400,1);
@@ -145,9 +129,6 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 8 -> {
-//                for (int i = 0; i < 8; ++i) {
-//                    genEntity("Enemy", randInt(300, 400), 450);
-//                }
                 genEnemy(300,450,250,600,-1);
                 genEnemy(500,450,250,600,-1);
                 genEnemy(520,450,250,600,-1);
@@ -163,9 +144,6 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 9 -> {
-//                for (int i = 0; i < 9; ++i) {
-//                    genEntity("Enemy", randInt(300, 400), 450);
-//                }
                 genEnemy(300,450,100,700,-1);
                 genEnemy(330,450,100,700,-1);
                 genEnemy(470,450,100,700,-1);
@@ -205,8 +183,8 @@ public class LevelGenerator {
     /**
      * Generate enemy for the level.
      *
-     * @param x the cordinate x
-     * @param y the cordinate y
+     * @param x the coordinate x
+     * @param y the coordinate y
      * @param lowerBound the lowerBound
      * @param upperBound the upperBound
      * @param direction direction of the enemy
@@ -226,8 +204,6 @@ public class LevelGenerator {
         switch (entityType) {
             case "Coin" -> entity = new Coin(x, y);
             case "Box" -> entity = new Box("Box", x, y);
-//            case "Enemy" -> entity = new Enemy("Enemy", x, y);
-//            case "Enemy" -> entity = new Enemy("Enemy", x, y, randInt(-1, 1));
             case "Pipe" -> entity = new Pipe("Pipe", x, y);
             case "CoinBox" -> {
                 CoinBox coinBox = new CoinBox("CoinBox", x, y);
@@ -253,9 +229,9 @@ public class LevelGenerator {
 
 
     /**
-     * Is level generator busy boolean.
+     * Check if the level generator is busy generating
      *
-     * @return the boolean
+     * @return the boolean indicting the status of LevelGenerator
      */
     public boolean isLevelGeneratorBusy() {
         return levelGeneratorBusy;
