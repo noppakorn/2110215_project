@@ -85,6 +85,11 @@ public class CoinBox extends Box {
         coinInCoinBox.pop();
     }
 
+    /**
+     * Gets coin in coin box.
+     *
+     * @return the coin in coin box
+     */
     public CoinInCoinBox getCoinInCoinBox() {
         return coinInCoinBox;
     }

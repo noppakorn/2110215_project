@@ -41,6 +41,11 @@ public class GameController {
     private static ArrayList<Text> statusText = new ArrayList<>();
     private static LevelGenerator levelGenerator;
 
+    /**
+     * Init level generator.
+     *
+     * @param seed the seed
+     */
     public static void initLevelGenerator(long seed) {
         levelGenerator = new LevelGenerator(seed);
     }

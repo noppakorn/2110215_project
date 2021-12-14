@@ -64,6 +64,9 @@ public class Coin extends Entity implements Despawnable {
         animationTimer.start();
     }
 
+    /**
+     * Collect.
+     */
     public void collect() {
         GameController.increasePoint(value);
         GameController.increaseMoney(value);

@@ -21,6 +21,8 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
      * Instantiates a new Enemy.
      *
      * @param name the name
+     * @param x    the x
+     * @param y    the y
      */
     public Enemy(String name, double x, double y) {
         super(name);
@@ -44,6 +46,11 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
     }
 
 
+    /**
+     * Attack.
+     *
+     * @param e the e
+     */
     public void attack(Entity e) {
         if (e instanceof Player) {
             if (((Player) e).isFalling()) {

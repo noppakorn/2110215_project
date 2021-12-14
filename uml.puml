@@ -3,11 +3,12 @@ class scene.LevelGenerator {
 - List<Entity> entities
 - Random levelRandom
 - boolean levelGeneratorBusy
+- int currentLevel
 + <<Create>> LevelGenerator()
 + <<Create>> LevelGenerator(long)
-+ void genAllEntities()
++ void genNextLevel()
 - int randInt(int,int)
-- void genEntity(String,int)
+- void genEntity(String,double,double)
 + List<Entity> getEntities()
 + boolean isLevelGeneratorBusy()
 }
@@ -84,8 +85,8 @@ class entity.derived.Coin {
 # boolean despawn
 - int timer
 + <<Create>> Coin()
-+ <<Create>> Coin(int,int)
-+ <<Create>> Coin(int,int,int)
++ <<Create>> Coin(double,double)
++ <<Create>> Coin(int,double,double)
 + void collect()
 + boolean isDespawn()
 + String toString()
@@ -97,7 +98,7 @@ class entity.derived.Enemy {
 - AnimationTimer animationTimer
 - int timer
 - int pic
-+ <<Create>> Enemy(String)
++ <<Create>> Enemy(String,double,double)
 + void attack(Entity)
 + boolean isDespawn()
 + void update()
@@ -181,7 +182,7 @@ class scene.Terrain {
 - Pane genStoneBackground()
 }
 class entity.derived.Cactus {
-+ <<Create>> Cactus(String,int,int)
++ <<Create>> Cactus(String,double,double)
 + void initializeTexture(String)
 }
 class entity.derived.CoinBox {
@@ -189,7 +190,7 @@ class entity.derived.CoinBox {
 - int timer
 - AnimationTimer animationTimer
 - CoinInCoinBox coinInCoinBox
-+ <<Create>> CoinBox(String,int,int)
++ <<Create>> CoinBox(String,double,double)
 + void setImage()
 + void animate()
 + boolean getIsEmpty()
