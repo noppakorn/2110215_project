@@ -26,10 +26,6 @@ public class Menu extends VBox {
      * Indicate the state of the game
      */
     public boolean gameStart;
-    /**
-     * The Menu title.
-     */
-    private Text title;
 
     /**
      * Instantiates a new Menu.
@@ -41,6 +37,7 @@ public class Menu extends VBox {
         this.setSpacing(20);
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTCYAN, null, null)));
         initializeTitle();
+        initializeAuthor();
         initializeInstruction();
         initializeLevelSetter();
     }
@@ -55,6 +52,14 @@ public class Menu extends VBox {
         fadeTransition.setCycleCount(Animation.INDEFINITE);
         fadeTransition.play();
         this.getChildren().add(title);
+    }
+
+    private void initializeAuthor() {
+        Text text = new Text("By Meen and Ta");
+        text.setStyle("-fx-font-weight: bold");
+        text.setTextAlignment(TextAlignment.CENTER);
+        text.setFont(new Font("Arial", 24));
+        this.getChildren().add(text);
     }
 
     private void initializeInstruction() {
