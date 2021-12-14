@@ -78,7 +78,8 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 2 -> {
-                genEntity("Enemy", randInt(300, 400), 450);
+//                genEntity("Enemy", randInt(300, 400), 450);
+                genEnemy(300,450,200,700,1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Cactus", 150, 450);
                 genEntity("CoinBox", 420, 250);
@@ -86,9 +87,10 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 3 -> {
-                for (int i = 0; i < 1; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
-                }
+//                for (int i = 0; i < 1; ++i) {
+//                    genEntity("Enemy", randInt(300, 400), 450);
+//                }
+                genEnemy(400,450,350,670,1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Cactus", 300, 450);
                 genEntity("Cactus", 670, 450);
@@ -97,18 +99,25 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 4 -> {
-                for (int i = 0; i < 3; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
-                }
+//                for (int i = 0; i < 3; ++i) {
+//                    genEntity("Enemy", randInt(300, 400), 450);
+//                }
+                genEnemy(200,450,100,700,1);
+                genEnemy(300,450,100,700,-1);
+                genEnemy(600,450,100,700,1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("CoinBox", 300, 250);
                 genEntity("CoinBox", 350, 250);
                 ++currentLevel;
             }
             case 5 -> {
-                for (int i = 0; i < 4; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
-                }
+//                for (int i = 0; i < 4; ++i) {
+//                    genEntity("Enemy", randInt(300, 400), 450);
+//                }
+                genEnemy(360,450,350,640,-1);
+                genEnemy(200,450,100,300,-1);
+                genEnemy(400,450,350,640,1);
+                genEnemy(200,450,100,300,1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Cactus", 300, 450);
                 genEntity("Cactus", 640, 450);
@@ -116,9 +125,11 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 6 -> {
-                for (int i = 0; i < 2; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
-                }
+//                for (int i = 0; i < 2; ++i) {
+//                    genEntity("Enemy", randInt(300, 400), 450);
+//                }
+                genEnemy(300,450,250,540,-1);
+                genEnemy(600,450,590,680,-1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Cactus", 200, 450);
                 genEntity("Cactus", 540, 450);
@@ -127,9 +138,15 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 7 -> {
-                for (int i = 0; i < 6; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
-                }
+//                for (int i = 0; i < 6; ++i) {
+//                    genEntity("Enemy", randInt(300, 400), 450);
+//                }
+                genEnemy(300,450,200,400,-1);
+                genEnemy(400,450,200,400,-1);
+                genEnemy(300,450,200,400,1);
+                genEnemy(460,450,450,650,1);
+                genEnemy(500,450,450,650,-1);
+                genEnemy(600,450,450,650,1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Cactus", 150, 450);
                 genEntity("Cactus", 400, 450);
@@ -137,9 +154,17 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 8 -> {
-                for (int i = 0; i < 8; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
-                }
+//                for (int i = 0; i < 8; ++i) {
+//                    genEntity("Enemy", randInt(300, 400), 450);
+//                }
+                genEnemy(300,450,250,600,-1);
+                genEnemy(500,450,250,600,-1);
+                genEnemy(520,450,250,600,-1);
+                genEnemy(360,450,250,600,-1);
+                genEnemy(470,450,250,600,1);
+                genEnemy(500,450,250,600,1);
+                genEnemy(440,450,250,600,1);
+                genEnemy(280,450,250,600,1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Cactus", 200, 450);
                 genEntity("Cactus", 600, 450);
@@ -147,9 +172,20 @@ public class LevelGenerator {
                 ++currentLevel;
             }
             case 9 -> {
-                for (int i = 0; i < 9; ++i) {
-                    genEntity("Enemy", randInt(300, 400), 450);
-                }
+//                for (int i = 0; i < 9; ++i) {
+//                    genEntity("Enemy", randInt(300, 400), 450);
+//                }
+                genEnemy(300,450,100,700,-1);
+                genEnemy(330,450,100,700,-1);
+                genEnemy(470,450,100,700,-1);
+                genEnemy(579,450,100,700,-1);
+                genEnemy(549,450,100,700,-1);
+                genEnemy(409,450,100,700,1);
+                genEnemy(430,450,100,700,1);
+                genEnemy(398,450,100,700,1);
+                genEnemy(654,450,100,700,1);
+                genEnemy(178,450,100,700,1);
+                genEnemy(284,450,100,700,1);
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("CoinBox", 100, 250);
                 genEntity("CoinBox", 300, 250);
@@ -175,6 +211,19 @@ public class LevelGenerator {
         }
         return (Math.abs(levelRandom.nextInt()) % (max - min)) + min;
     }
+    /**
+     * Generate enemy for the level.
+     *
+     * @param x the cordinate x
+     * @param y the cordinate y
+     * @param lowerBound the lowerBound
+     * @param upperBound the upperBound
+     * @param direction direction of the enemy
+     */
+    private void genEnemy(double x, double y,int lowerBound,int upperBound,int direction){
+        Entity enemy = new Enemy("Enemy", x, y,lowerBound,upperBound - 30,direction);
+        entities.add(enemy);
+    }
 
     /**
      * Generate entity for the level.
@@ -186,7 +235,7 @@ public class LevelGenerator {
         switch (entityType) {
             case "Coin" -> entity = new Coin(x, y);
             case "Box" -> entity = new Box("Box", x, y);
-            case "Enemy" -> entity = new Enemy("Enemy", x, y);
+//            case "Enemy" -> entity = new Enemy("Enemy", x, y);
             case "CoinBox" -> {
                 CoinBox coinBox = new CoinBox("CoinBox", x, y);
                 entities.add(coinBox.getCoinInCoinBox());
