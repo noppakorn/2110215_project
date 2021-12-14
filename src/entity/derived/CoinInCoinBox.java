@@ -1,5 +1,6 @@
 package entity.derived;
 
+import controller.GameController;
 import entity.base.MoveableEntity;
 import javafx.animation.AnimationTimer;
 
@@ -38,6 +39,8 @@ public class CoinInCoinBox extends MoveableEntity {
      * Handle animation when the coin pops out from the box.
      */
     public void pop() {
+        GameController.increasePoint(1);
+        GameController.increaseMoney(1);
         animationTimer.start();
     }
 
