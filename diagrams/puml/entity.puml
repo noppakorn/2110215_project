@@ -1,0 +1,123 @@
+@startuml
+abstract class entity.base.Entity {
+# double x
+# double y
+# String name
++ String toString()
++ String getName()
++ void initializeTexture(String)
+}
+class entity.derived.Box {
++ void initializeBlockTexture(String)
+}
+interface entity.base.Renderable {
+~ void update()
+}
+class entity.derived.Coin {
+# int value
+# boolean isDespawn
+- int timer
++ void collect()
++ boolean isDespawn()
++ String toString()
++ void setImage()
++ void animate()
+}
+class entity.derived.Enemy {
+- boolean isDespawn
+- AnimationTimer animationTimer
+- int timer
+- int pictureInd
+- int lowerBound
+- int upperBound
++ void attack(Player)
++ boolean isDespawn()
++ void update()
+}
+class entity.derived.Player {
+- boolean isDespawn
+- boolean isGoNextScene
+- boolean isLeftEnabled
+- boolean isRightEnabled
+- boolean isUpEnabled
+- boolean isDownEnabled
+- boolean isJumping
+- boolean isMovingRight
+- int timer
++ void initializeMovement()
++ void returnToBegin()
++ boolean isOnTheGround()
++ void update()
++ String toString()
++ void animate()
++ boolean isGoNextScene()
++ void setGoNextScene(boolean)
++ boolean isFalling()
++ void killPlayer()
++ boolean isDespawn()
++ void setCorX(double)
++ void setCorY(double)
++ boolean getRightEnabled()
++ void setRightEnabled(boolean)
++ boolean getLeftEnabled()
++ void setLeftEnabled(boolean)
++ boolean isUpEnabled()
++ void setUpEnabled(boolean)
++ boolean isDownEnabled()
++ void setDownEnabled(boolean)
++ void setJumping(boolean)
+}
+class entity.derived.CoinInCoinBox {
+- int timer
+- AnimationTimer animationTimer
+- int jumpTime
+- int fallingTime
+- int jumpHeight
++ void pop()
++ void animate()
+}
+abstract class entity.base.MoveableEntity {
+# double velocityY
+# double velocityX
+# double sceneUpperBoundX
+# double upperBoundX
+# double upperBoundY
+# double lowerBoundX
++ double getVelocityY()
++ void setVelocityY(double)
++ void setVelocityX(double)
+}
+interface entity.base.Despawnable {
+~ boolean isDespawn()
+}
+class entity.derived.Pipe {
+}
+class entity.derived.CoinBox {
+- boolean isEmpty
+- int timer
+- AnimationTimer animationTimer
+- CoinInCoinBox coinInCoinBox
++ void setImage()
++ void animate()
++ boolean getIsEmpty()
++ void setIsEmpty(boolean)
++ void coinPop()
++ CoinInCoinBox getCoinInCoinBox()
+}
+
+
+javafx.scene.image.ImageView <|-- entity.base.Entity
+entity.base.Entity <|-- entity.derived.Box
+entity.base.Despawnable <|.. entity.derived.Coin
+entity.base.Entity <|-- entity.derived.Coin
+entity.base.Despawnable <|.. entity.derived.Enemy
+entity.base.Renderable <|.. entity.derived.Enemy
+entity.base.MoveableEntity <|-- entity.derived.Enemy
+entity.base.Renderable <|.. entity.derived.Player
+entity.base.Despawnable <|.. entity.derived.Player
+entity.base.MoveableEntity <|-- entity.derived.Player
+entity.base.MoveableEntity <|-- entity.derived.CoinInCoinBox
+entity.base.Entity <|-- entity.base.MoveableEntity
+entity.derived.Box <|-- entity.derived.Pipe
+entity.derived.Box <|-- entity.derived.CoinBox
+@enduml

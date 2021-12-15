@@ -1,0 +1,47 @@
+@startuml
+class exception.InvalidLevelException {
++ <<Create>> InvalidLevelException(int,int)
+}
+class controller.TextureLoader {
+- Map<String,Image> images
+- Map<String,WritableImage> blockImages
+- PixelReader blockTextureReader
+- Map<String,Pair<Integer,Integer>> minecraftBlockNameToPos
++ <<Create>> TextureLoader()
++ Image getImage(String)
++ WritableImage getBlockImage(String)
+}
+class controller.GameController {
++ {static} boolean DEBUG_ENABLED
+- {static} int point
+- {static} int money
+- {static} int secTimeElapsed
+- {static} int minTimeElapsed
+- {static} boolean isGameEnd
+- {static} TextureLoader textureLoader
+- {static} Text statusText
+- {static} LevelGenerator levelGenerator
++ {static} void resetGameController()
++ {static} void initLevelGenerator(long,int)
++ {static} int getPoint()
++ {static} void increasePoint(int)
++ {static} Text getStatusText()
++ {static} void startStatusText()
++ {static} List<Entity> checkCollision(Player,LevelGenerator)
++ {static} boolean isGameEnd()
++ {static} void setGameEnd()
++ {static} TextureLoader getTextureLoader()
++ {static} void increaseMoney(int)
++ {static} LevelGenerator getLevelGenerator()
++ {static} String getTimeElapsed()
++ {static} int getMoney()
+}
+class application.Main {
++ {static} void main(String[])
++ void start(Stage)
+}
+
+
+exception.Exception <|-- exception.InvalidLevelException
+javafx.application.Application <|-- application.Main
+@enduml

@@ -2,14 +2,16 @@
 class scene.LevelGenerator {
 - List<Entity> entities
 - Random levelRandom
-- Text titleboolean levelGeneratorBusy
+- boolean levelGeneratorBusy
 - int currentLevel
 + <<Create>> LevelGenerator(long,int)
 + void genNextLevel()
 - int randInt(int,int)
+- void genEnemy(double,double,int,int,int)
 - void genEntity(String,double,double)
 + List<Entity> getEntities()
 + boolean isLevelGeneratorBusy()
++ boolean isGameWin()
 }
 class exception.InvalidLevelException {
 + <<Create>> InvalidLevelException(int,int)
@@ -29,6 +31,14 @@ class entity.derived.Box {
 + <<Create>> Box(String,double,double)
 + void initializeBlockTexture(String)
 }
+class scene.GameEnd {
+# Text title
+# int retryOrExit
++ <<Create>> GameEnd(boolean)
+# Text genAndAddText(String)
+# void addButton()
++ int getRetryOrExit()
+}
 class entity.derived.CoinInCoinBox {
 - int timer
 - AnimationTimer animationTimer
@@ -46,15 +56,10 @@ abstract class entity.base.MoveableEntity {
 # double upperBoundX
 # double upperBoundY
 # double lowerBoundX
-+ <<Create>> MoveableEntity()
 + <<Create>> MoveableEntity(String)
 + <<Create>> MoveableEntity(String,double,double)
-+ void setUpperBoundX(double)
-+ void setUpperBoundY(double)
-+ void setLowerBoundX(double)
 + double getVelocityY()
 + void setVelocityY(double)
-+ double getVelocityX()
 + void setVelocityX(double)
 }
 class scene.Block {
@@ -62,10 +67,10 @@ class scene.Block {
 + <<Create>> Block()
 }
 class scene.Menu {
-+ boolean gameStart
-- Text title
++ boolean isGameStart
 + <<Create>> Menu()
 - void initializeTitle()
+- void initializeAuthor()
 - void initializeInstruction()
 - void initializeLevelSetter()
 - void handleLevelInput(TextField)
@@ -78,17 +83,12 @@ class application.Main {
 + {static} void main(String[])
 + void start(Stage)
 }
-class scene.GameOver {
-- Text title
-+ <<Create>> GameOver()
-+ Text genAndAddText(String)
-}
 interface entity.base.Renderable {
 ~ void update()
 }
 class entity.derived.Coin {
 # int value
-# boolean despawn
+# boolean isDespawn
 - int timer
 + <<Create>> Coin()
 + <<Create>> Coin(double,double)
@@ -100,25 +100,26 @@ class entity.derived.Coin {
 + void animate()
 }
 class entity.derived.Enemy {
-- boolean despawn
+- boolean isDespawn
 - AnimationTimer animationTimer
 - int timer
-- int pic
-+ <<Create>> Enemy(String,double,double,double)
+- int pictureInd
+- int lowerBound
+- int upperBound
++ <<Create>> Enemy(String,double,double,int,int,int)
 + void attack(Player)
 + boolean isDespawn()
 + void update()
 }
 class entity.derived.Player {
-- double accelerationY
-- boolean despawn
-- boolean goNextScene
-- boolean leftEnabled
-- boolean rightEnabled
-- boolean upEnabled
-- boolean downEnabled
-- boolean jumping
-- boolean movingRight
+- boolean isDespawn
+- boolean isGoNextScene
+- boolean isLeftEnabled
+- boolean isRightEnabled
+- boolean isUpEnabled
+- boolean isDownEnabled
+- boolean isJumping
+- boolean isMovingRight
 - int timer
 + <<Create>> Player()
 + <<Create>> Player(String)
@@ -158,7 +159,7 @@ class controller.TextureLoader {
 + WritableImage getBlockImage(String)
 }
 class controller.GameController {
-+ {static} boolean debugEnabled
++ {static} boolean DEBUG_ENABLED
 - {static} int point
 - {static} int money
 - {static} int secTimeElapsed
@@ -167,6 +168,7 @@ class controller.GameController {
 - {static} TextureLoader textureLoader
 - {static} Text statusText
 - {static} LevelGenerator levelGenerator
++ {static} void resetGameController()
 + {static} void initLevelGenerator(long,int)
 + {static} int getPoint()
 + {static} void increasePoint(int)
@@ -210,12 +212,12 @@ class entity.derived.CoinBox {
 exception.Exception <|-- exception.InvalidLevelException
 javafx.scene.image.ImageView <|-- entity.base.Entity
 entity.base.Entity <|-- entity.derived.Box
+javafx.scene.layout.VBox <|-- scene.GameEnd
 entity.base.MoveableEntity <|-- entity.derived.CoinInCoinBox
 entity.base.Entity <|-- entity.base.MoveableEntity
 javafx.scene.layout.Pane <|-- scene.Block
 javafx.scene.layout.VBox <|-- scene.Menu
 javafx.application.Application <|-- application.Main
-javafx.scene.layout.VBox <|-- scene.GameOver
 entity.base.Despawnable <|.. entity.derived.Coin
 entity.base.Entity <|-- entity.derived.Coin
 entity.base.Despawnable <|.. entity.derived.Enemy

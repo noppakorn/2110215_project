@@ -1,0 +1,48 @@
+@startuml
+class scene.LevelGenerator {
+- List<Entity> entities
+- Random levelRandom
+- boolean levelGeneratorBusy
+- int currentLevel
++ void genNextLevel()
+- int randInt(int,int)
+- void genEnemy(double,double,int,int,int)
+- void genEntity(String,double,double)
++ List<Entity> getEntities()
++ boolean isLevelGeneratorBusy()
++ boolean isGameWin()
+}
+class scene.GameEnd {
+# Text title
+# int retryOrExit
+# Text genAndAddText(String)
+# void addButton()
++ int getRetryOrExit()
+}
+class scene.ErrorMessageBox {
+}
+class scene.Block {
+}
+class scene.Menu {
++ boolean isGameStart
+- void initializeTitle()
+- void initializeAuthor()
+- void initializeInstruction()
+- void initializeLevelSetter()
+- void handleLevelInput(TextField)
++ boolean isGameStart()
+}
+class scene.Terrain {
+- Random terrainRandom
+- List<String> backgroundBlockType
++ void initializeTerrain(String)
+- Pane genStoneBackground()
+}
+
+
+javafx.scene.layout.VBox <|-- scene.GameEnd
+javafx.scene.control.Alert <|-- scene.ErrorMessageBox
+javafx.scene.layout.Pane <|-- scene.Block
+javafx.scene.layout.VBox <|-- scene.Menu
+javafx.scene.layout.GridPane <|-- scene.Terrain
+@enduml
