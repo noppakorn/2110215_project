@@ -5,11 +5,11 @@ package entity.derived;
  */
 public class Pipe extends Box {
     /**
-     * Instantiates a new Cactus.
+     * Instantiates a new Pipe.
      *
      * @param name the name
-     * @param x    the x
-     * @param y    the y
+     * @param x    the x coordinates
+     * @param y    the y coordinates
      */
     public Pipe(String name, double x, double y) {
         super(name, x, y);

@@ -1,13 +1,13 @@
 package entity.base;
 
 /**
- * The interface Despawnable.
+ * The interface Despawnable. Indicate that the entity can be despawn
  */
 public interface Despawnable {
     /**
-     * Is despawn boolean.
+     * Check if the entity should be despawn
      *
-     * @return the boolean
+     * @return the boolean indicting if the entity should be despawn
      */
     boolean isDespawn();
 }

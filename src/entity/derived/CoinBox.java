@@ -7,9 +7,21 @@ import javafx.animation.AnimationTimer;
  * A box that hold a coin.
  */
 public class CoinBox extends Box {
+    /**
+     * The state that if the CoinBox is empty
+     */
     private boolean isEmpty;
+    /**
+     * The timer value for the animation.
+     */
     private int timer;
+    /**
+     * JavaFx AnimationTimer to handle the CoinBox animation.
+     */
     private AnimationTimer animationTimer;
+    /**
+     * The coin object that is stored in the box.
+     */
     private CoinInCoinBox coinInCoinBox;
 
     /**
@@ -36,7 +48,7 @@ public class CoinBox extends Box {
     }
 
     /**
-     * Sets image.
+     * Sets image of the CoinBox.
      */
     public void setImage() {
         if (isEmpty) {
@@ -50,7 +62,7 @@ public class CoinBox extends Box {
     }
 
     /**
-     * Animate.
+     * Handle animation for the CoinBox
      */
     public void animate() {
         timer++;
@@ -61,34 +73,34 @@ public class CoinBox extends Box {
     }
 
     /**
-     * Gets is empty.
+     * Get the status if the CoinBox have coin in it.
      *
-     * @return the is empty
+     * @return the status if the CoinBox in empty
      */
     public boolean getIsEmpty() {
         return this.isEmpty;
     }
 
     /**
-     * Sets is empty.
+     * Set the empty status of the CoinBox.
      *
-     * @param isEmpty the is empty
+     * @param isEmpty the isEmpty status to be set
      */
     public void setIsEmpty(boolean isEmpty) {
         this.isEmpty = isEmpty;
     }
 
     /**
-     * Coin pop.
+     * Handle the coin pop out of the box when the player hits the box.
      */
     public void coinPop() {
         coinInCoinBox.pop();
     }
 
     /**
-     * Gets coin in coin box.
+     * Gets CoinInCoinBox object.
      *
-     * @return the coin in coin box
+     * @return the CoinInCoinBox object
      */
     public CoinInCoinBox getCoinInCoinBox() {
         return coinInCoinBox;

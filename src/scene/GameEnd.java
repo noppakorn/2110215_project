@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 /**
- * scene for game ending.
+ * Scene for game ending.
  */
 public class GameEnd extends VBox {
     /**

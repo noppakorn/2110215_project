@@ -10,11 +10,29 @@ import javafx.animation.AnimationTimer;
  * The type Enemy.
  */
 public class Enemy extends MoveableEntity implements Despawnable, Renderable {
+    /**
+     * Should the Enemy be despawned
+     */
     private boolean isDespawn;
+    /**
+     * JavaFx AnimationTimer to handle the CoinInCoinBox animation.
+     */
     private AnimationTimer animationTimer;
+    /**
+     * The timer value for the animation.
+     */
     private int timer;
-    private int pic;
+    /**
+     * The texture index of enemy to use
+     */
+    private int pictureInd;
+    /**
+     * The minimum coordinates the enemy can go to
+     */
     private int lowerBound;
+    /**
+     * The maximum coordinates the enemy can go to
+     */
     private int upperBound;
 
 
@@ -25,8 +43,8 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
      * @param x          the x
      * @param y          the y
      * @param lowerBound the lowerBound
-     * @param upperBound the upperBound                   direction must be 1 or -1
-     * @param direction  the direction
+     * @param upperBound the upperBound
+     * @param direction  the direction, should only be 1 or -1
      */
     public Enemy(String name, double x, double y, int lowerBound, int upperBound, int direction) {
         super(name);
@@ -37,7 +55,7 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
         this.y = upperBoundY + 20;
         this.velocityY = 0;
         this.velocityX = 3 * direction;
-        this.pic = 1;
+        this.pictureInd = 1;
         this.timer = 0;
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
@@ -78,11 +96,11 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
         ++timer;
         if (timer == 10) {
             timer = 0;
-            if (pic == 1) {
-                pic = 2;
+            if (pictureInd == 1) {
+                pictureInd = 2;
                 initializeTexture("enemy2");
             } else {
-                pic = 1;
+                pictureInd = 1;
                 initializeTexture("enemy1");
             }
         }

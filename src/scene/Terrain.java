@@ -13,10 +13,16 @@ import java.util.Random;
 
 /**
  * The type Terrain.
- * Represents the terrain of each scene in the level
+ * Represents the terrain of each scene in the level.
  */
 public class Terrain extends GridPane {
+    /**
+     * The randomizer use to generate the terrain.
+     */
     private Random terrainRandom;
+    /**
+     * The block type that will be in the background.
+     */
     private List<String> backgroundBlockType;
 
     /**

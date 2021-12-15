@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
 
 
 /**
- * The type Block.
+ * The type Block that is the floor of the terrain.
  */
 public class Block extends Pane {
     /**

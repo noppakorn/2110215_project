@@ -17,24 +17,17 @@ public abstract class MoveableEntity extends Entity {
      */
     protected double sceneUpperBoundX = 700;
     /**
-     * The Upper bound x.
+     * The maximum x coordinates the entity is allowed
      */
     protected double upperBoundX = 700;
     /**
-     * The Upper bound y.
+     * The maximum y coordinates the entity is allowed
      */
     protected double upperBoundY = 400;
     /**
-     * The Lower bound x.
+     * The minimum x coordinates the entity is allowed
      */
     protected double lowerBoundX = 20;
-
-    /**
-     * Instantiates a new Moveable entity.
-     */
-    public MoveableEntity() {
-        super();
-    }
 
     /**
      * Instantiates a new Moveable entity.
@@ -49,42 +42,15 @@ public abstract class MoveableEntity extends Entity {
      * Instantiates a new Moveable entity.
      *
      * @param name the name
-     * @param x    the x
-     * @param y    the y
+     * @param x    the x coordinates
+     * @param y    the y coordinates
      */
     public MoveableEntity(String name, double x, double y) {
         super(name, x, y);
     }
 
     /**
-     * Sets upper bound x.
-     *
-     * @param upperBoundX the upper bound x
-     */
-    public void setUpperBoundX(double upperBoundX) {
-        this.upperBoundX = upperBoundX;
-    }
-
-    /**
-     * Sets upper bound y.
-     *
-     * @param upperBoundY the upper bound y
-     */
-    public void setUpperBoundY(double upperBoundY) {
-        this.upperBoundY = upperBoundY;
-    }
-
-    /**
-     * Sets lower bound x.
-     *
-     * @param lowerBoundX the lower bound x
-     */
-    public void setLowerBoundX(double lowerBoundX) {
-        this.lowerBoundX = lowerBoundX;
-    }
-
-    /**
-     * Get velocity y double.
+     * Get velocity y.
      *
      * @return the double
      */
@@ -99,15 +65,6 @@ public abstract class MoveableEntity extends Entity {
      */
     public void setVelocityY(double velocityY) {
         this.velocityY = velocityY;
-    }
-
-    /**
-     * Get velocity x double.
-     *
-     * @return the double
-     */
-    public double getVelocityX() {
-        return velocityX;
     }
 
     /**

@@ -14,14 +14,41 @@ import javafx.util.Duration;
  * The type Player. This type represents the main player of the game;
  */
 public class Player extends MoveableEntity implements Renderable, Despawnable {
+    /**
+     * Should the player be despawn
+     */
     private boolean isDespawn;
+    /**
+     * Should the player be gone to next scene
+     */
     private boolean isGoNextScene;
+    /**
+     * Indicate that the player is allowed to go left
+     */
     private boolean isLeftEnabled;
+    /**
+     * Indicate that the player is allowed to go right
+     */
     private boolean isRightEnabled;
+    /**
+     * Indicate that the player is allowed to go up
+     */
     private boolean isUpEnabled;
+    /**
+     * Indicate that the player is allowed to go down
+     */
     private boolean isDownEnabled;
+    /**
+     * Indicate that the player is jumping
+     */
     private boolean isJumping;
+    /**
+     * Indicate that the player is moving right
+     */
     private boolean isMovingRight;
+    /**
+     * Timer for the player animation
+     */
     private int timer;
 
     /**
@@ -127,7 +154,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     }
 
     /**
-     * Is on the ground boolean.
+     * Check if the player is on the ground
      *
      * @return the boolean
      */
@@ -165,7 +192,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     }
 
     /**
-     * Animate.
+     * Animate the moving motion for the player.
      */
     public void animate() {
         if (velocityX == 0) {
@@ -224,7 +251,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     }
 
     /**
-     * Kill player.
+     * Kill the player.
      */
     public void killPlayer() {
         if (!GameController.DEBUG_ENABLED) {
@@ -239,18 +266,18 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     }
 
     /**
-     * Sets cor x.
+     * Sets the x coordinates.
      *
-     * @param x the x
+     * @param x the x coordinates
      */
     public void setCorX(double x) {
         this.x = x;
     }
 
     /**
-     * Sets cor y.
+     * Sets the y coordinates.
      *
-     * @param y the y
+     * @param y the y coordinates
      */
     public void setCorY(double y) {
         this.y = y;
@@ -293,7 +320,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     }
 
     /**
-     * Is up enabled boolean.
+     * Check if the player is allowed to go up
      *
      * @return the boolean
      */
@@ -302,7 +329,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     }
 
     /**
-     * Sets up enabled.
+     * Sets the allowed to go up status of the player
      *
      * @param upEnabled the up enabled
      */
@@ -320,7 +347,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     }
 
     /**
-     * Sets down enabled.
+     * Sets if the allowed to go down status of the player.
      *
      * @param downEnabled the down enabled
      */
@@ -329,9 +356,9 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     }
 
     /**
-     * Sets jumping.
+     * Sets if the player is jumping
      *
-     * @param jumping the jumping
+     * @param jumping the jumping state
      */
     public void setJumping(boolean jumping) {
         this.isJumping = jumping;

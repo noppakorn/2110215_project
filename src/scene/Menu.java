@@ -19,11 +19,11 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 /**
- * Welcome screen for the game
+ * Welcome screen for the game.
  */
 public class Menu extends VBox {
     /**
-     * Indicate the state of the game
+     * Indicate the state of the game.
      */
     public boolean isGameStart;
 
@@ -42,6 +42,9 @@ public class Menu extends VBox {
         initializeLevelSetter();
     }
 
+    /**
+     * Initialize the title text
+     */
     private void initializeTitle() {
         Text title = new Text("Minerio");
         title.setStyle("-fx-font-weight: bold");
@@ -54,6 +57,9 @@ public class Menu extends VBox {
         this.getChildren().add(title);
     }
 
+    /**
+     * Initialize the author text
+     */
     private void initializeAuthor() {
         Text text = new Text("By Meen and Ta");
         text.setStyle("-fx-font-weight: bold");
@@ -62,6 +68,9 @@ public class Menu extends VBox {
         this.getChildren().add(text);
     }
 
+    /**
+     * Initialize the instruction text
+     */
     private void initializeInstruction() {
         Text instructionText = new Text("How many level do you want to play?");
         instructionText.setTextAlignment(TextAlignment.CENTER);
@@ -69,6 +78,9 @@ public class Menu extends VBox {
         this.getChildren().add(instructionText);
     }
 
+    /**
+     * Initialize the text field and button for the user to put how many level do they want to play.
+     */
     private void initializeLevelSetter() {
         TextField levelField = new TextField();
         levelField.setMaxWidth(200);
@@ -84,6 +96,9 @@ public class Menu extends VBox {
         this.getChildren().addAll(levelField, submitButton);
     }
 
+    /**
+     * Handle when the user input the level.
+     */
     private void handleLevelInput(TextField levelField) {
         try {
             int levelInput = Integer.parseInt(levelField.getText());
@@ -104,9 +119,9 @@ public class Menu extends VBox {
     }
 
     /**
-     * Is game start boolean.
+     * Check if the game is started
      *
-     * @return the boolean
+     * @return the boolean indicating if the game is started
      */
     public boolean isGameStart() {
         return isGameStart;

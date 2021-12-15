@@ -18,11 +18,20 @@ import java.util.Random;
  */
 public class LevelGenerator {
     /**
-     * The Entities.
+     * The Entities inside the current level
      */
     private List<Entity> entities;
+    /**
+     * The randomizer for the level
+     */
     private Random levelRandom;
+    /**
+     * The status indicates that the level generator is generating entities
+     */
     private boolean levelGeneratorBusy;
+    /**
+     * The current level the generator is at. The generated level will be determined by this value
+     */
     private int currentLevel;
 
 

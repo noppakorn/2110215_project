@@ -11,17 +11,20 @@ import javafx.animation.AnimationTimer;
  */
 public class Coin extends Entity implements Despawnable {
     /**
-     * The Value.
+     * The Money and Points value.
      */
     protected int value;
     /**
      * The value indicated should the object be despawn
      */
     protected boolean isDespawn;
+    /**
+     * The timer for controlling the animation
+     */
     private int timer;
 
     /**
-     * Instantiates a new Coin.
+     * Instantiates a new Coin with the defaults values
      */
     public Coin() {
         this(1, 0, 0);
@@ -65,7 +68,7 @@ public class Coin extends Entity implements Despawnable {
     }
 
     /**
-     * Collect.
+     * Do actions when the coin is collected by the player.
      */
     public void collect() {
         GameController.increasePoint(value);
@@ -73,6 +76,7 @@ public class Coin extends Entity implements Despawnable {
         isDespawn = true;
     }
 
+    @Override
     public boolean isDespawn() {
         return isDespawn;
     }
@@ -83,7 +87,7 @@ public class Coin extends Entity implements Despawnable {
     }
 
     /**
-     * Sets image.
+     * Sets the image of the coin.
      */
     public void setImage() {
         if (timer < 28) initializeTexture("coin0");
@@ -92,7 +96,7 @@ public class Coin extends Entity implements Despawnable {
     }
 
     /**
-     * Animate.
+     * Handle the coin animation.
      */
     public void animate() {
         timer++;

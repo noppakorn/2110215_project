@@ -8,10 +8,25 @@ import javafx.animation.AnimationTimer;
  * The type Box coin.
  */
 public class CoinInCoinBox extends MoveableEntity {
+    /**
+     * The timer value for the animation.
+     */
     private int timer;
+    /**
+     * JavaFx AnimationTimer to handle the CoinInCoinBox animation.
+     */
     private AnimationTimer animationTimer;
+    /**
+     * The time take for the coin to jumps up from the box.
+     */
     private int jumpTime;
+    /**
+     * The time take for the coin to fall back from the air.
+     */
     private int fallingTime;
+    /**
+     * The height the coin will jumps up when it gets pop.
+     */
     private int jumpHeight;
 
     /**

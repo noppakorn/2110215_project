@@ -4,7 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 /**
- * The type Error message box.
+ * The type Error message box which will be shown when the user input invalid data.
  */
 public class ErrorMessageBox extends Alert {
     /**

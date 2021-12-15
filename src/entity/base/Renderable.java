@@ -1,11 +1,11 @@
 package entity.base;
 
 /**
- * The interface Renderable.
+ * The interface Renderable. Indicated that the entity is dynamic and can be updated.
  */
 public interface Renderable {
     /**
-     * Update.
+     * Handle the position update.
      */
     void update();
 }

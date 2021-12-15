@@ -57,7 +57,7 @@ public abstract class Entity extends ImageView {
     }
 
     /**
-     * Gets name.
+     * Gets name of the entity.
      *
      * @return the name
      */
