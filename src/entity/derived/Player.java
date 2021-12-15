@@ -15,14 +15,14 @@ import javafx.util.Duration;
  */
 public class Player extends MoveableEntity implements Renderable, Despawnable {
     private final double accelerationY = 1;
-    private boolean despawn;
-    private boolean goNextScene;
-    private boolean leftEnabled;
-    private boolean rightEnabled;
-    private boolean upEnabled;
-    private boolean downEnabled;
-    private boolean jumping;
-    private boolean movingRight;
+    private boolean isDespawn;
+    private boolean isGoNextScene;
+    private boolean isLeftEnabled;
+    private boolean isRightEnabled;
+    private boolean isUpEnabled;
+    private boolean isDownEnabled;
+    private boolean isJumping;
+    private boolean isMovingRight;
     private int timer;
 
     /**
@@ -33,7 +33,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
     }
 
     /**
-     * Instantiates a new Player.
+     * Instantiates a new Player. Set up the proper texture and movement for the player
      *
      * @param name the name of the Player.
      */
@@ -51,14 +51,14 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         this.x = lowerBoundX;
         this.y = upperBoundY;
 
-        despawn = false;
-        goNextScene = false;
-        leftEnabled = true;
-        rightEnabled = true;
-        upEnabled = true;
-        downEnabled = true;
-        jumping = false;
-        movingRight = true;
+        isDespawn = false;
+        isGoNextScene = false;
+        isLeftEnabled = true;
+        isRightEnabled = true;
+        isUpEnabled = true;
+        isDownEnabled = true;
+        isJumping = false;
+        isMovingRight = true;
         initializeMovement();
         AnimationTimer animationTimer = new AnimationTimer() {
             @Override
@@ -80,23 +80,23 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         this.setOnKeyPressed(keyEvent -> {
             switch (keyEvent.getCode()) {
                 case LEFT -> {
-                    if (leftEnabled) {
+                    if (isLeftEnabled) {
                         this.velocityX = 5;
-                        movingRight = false;
+                        isMovingRight = false;
                     }
                 }
                 case RIGHT -> {
-                    if (rightEnabled) {
+                    if (isRightEnabled) {
                         ++this.timer;
                         this.velocityX = -5;
-                        movingRight = true;
+                        isMovingRight = true;
                     }
                 }
                 case UP -> {
-                    if (upEnabled && !jumping) {
+                    if (isUpEnabled && !isJumping) {
                         velocityY = 23;
-                        downEnabled = true;
-                        jumping = true;
+                        isDownEnabled = true;
+                        isJumping = true;
                         MediaPlayer jumpSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("Jump.mp3").toString()));
                         jumpSound.setStartTime(Duration.millis(7));
                         jumpSound.play();
@@ -149,9 +149,9 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
         if (this.y - velocityY >= upperBoundY) {
             this.y = upperBoundY;
             velocityY = 0;
-            downEnabled = false;
-            jumping = false;
-        } else if (downEnabled) {
+            isDownEnabled = false;
+            isJumping = false;
+        } else if (isDownEnabled) {
             velocityY -= accelerationY;
             this.y -= velocityY;
         }
@@ -170,12 +170,12 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      */
     public void animate() {
         if (velocityX == 0) {
-            if (movingRight) initializeTexture("marioRight0");
+            if (isMovingRight) initializeTexture("marioRight0");
             else initializeTexture("marioLeft0");
-        } else if (downEnabled || jumping) {
-            if (movingRight) initializeTexture("marioRight4");
+        } else if (isDownEnabled || isJumping) {
+            if (isMovingRight) initializeTexture("marioRight4");
             else initializeTexture("marioLeft4");
-        } else if (movingRight) {
+        } else if (isMovingRight) {
             ++this.timer;
             if (timer >= 20) {
                 timer = 0;
@@ -203,7 +203,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @return the boolean
      */
     public boolean isGoNextScene() {
-        return goNextScene;
+        return isGoNextScene;
     }
 
     /**
@@ -212,7 +212,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @param goNextScene the state of the object to go to next scene
      */
     public void setGoNextScene(boolean goNextScene) {
-        this.goNextScene = goNextScene;
+        this.isGoNextScene = goNextScene;
     }
 
     /**
@@ -228,15 +228,15 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * Kill player.
      */
     public void killPlayer() {
-        if (!GameController.debugEnabled) {
-            despawn = true;
+        if (!GameController.DEBUG_ENABLED) {
+            isDespawn = true;
             System.out.println("Player Killed");
         }
     }
 
     @Override
     public boolean isDespawn() {
-        return despawn;
+        return isDespawn;
     }
 
     /**
@@ -263,7 +263,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @return the right enabled
      */
     public boolean getRightEnabled() {
-        return rightEnabled;
+        return isRightEnabled;
     }
 
     /**
@@ -272,7 +272,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @param rightEnabled the right enabled
      */
     public void setRightEnabled(boolean rightEnabled) {
-        this.rightEnabled = rightEnabled;
+        this.isRightEnabled = rightEnabled;
     }
 
     /**
@@ -281,7 +281,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @return the left enabled
      */
     public boolean getLeftEnabled() {
-        return leftEnabled;
+        return isLeftEnabled;
     }
 
     /**
@@ -290,7 +290,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @param leftEnabled the left enabled
      */
     public void setLeftEnabled(boolean leftEnabled) {
-        this.leftEnabled = leftEnabled;
+        this.isLeftEnabled = leftEnabled;
     }
 
     /**
@@ -299,7 +299,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @return the boolean
      */
     public boolean isUpEnabled() {
-        return upEnabled;
+        return isUpEnabled;
     }
 
     /**
@@ -308,7 +308,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @param upEnabled the up enabled
      */
     public void setUpEnabled(boolean upEnabled) {
-        this.upEnabled = upEnabled;
+        this.isUpEnabled = upEnabled;
     }
 
     /**
@@ -317,7 +317,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @return the boolean
      */
     public boolean isDownEnabled() {
-        return downEnabled;
+        return isDownEnabled;
     }
 
     /**
@@ -326,7 +326,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @param downEnabled the down enabled
      */
     public void setDownEnabled(boolean downEnabled) {
-        this.downEnabled = downEnabled;
+        this.isDownEnabled = downEnabled;
     }
 
     /**
@@ -335,6 +335,6 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
      * @param jumping the jumping
      */
     public void setJumping(boolean jumping) {
-        this.jumping = jumping;
+        this.isJumping = jumping;
     }
 }

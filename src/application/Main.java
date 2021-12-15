@@ -55,7 +55,7 @@ public class Main extends Application {
                     stage.show();
                     music.play();
                 });
-                if (!GameController.debugEnabled) {
+                if (!GameController.DEBUG_ENABLED) {
                     while (!menu.isGameStart()) {
                         try {
                             Thread.sleep(10);
@@ -97,7 +97,7 @@ public class Main extends Application {
                     }
                 }
                 // Show game over screen
-                if (!GameController.debugEnabled) {
+                if (!GameController.DEBUG_ENABLED) {
                     MediaPlayer deadSound = new MediaPlayer(new Media(ClassLoader.getSystemResource("GameOver.mp3").toString()));
                     GameEnd gameEnd = new GameEnd(GameController.getLevelGenerator().isGameWin());
                     Platform.runLater(() -> {

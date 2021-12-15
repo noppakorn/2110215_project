@@ -10,7 +10,7 @@ import javafx.animation.AnimationTimer;
  * The type Enemy.
  */
 public class Enemy extends MoveableEntity implements Despawnable, Renderable {
-    private boolean despawn;
+    private boolean isDespawn;
     private AnimationTimer animationTimer;
     private int timer;
     private int pic;
@@ -30,7 +30,7 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
      */
     public Enemy(String name, double x, double y, int lowerBound, int upperBound, int direction) {
         super(name);
-        despawn = false;
+        isDespawn = false;
         setFitHeight(30);
         setFitWidth(30);
         this.x = x;
@@ -61,7 +61,7 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
         if (player.isFalling()) {
             System.out.println(this + " is killed");
             GameController.increasePoint(1);
-            despawn = true;
+            isDespawn = true;
         } else {
             player.killPlayer();
             System.out.println(this + " killed " + player);
@@ -70,7 +70,7 @@ public class Enemy extends MoveableEntity implements Despawnable, Renderable {
 
     @Override
     public boolean isDespawn() {
-        return despawn;
+        return isDespawn;
     }
 
     @Override

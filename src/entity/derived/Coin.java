@@ -15,9 +15,9 @@ public class Coin extends Entity implements Despawnable {
      */
     protected int value;
     /**
-     * The Despawn.
+     * The value indicated should the object be despawn
      */
-    protected boolean despawn;
+    protected boolean isDespawn;
     private int timer;
 
     /**
@@ -52,7 +52,7 @@ public class Coin extends Entity implements Despawnable {
         this.setX(x);
         this.setY(y);
         this.timer = 0;
-        despawn = false;
+        isDespawn = false;
         AnimationTimer animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -70,11 +70,11 @@ public class Coin extends Entity implements Despawnable {
     public void collect() {
         GameController.increasePoint(value);
         GameController.increaseMoney(value);
-        despawn = true;
+        isDespawn = true;
     }
 
     public boolean isDespawn() {
-        return despawn;
+        return isDespawn;
     }
 
     @Override

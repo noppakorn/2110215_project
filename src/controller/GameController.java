@@ -25,7 +25,7 @@ public class GameController {
     /**
      * Set game to debug mode
      */
-    public static final boolean debugEnabled = false;
+    public static final boolean DEBUG_ENABLED = false;
     /**
      * Accumulated points for player
      */

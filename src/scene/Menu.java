@@ -25,14 +25,14 @@ public class Menu extends VBox {
     /**
      * Indicate the state of the game
      */
-    public boolean gameStart;
+    public boolean isGameStart;
 
     /**
      * Instantiates a new Menu.
      */
     public Menu() {
         super();
-        gameStart = false;
+        isGameStart = false;
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         this.setBackground(new Background(new BackgroundFill(Color.LIGHTCYAN, null, null)));
@@ -88,7 +88,7 @@ public class Menu extends VBox {
         try {
             int levelInput = Integer.parseInt(levelField.getText());
             GameController.initLevelGenerator(198208432L, levelInput);
-            gameStart = true;
+            isGameStart = true;
         } catch (NumberFormatException e) {
             Platform.runLater(() -> {
                 ErrorMessageBox error = new ErrorMessageBox("Level should be an integer");
@@ -109,6 +109,6 @@ public class Menu extends VBox {
      * @return the boolean
      */
     public boolean isGameStart() {
-        return gameStart;
+        return isGameStart;
     }
 }

@@ -2,7 +2,7 @@
 class scene.LevelGenerator {
 - List<Entity> entities
 - Random levelRandom
-- boolean levelGeneratorBusy
+- Text titleboolean levelGeneratorBusy
 - int currentLevel
 + <<Create>> LevelGenerator(long,int)
 + void genNextLevel()
