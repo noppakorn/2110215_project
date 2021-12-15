@@ -14,7 +14,7 @@ import javafx.util.Duration;
  * The type Player. This type represents the main player of the game;
  */
 public class Player extends MoveableEntity implements Renderable, Despawnable {
-    private final double accelerationY = 1;
+    private final double ACCELERATIONY = 1;
     private boolean despawn;
     private boolean goNextScene;
     private boolean leftEnabled;
@@ -152,7 +152,7 @@ public class Player extends MoveableEntity implements Renderable, Despawnable {
             downEnabled = false;
             jumping = false;
         } else if (downEnabled) {
-            velocityY -= accelerationY;
+            velocityY -= ACCELERATIONY;
             this.y -= velocityY;
         }
         this.setX(x);
