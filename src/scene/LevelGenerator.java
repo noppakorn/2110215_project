@@ -80,7 +80,7 @@ public class LevelGenerator {
                 genEntity("Coin", randInt(100, 700), 200);
                 genEntity("Pipe", 300, 310);
                 genEntity("Pipe", 670, 310);
-                genEntity("CoinBox", 180, 250);
+                genEntity("CoinBox", 150, 250);
                 genEntity("CoinBox", 500, 250);
                 ++currentLevel;
             }
@@ -116,7 +116,7 @@ public class LevelGenerator {
             }
             case 7 -> {
                 genEnemy(300, 450, 200, 400, -1);
-                genEnemy(400, 450, 200, 400, -1);
+                genEnemy(340, 450, 200, 400, -1);
                 genEnemy(300, 450, 200, 400, 1);
                 genEnemy(460, 450, 450, 650, 1);
                 genEnemy(500, 450, 450, 650, -1);
