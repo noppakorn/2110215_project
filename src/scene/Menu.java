@@ -98,6 +98,7 @@ public class Menu extends VBox {
 
     /**
      * Handle when the user input the level.
+     * @param levelField the text field to read level from
      */
     private void handleLevelInput(TextField levelField) {
         try {

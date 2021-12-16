@@ -208,6 +208,8 @@ public class LevelGenerator {
      * Generate entity for the level.
      *
      * @param entityType The type of Entity to be generated
+     * @param x          the coordinate x
+     * @param y          the coordinate y
      */
     private void genEntity(String entityType, double x, double y) {
         Entity entity;
