@@ -1,6 +1,6 @@
 # Minerio
 ## Documentation
-- [Game Documentation](https://docs.google.com/document/d/18B0gZMvJlDqEzsym6vJhVCIO5bZmnxKCFyXkel5oPCs/edit?usp=sharing)
+- [Report](https://docs.google.com/document/d/18B0gZMvJlDqEzsym6vJhVCIO5bZmnxKCFyXkel5oPCs/edit?usp=sharing)
 - [JavaDoc](https://noppakorn.github.io/2110215_project)
 ## Dependencies
 - java 17
