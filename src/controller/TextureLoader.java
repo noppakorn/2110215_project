@@ -13,9 +13,21 @@ import java.util.Map;
  * Provides Texture loading for the game. This class reduces the need for loading of the same texture multiple time.
  */
 public class TextureLoader {
+    /**
+     * Stores already loaded images
+     */
     private Map<String, Image> images;
+    /**
+     * Stores already loaded block texture
+     */
     private Map<String, WritableImage> blockImages;
+    /**
+     * Use to crop minecraft texture
+     */
     private PixelReader blockTextureReader;
+    /**
+     * Store position mapping for minecraft block texture
+     */
     private Map<String, Pair<Integer, Integer>> minecraftBlockNameToPos;
 
     /**
