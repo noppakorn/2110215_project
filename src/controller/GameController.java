@@ -23,22 +23,40 @@ import java.util.List;
  */
 public class GameController {
     /**
-     * Set game to debug mode
+     * Set game to debug mode.
      */
     public static final boolean DEBUG_ENABLED = false;
     /**
-     * Accumulated points for player
+     * Accumulated points for player.
      */
     private static int point = 0;
+    /**
+     * Accumulated money for player.
+     */
     private static int money = 0;
     /**
-     * Time Elapsed in seconds for the current level
+     * Time Elapsed in seconds.
      */
     private static int secTimeElapsed = 0;
+    /**
+     * Time Elapsed in minutes.
+     */
     private static int minTimeElapsed = 0;
+    /**
+     * Status if the game is end.
+     */
     private static boolean isGameEnd = false;
+    /**
+     * A texture loader instance for the game.
+     */
     private static TextureLoader textureLoader = new TextureLoader();
+    /**
+     * The status text for the game
+     */
     private static Text statusText = new Text();
+    /**
+     * The level generator instance
+     */
     private static LevelGenerator levelGenerator;
 
     /**
@@ -135,10 +153,10 @@ public class GameController {
      * Check for collision between player and objects and do action
      *
      * @param player           the player
-     * @param terrainGenerator the terrain generator
+     * @param levelGenerator the level generator
      * @return the List of Entities to be removed from the scene
      */
-    public static List<Entity> checkCollision(Player player, LevelGenerator terrainGenerator) {
+    public static List<Entity> checkCollision(Player player, LevelGenerator levelGenerator) {
         List<Entity> toBeRemoved = new ArrayList<>();
 
         if (!GameController.getLevelGenerator().isLevelGeneratorBusy()) {
@@ -147,7 +165,7 @@ public class GameController {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            for (Entity entity : terrainGenerator.getEntities()) {
+            for (Entity entity : levelGenerator.getEntities()) {
                 if (entity instanceof Box) {
                     if (player.getX() <= entity.getX() + entity.getFitWidth() && player.getX() + player.getFitWidth() >= entity.getX()) {
                         if (player.getY() <= entity.getY() + entity.getFitHeight() && player.getY() > entity.getY()) {
@@ -219,7 +237,7 @@ public class GameController {
                 e.printStackTrace();
             }
 
-            terrainGenerator.getEntities().removeIf(entity -> {
+            levelGenerator.getEntities().removeIf(entity -> {
                 if (entity instanceof Despawnable) {
                     if (((Despawnable) entity).isDespawn()) {
                         toBeRemoved.add(entity);
