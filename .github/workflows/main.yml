@@ -18,7 +18,7 @@ jobs:
         run: mkdir javadoc
       - name: Generate Javadoc
         working-directory: javadoc
-        run: javadoc -private -sourcepath ../src
+        run: javadoc -private -sourcepath ../src/{**/,**/**/}*.java
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
